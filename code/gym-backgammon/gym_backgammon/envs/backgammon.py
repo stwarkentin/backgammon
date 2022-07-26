@@ -16,10 +16,10 @@ class BackgammonEnv(gym.Env):
         #self.window_size = 512
         
         # There are 24 locations on the board
-        # For each of the two players the number of that player's pieces at a given location ('boardmen') is encoded with four units
+        # For each of the two players the number of that player's pieces at a given location ('pos') is encoded with four units
             # "The first three units encoded separately the cases of one man, two men, and three men, while the fourth unit encoded the number of men beyond 3." - *citation*
             # this is called a "truncated unary encoding": https://en.wikipedia.org/wiki/Unary_coding, http://www.scholarpedia.org/article/User:Gerald_Tesauro/Proposed/Td-gammon
-            # i.e. 0: [0,0,0,0], 1: [1,0,0,0], 2: [1,1,0,0], 3: [1,1,1,0], 3<n<=15: [1,1,1,0.5*(n-3)]
+            # i.e. n = 0: [0,0,0,0], n = 1: [1,0,0,0], n = 2: [1,1,0,0], n = 3: [1,1,1,0], 3<n<=15: [1,1,1,0.5*(n-3)]
         # That is 96 units each for a subtotal of 192 units
         # Additionally we require a subtotal of 6 units, which consist of 3 units per player to encode the number of that player's pieces on the bar ('barmen'), off the board ('men off'), and whether it is that player's turn or not ('turn)
         # This gives us a total of 198 units which make up an observation
@@ -39,17 +39,17 @@ class BackgammonEnv(gym.Env):
             {
                 'White': Dict(
                     {
-                        'W boardmen': Box(low=low, high=high,dtype=np.float32), # truncated unary encoding explained above, shape is inferred from the shape of 'low' and 'high'
-                        'W barmen': Box(low=0,high=1,dtype=np.float32), # number of pieces on the bar, expressed as a fraction of total pieces i.e. n/15
-                        'W men off': Box(low=0,high=1,dtype=np.float32), # number of pieces off the board, expressed as a fraction of total pieces i.e. n/15
+                        'W pos': Box(low=low, high=high,dtype=np.float32), # truncated unary encoding explained above, shape is inferred from the shape of 'low' and 'high'
+                        'W barmen': Box(low=0,high=7.5,dtype=np.float32), # number of pieces on the bar divided by two
+                        'W menoff': Box(low=0,high=1,dtype=np.float32), # number of pieces off the board, expressed as a fraction of total pieces i.e. n/15
                         'W turn': Discrete(2) # 1 if it is White's turn, 0 if not
                     }
                 ),
                 'Black': Dict(
                     {
-                        'B boardmen': Box(low=low, high=high,dtype=np.float32),
-                        'B barmen': Box(low=0,high=1,dtype=np.float32),
-                        'B men off': Box(low=0,high=1,dtype=np.float32),
+                        'B pos': Box(low=low, high=high,dtype=np.float32),
+                        'B barmen': Box(low=0,high=7.5,dtype=np.float32),
+                        'B menoff': Box(low=0,high=1,dtype=np.float32),
                         'B turn': Discrete(2) # 1 if it is Black's turn, 0 if not
                     }
                 )
@@ -90,3 +90,14 @@ class BackgammonEnv(gym.Env):
     def close(self):
         pass
  
+
+#      /* first encode board locations 24-1 */
+# 206 	    for(j=1;j<=24;++j) {
+# 207 	        jm1 = j - 1;
+# 208 	        n = pos[25-j];
+# 209 	        if(n!=0) {
+# 210 	            if(n==-1) x[5*jm1+0] = 1.0;
+# 211 	            if(n==1) x[5*jm1+1] = 1.0;
+# 212 	            if(n>=2) x[5*jm1+2] = 1.0;
+# 213 	            if(n==3) x[5*jm1+3] = 1.0;
+# 214 	            if(n>=4) x[5*jm1+4] = (float)(n-3)/2.0;
