@@ -75,6 +75,9 @@ class BackgammonEnv(gym.Env):
         #     'White'
         # }
 
+        
+        return observation
+
     # Step
     def step(self, action):
         pass
