@@ -39,6 +39,7 @@ class BackgammonEnv(gym.Env):
             {
                 'W': Dict(
                     {
+                        # might not be correct if we use 24 arrays to group the values which encode each position?
                         'pos': Box(low=low, high=high,dtype=np.float32), # truncated unary encoding explained above, shape is inferred from the shape of 'low' and 'high'
                         'barmen': Box(low=0,high=7.5,dtype=np.float32), # number of pieces on the bar divided by two
                         'menoff': Box(low=0,high=1,dtype=np.float32), # number of pieces off the board, expressed as a fraction of total pieces i.e. n/15
@@ -60,22 +61,58 @@ class BackgammonEnv(gym.Env):
         # Since the action space is very complicated (it changes depending on current board configuration and the result of the random dice roll ), I make no attempt at specifying it and simply set it to 'None' instead
         self.action_space = None
 
+    def place(self, observation, player, pos, n_pieces):
+        
+        for n in range(n_pieces):
+            
+
+
+    def remove(self, observation, pos)
+
     # Reset
     def reset(self): 
-        # 'coin flip' to determine which player goes first
-        # if random() > 0.5:
-        #     w_turn = 1
-        #     b_turn = 0
-        # else:
-        #     w_turn = 0
-        #     b_turn = 1
-        # pass 
 
-        # observation = {
-        #     'White'
-        # }
+        # define starting positions for each side
+        # note: opponents play by moving their pieces to their respective 'opposite ends' of the board
+        # positions 1 and 24 correspond to White's 'start' and 'end' positions respectively
+        # vice versa 24 is Black's start, 1 is Black's 'end'
 
-        
+        # first, create an empty board
+        # for now, the four values encoding each position are going to get grouped into a list
+        w_pos = np.zeros((24, 4))
+
+        # then place pieces according (no need to use the 'place()' method, we can just set the values to whatever we want here)
+        two = [1,1,0,0]
+        three = [1,1,1,0]
+        five = [1,1,1,1]
+
+        w_pos[0] = five
+        w_pos[11] = two
+        w_pos[17] = five
+        w_pos[19] = three
+
+        # Black's pieces mirror White's:
+        b_pos = w_pos
+        b_pos.reverse()
+
+        # 'coin flip' to determine which side goes first
+        coin = random() > 0.5
+
+        observation = {
+            'W': {
+                'pos':w_pos,
+                'barmen': 0,
+                'menoff': 0,
+                'turn': int(coin)
+            },
+            'B': {
+                'pos':b_pos,
+                'barmen': 0,
+                'menoff': 0,
+                'turn': 1-int(coin)
+            }
+        }
+
         return observation
 
     # Step
