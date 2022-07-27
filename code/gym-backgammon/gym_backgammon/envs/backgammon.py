@@ -37,20 +37,20 @@ class BackgammonEnv(gym.Env):
 
         self.observation_space = Dict(
             {
-                'White': Dict(
+                'W': Dict(
                     {
-                        'W pos': Box(low=low, high=high,dtype=np.float32), # truncated unary encoding explained above, shape is inferred from the shape of 'low' and 'high'
-                        'W barmen': Box(low=0,high=7.5,dtype=np.float32), # number of pieces on the bar divided by two
-                        'W menoff': Box(low=0,high=1,dtype=np.float32), # number of pieces off the board, expressed as a fraction of total pieces i.e. n/15
-                        'W turn': Discrete(2) # 1 if it is White's turn, 0 if not
+                        'pos': Box(low=low, high=high,dtype=np.float32), # truncated unary encoding explained above, shape is inferred from the shape of 'low' and 'high'
+                        'barmen': Box(low=0,high=7.5,dtype=np.float32), # number of pieces on the bar divided by two
+                        'menoff': Box(low=0,high=1,dtype=np.float32), # number of pieces off the board, expressed as a fraction of total pieces i.e. n/15
+                        'turn': Discrete(2) # 1 if it is White's turn, 0 if not
                     }
                 ),
-                'Black': Dict(
+                'B': Dict(
                     {
-                        'B pos': Box(low=low, high=high,dtype=np.float32),
-                        'B barmen': Box(low=0,high=7.5,dtype=np.float32),
-                        'B menoff': Box(low=0,high=1,dtype=np.float32),
-                        'B turn': Discrete(2) # 1 if it is Black's turn, 0 if not
+                        'pos': Box(low=low, high=high,dtype=np.float32),
+                        'barmen': Box(low=0,high=7.5,dtype=np.float32),
+                        'menoff': Box(low=0,high=1,dtype=np.float32),
+                        'turn': Discrete(2) # 1 if it is Black's turn, 0 if not
                     }
                 )
             }
