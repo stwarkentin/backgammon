@@ -66,17 +66,17 @@ class BackgammonEnv(gym.Env):
 
         # first, create an empty board
         # for now, the four values encoding each position are going to get grouped into a list
-        starting_pos = np.zeros((24, 4))
+        self.starting_pos = np.zeros((24, 4))
 
         # place pieces to match the game's starting positions
         two = [1,1,0,0]
         three = [1,1,1,0]
         five = [1,1,1,1]
 
-        starting_pos[0] = five
-        starting_pos[11] = two
-        starting_pos[17] = five
-        starting_pos[19] = three
+        self.starting_pos[0] = five
+        self.starting_pos[11] = two
+        self.starting_pos[17] = five
+        self.starting_pos[19] = three
 
 
     # Reset
