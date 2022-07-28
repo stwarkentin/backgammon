@@ -118,27 +118,31 @@ class BackgammonEnv(gym.Env):
         observation = copy(state)
         observation['W']['pos'] = observation['W']['pos'].flatten().tolist()
         observation['B']['pos'] = observation['B']['pos'].flatten().tolist()
-        
+
         return observation
 
     # Step
     def step(self, action):
-        # what actions look like?
+        w_win = False
+        b_win = False
+        w_gammon = False
+        b_gammon = False
+        # what should actions look like?
         # given a dice roll, we need to create a list of valid actions
         # the action needs to contain: how many pieces will be moved, which pieces will be moved, how far the pieces will be moved
         # from that, step() needs to calculate the results of those actions: moving pieces, blots, removing pieces from the board/bar,...
-
-        # we need a self.current_observation/self.environment!
-
-        # each player can moves up to four pieces in one turn. pieces need to be subtracted from their previous location and then added to their new locations. if one or more moves result in
-        # one or more of the opponent's piece being moved to the bar, we need to subtract those pieces from the opponent's board and add them to the bar. if pieces are moved off the board, this needs to be considered
-        # if a player has to remove a piece from the bar, this has to be considered
-        # if a player can't do anything, this has to be considered
-        # if nothing else changes, we still need to change whose turn it is
+        # ok so lets assume that an action is a list
+        for move in action:
+            pass
+        # if nothing else, the turn order always switches
+        # python switcher implementation?
 
         # check for winning/gammon conditions
-        # return reward and end the episode if reached
-        return observation, reward, done, info
+
+        reward = 2 if w_gammon elif 1 if w_win elif -1 if b_win elif -2 if b_gammon else 0
+        done = True if w_gammon or w_win or b_win or b_gammon else False
+
+        return observation, reward, done,
 
     # # Rendering
     # def render(self):
