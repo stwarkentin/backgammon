@@ -6,14 +6,12 @@ import numpy as np
 from random import random
 
 class BackgammonEnv(gym.Env):
-    metadata = {'render_modes': ['placeholder'], 'render_fps': 4}
+    metadata = {'render_modes': ['human'], 'render_fps': 4}
 
     # Declaration and Initialization
     def __init__(self, render_mode: Optional[str] = None):
         assert render_mode is None or render_mode in self.metadata['render_modes'] 
-        self.render_mode = render_mode 
-        
-        #self.window_size = 512
+        self.render_mode = render_mode # currently this does not do anything
         
         # There are 24 locations on the board
         # For each of the two players the number of that player's pieces at a given location ('pos') is encoded with four units
@@ -23,8 +21,6 @@ class BackgammonEnv(gym.Env):
         # That is 96 units each for a subtotal of 192 units
         # Additionally we require a subtotal of 6 units, which consist of 3 units per player to encode the number of that player's pieces on the bar ('barmen'), off the board ('men off'), and whether it is that player's turn or not ('turn)
         # This gives us a total of 198 units which make up an observation
-        # I define the observation space as a dictionary space to make it more readable to humans
-        # But Dict observations need to be converted to flat arrays using the 'FlattenObservation' wrapper later
         
         # Each player gets 96 units to encode their number of pieces at a given location on the board
         # Units have a value of either 0 or 1, except every fourth unit, which can have a value of up to 6
@@ -35,6 +31,8 @@ class BackgammonEnv(gym.Env):
         for i in range(3, 97, 4):
             high[i] = 6.0
 
+        # I define the observation space as a dictionary space to make it more readable to humans
+        # But Dict observations need to be converted to flat arrays using the 'FlattenObservation' wrapper later
         self.observation_space = Dict(
             {
                 'W': Dict(
@@ -61,17 +59,6 @@ class BackgammonEnv(gym.Env):
         # Since the action space is very complicated (it changes depending on current board configuration and the result of the random dice roll ), I make no attempt at specifying it and simply set it to 'None' instead
         self.action_space = None
 
-    def place(self, observation, player, pos, n_pieces):
-        
-        for n in range(n_pieces):
-            
-
-
-    def remove(self, observation, pos)
-
-    # Reset
-    def reset(self): 
-
         # define starting positions for each side
         # note: opponents play by moving their pieces to their respective 'opposite ends' of the board
         # positions 1 and 24 correspond to White's 'start' and 'end' positions respectively
@@ -79,34 +66,34 @@ class BackgammonEnv(gym.Env):
 
         # first, create an empty board
         # for now, the four values encoding each position are going to get grouped into a list
-        w_pos = np.zeros((24, 4))
+        starting_pos = np.zeros((24, 4))
 
-        # then place pieces according (no need to use the 'place()' method, we can just set the values to whatever we want here)
+        # place pieces to match the game's starting positions
         two = [1,1,0,0]
         three = [1,1,1,0]
         five = [1,1,1,1]
 
-        w_pos[0] = five
-        w_pos[11] = two
-        w_pos[17] = five
-        w_pos[19] = three
+        starting_pos[0] = five
+        starting_pos[11] = two
+        starting_pos[17] = five
+        starting_pos[19] = three
 
-        # Black's pieces mirror White's:
-        b_pos = w_pos
-        b_pos.reverse()
+
+    # Reset
+    def reset(self): 
 
         # 'coin flip' to determine which side goes first
         coin = random() > 0.5
 
         observation = {
             'W': {
-                'pos':w_pos,
+                'pos':starting_pos,
                 'barmen': 0,
                 'menoff': 0,
                 'turn': int(coin)
             },
             'B': {
-                'pos':b_pos,
+                'pos':starting_pos.reverse(), # Black's pieces mirror White's
                 'barmen': 0,
                 'menoff': 0,
                 'turn': 1-int(coin)
@@ -117,27 +104,23 @@ class BackgammonEnv(gym.Env):
 
     # Step
     def step(self, action):
-        pass
+        # each player can moves up to four pieces in one turn. pieces need to be subtracted from their previous location and then added to their new locations. if one or more moves result in
+        # one or more of the opponent's piece being moved to the bar, we need to subtract those pieces from the opponent's board and add them to the bar. if pieces are moved off the board, this needs to be considered
+        # if a player has to remove a piece from the bar, this has to be considered
+        # if a player can't do anything, this has to be considered
+        # if nothing else changes, we still need to change whose turn it is
 
-    # Rendering
-    def render(self):
-        pass
+        # check for winning/gammon conditions
+        # return reward and end the episode if reached
+        return observation, reward, done, info
 
-    def _render_frame(self):
-        pass
+    # # Rendering
+    # def render(self):
+    #     pass
 
-    # Close
-    def close(self):
-        pass
- 
+    # def _render_frame(self):
+    #     pass
 
-#      /* first encode board locations 24-1 */
-# 206 	    for(j=1;j<=24;++j) {
-# 207 	        jm1 = j - 1;
-# 208 	        n = pos[25-j];
-# 209 	        if(n!=0) {
-# 210 	            if(n==-1) x[5*jm1+0] = 1.0;
-# 211 	            if(n==1) x[5*jm1+1] = 1.0;
-# 212 	            if(n>=2) x[5*jm1+2] = 1.0;
-# 213 	            if(n==3) x[5*jm1+3] = 1.0;
-# 214 	            if(n>=4) x[5*jm1+4] = (float)(n-3)/2.0;
+    # # Close
+    # def close(self):
+    #     pass
