@@ -87,13 +87,13 @@ class BackgammonEnv(gym.Env):
 
         observation = {
             'W': {
-                'pos':starting_pos,
+                'pos':starting_pos.flatten().tolist(), 
                 'barmen': 0,
                 'menoff': 0,
                 'turn': int(coin)
             },
             'B': {
-                'pos':starting_pos.reverse(), # Black's pieces mirror White's
+                'pos':starting_pos.reverse().flatten().tolist(), # Black's pieces mirror White's
                 'barmen': 0,
                 'menoff': 0,
                 'turn': 1-int(coin)
