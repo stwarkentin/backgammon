@@ -4,6 +4,7 @@ from typing import Optional
 from gym.utils.renderer import Renderer
 import numpy as np
 from random import random
+from copy import copy
 
 class BackgammonEnv(gym.Env):
     metadata = {'render_modes': ['human'], 'render_fps': 4}
@@ -64,11 +65,26 @@ class BackgammonEnv(gym.Env):
         # positions 1 and 24 correspond to White's 'start' and 'end' positions respectively
         # vice versa 24 is Black's start, 1 is Black's 'end'
 
-        # first, create an empty board
-        # for now, the four values encoding each position are going to get grouped into a list
-        self.starting_pos = np.zeros((24, 4))
+        # create an empty board
+        # note: self.state != observation ! We'll create observations by making a copy of the state (and then flattening the 'pos' arrays, though this might not be necessary?)
+        self.state = {
+            'W': {
+                'pos':np.zeros((24, 4)), 
+                'barmen': 0,
+                'menoff': 0,
+                'turn': 0
+            },
+            'B': {
+                'pos': np.zeros((24, 4)),
+                'barmen': 0,
+                'menoff': 0,
+                'turn': 0
+            }
+        }
 
         # place pieces to match the game's starting positions
+        self.starting_pos = np.zeros((24, 4))
+
         two = [1,1,0,0]
         three = [1,1,1,0]
         five = [1,1,1,1]
@@ -78,32 +94,42 @@ class BackgammonEnv(gym.Env):
         self.starting_pos[17] = five
         self.starting_pos[19] = three
 
-
     # Reset
     def reset(self): 
 
         # 'coin flip' to determine which side goes first
         coin = random() > 0.5
 
-        observation = {
+        self.state = {
             'W': {
-                'pos':starting_pos.flatten().tolist(), 
+                'pos':starting_pos, 
                 'barmen': 0,
                 'menoff': 0,
                 'turn': int(coin)
             },
             'B': {
-                'pos':starting_pos.reverse().flatten().tolist(), # Black's pieces mirror White's
+                'pos':starting_pos.reverse(), # Black's pieces mirror White's
                 'barmen': 0,
                 'menoff': 0,
                 'turn': 1-int(coin)
             }
         }
 
+        observation = copy(state)
+        observation['W']['pos'] = observation['W']['pos'].flatten().tolist()
+        observation['B']['pos'] = observation['B']['pos'].flatten().tolist()
+        
         return observation
 
     # Step
     def step(self, action):
+        # what actions look like?
+        # given a dice roll, we need to create a list of valid actions
+        # the action needs to contain: how many pieces will be moved, which pieces will be moved, how far the pieces will be moved
+        # from that, step() needs to calculate the results of those actions: moving pieces, blots, removing pieces from the board/bar,...
+
+        # we need a self.current_observation/self.environment!
+
         # each player can moves up to four pieces in one turn. pieces need to be subtracted from their previous location and then added to their new locations. if one or more moves result in
         # one or more of the opponent's piece being moved to the bar, we need to subtract those pieces from the opponent's board and add them to the bar. if pieces are moved off the board, this needs to be considered
         # if a player has to remove a piece from the bar, this has to be considered
