@@ -44,14 +44,12 @@ class BackgammonEnv(gym.Env):
 
         self.state = {
             'W': {
-                'pos':np.zeros((25, 4)), 
-                'barmen': 0,
+                'pos':np.zeros((25, 4)).insert(0,[0]), 
                 'menoff': 0,
                 'turn': 0
             },
             'B': {
-                'pos': np.zeros((25, 4)),
-                'barmen': 0,
+                'pos': np.zeros((25, 4)).insert(0,[0]),
                 'menoff': 0,
                 'turn': 0
             }
@@ -67,8 +65,12 @@ class BackgammonEnv(gym.Env):
         self.starting_pos[11] = two
         self.starting_pos[17] = five
         self.starting_pos[19] = three
+        
+        self.starting_pos.insert(0,[0])
 
     # Reset
+    def _get_obs(self)
+
     def reset(self): 
 
         coin = random() > 0.5
@@ -76,13 +78,11 @@ class BackgammonEnv(gym.Env):
         self.state = {
             'W': {
                 'pos':starting_pos, 
-                'barmen': 0,
                 'menoff': 0,
                 'turn': int(coin)
             },
             'B': {
-                'pos':starting_pos.reverse(),
-                'barmen': 0,
+                'pos':starting_pos,
                 'menoff': 0,
                 'turn': 1-int(coin)
             }
@@ -95,6 +95,9 @@ class BackgammonEnv(gym.Env):
         return observation
 
     # Step
+
+    # translating from one board to the other: n+25-(2n)
+
     def step(self, action):
         w_win = False
         b_win = False
