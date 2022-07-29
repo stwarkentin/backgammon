@@ -44,12 +44,12 @@ class BackgammonEnv(gym.Env):
 
         self.state = {
             'W': {
-                'pos':np.zeros((25, 4)).insert(0,[0]), 
+                'board':np.zeros((25, 4)).insert(0,[0]), 
                 'menoff': 0,
                 'turn': 0
             },
             'B': {
-                'pos': np.zeros((25, 4)).insert(0,[0]),
+                'board': np.zeros((25, 4)).insert(0,[0]),
                 'menoff': 0,
                 'turn': 0
             }
@@ -69,28 +69,33 @@ class BackgammonEnv(gym.Env):
         self.starting_pos.insert(0,[0])
 
     # Reset
-    def _get_obs(self)
+    def _get_obs(self):
+        observation = copy(state)
+        observation['W']['board'] = observation['W']['board'].flatten().tolist()
+        observation['B']['board'] = observation['B']['board'].flatten().tolist()
+        return observation
 
     def reset(self): 
 
         coin = random() > 0.5
 
+        # W:    0 1 ... 24
+        # B:      24 ... 1 0
+
         self.state = {
             'W': {
-                'pos':starting_pos, 
+                'board':starting_pos, 
                 'menoff': 0,
                 'turn': int(coin)
             },
             'B': {
-                'pos':starting_pos,
+                'board':starting_pos,
                 'menoff': 0,
                 'turn': 1-int(coin)
             }
         }
 
-        observation = copy(state)
-        observation['W']['pos'] = observation['W']['pos'].flatten().tolist()
-        observation['B']['pos'] = observation['B']['pos'].flatten().tolist()
+        observation = self._get_obs()
 
         return observation
 
