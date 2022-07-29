@@ -40,7 +40,7 @@ class BackgammonEnv(gym.Env):
                     {
                         # might not be correct if we use 24 arrays to group the values which encode each position?
                         'pos': Box(low=low, high=high,dtype=np.float32), # truncated unary encoding explained above, shape is inferred from the shape of 'low' and 'high'
-                        'barmen': Box(low=0,high=7.5,dtype=np.float32), # number of pieces on the bar divided by two
+                        'barmen': Box(low=0,high=7.5,dtype=np.float32), # number of pieces on the bar divided by two (7.5 max)
                         'menoff': Box(low=0,high=1,dtype=np.float32), # number of pieces off the board, expressed as a fraction of total pieces i.e. n/15
                         'turn': Discrete(2) # 1 if it is White's turn, 0 if not
                     }
@@ -132,14 +132,44 @@ class BackgammonEnv(gym.Env):
         # the action needs to contain: how many pieces will be moved, which pieces will be moved, how far the pieces will be moved
         # from that, step() needs to calculate the results of those actions: moving pieces, blots, removing pieces from the board/bar,...
         # ok so lets assume that an action is a list
+        # action = [[position_from_which_to_move_a_piece,how_many_spaces_to_move],[position_from_which_to_move_a_piece,how_many_spaces_to_move]]
+        # or
+        # action = [[position_from_which_to_move_a_piece,how_many_spaces_to_move],[position_from_which_to_move_a_piece,how_many_spaces_to_move],[position_from_which_to_move_a_piece,how_many_spaces_to_move],[position_from_which_to_move_a_piece,how_many_spaces_to_move]]
+        # problem: the bar is not a position per se? And I can't index it the way I'd index a board position because 'bar' is not part of the 'pos' array in the observation
         for move in action:
             pass
-        # if nothing else, the turn order always switches
-        # python switcher implementation?
+        
+        # switch turn order
+        self.state['W']['turn'] = 1-self.state['W']['turn']
+        self.state['B']['turn'] = 1-self.state['W']['turn']
 
         # check for winning/gammon conditions
 
-        reward = 2 if w_gammon elif 1 if w_win elif -1 if b_win elif -2 if b_gammon else 0
+        if self.state['W']['menoff'] ==  1 and self.state['B']['pos']:
+            w_gammon = True
+        elif self.state['W']['menoff'] ==  1:
+            w_win = True
+        elif 
+        elif self.state['B']['menoff'] ==  1:
+            b_win = True
+
+
+
+        # make observation
+
+
+        #reward = 2 if w_gammon elif 1 if w_win elif -1 if b_win elif -2 if b_gammon else 0
+        if w_gammon:
+            reward = 2 
+        elif w_win:
+            reward = 1
+        elif b_win:
+            reward = -1
+        elif b_gammon:
+            -2
+        else:
+            reward = 0
+        
         done = True if w_gammon or w_win or b_win or b_gammon else False
 
         return observation, reward, done,
