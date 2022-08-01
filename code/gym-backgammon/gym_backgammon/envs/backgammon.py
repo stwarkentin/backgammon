@@ -5,8 +5,6 @@ from random import random
 from copy import copy
 
 class BackgammonEnv(gym.Env):
-
-    # Declaration and Initialization
     def __init__(self):
   
         # https://en.wikipedia.org/wiki/Unary_coding 
@@ -44,36 +42,38 @@ class BackgammonEnv(gym.Env):
 
         self.state = {
             'W': {
-                'board':np.zeros((25, 4)).insert(0,[0]), 
+                'board':np.zeros((24, 4)).insert(0,[0]), 
                 'menoff': 0,
                 'turn': 0
             },
             'B': {
-                'board': np.zeros((25, 4)).insert(0,[0]),
+                'board': np.zeros((24, 4)).insert(0,[0]),
                 'menoff': 0,
                 'turn': 0
             }
         }
 
-        self.starting_pos = np.zeros((24, 4))
-
         two = [1,1,0,0]
         three = [1,1,1,0]
         five = [1,1,1,1]
+
+        self.starting_pos = np.zeros((24, 4))
 
         self.starting_pos[0] = five
         self.starting_pos[11] = two
         self.starting_pos[17] = five
         self.starting_pos[19] = three
-        
+
         self.starting_pos.insert(0,[0])
 
-    # Reset
     def _get_obs(self):
         observation = copy(state)
         observation['W']['board'] = observation['W']['board'].flatten().tolist()
         observation['B']['board'] = observation['B']['board'].flatten().tolist()
         return observation
+
+    def _get_info(self):
+        pass
 
     def reset(self): 
 
@@ -95,11 +95,7 @@ class BackgammonEnv(gym.Env):
             }
         }
 
-        observation = self._get_obs()
-
-        return observation
-
-    # Step
+        return self._get_obs()
 
     # translating from one board to the other: n+25-(2n)
 
@@ -115,27 +111,23 @@ class BackgammonEnv(gym.Env):
         self.state['W']['turn'] = 1-self.state['W']['turn']
         self.state['B']['turn'] = 1-self.state['W']['turn']
 
+        observation = self._get_obs()
 
-        if self.state['W']['menoff'] ==  1 and self.state['B']['pos']:
-            w_gammon = True
+        reward = 0
+
+        # White wins, Black is gammoned
+        if self.state['W']['menoff'] ==  1 and self.state['B']['menoff'] = 0:
+            reward = 2
+        # White wins
         elif self.state['W']['menoff'] ==  1:
-            w_win = True
-        elif 
-        elif self.state['B']['menoff'] ==  1:
-            b_win = True
-
-        #reward = 2 if w_gammon elif 1 if w_win elif -1 if b_win elif -2 if b_gammon else 0
-        if w_gammon:
-            reward = 2 
-        elif w_win:
             reward = 1
-        elif b_win:
+        # Black wins, White is gammoned
+        elif self.state['B']['menoff'] ==  1 and self.state['W']['menoff'] = 0: 
+            reward = -2
+        # Black wins
+        elif self.state['B']['menoff'] ==  1:
             reward = -1
-        elif b_gammon:
-            -2
-        else:
-            reward = 0
         
-        done = True if w_gammon or w_win or b_win or b_gammon else False
+        done = reward != 0
 
-        return observation, reward, done,
+        return observation, reward, done
