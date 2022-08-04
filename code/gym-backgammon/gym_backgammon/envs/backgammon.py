@@ -67,20 +67,36 @@ class BackgammonEnv(gym.Env):
             }
         }
 
-        # define the game's starting position:
-        # the previously mentioned truncated unary encoding is used to define the numbers of checkers found at certain points at the start of the game
-        two = [1,1,0,0]
-        three = [1,1,1,0]
-        five = [1,1,1,1]
+        # the previously mentioned truncated unary encoding:
+        self._checkers_encoding = {
+            0: np.array([0,0,0,0]),
+            1: np.array([1,0,0,0]),
+            2: np.array([1,1,0,0]),
+            3: np.array([1,1,1,0]),
+            4: np.array([1,1,1,0.5]),
+            5: np.array([1,1,1,1]),
+            6: np.array([1,1,1,1.5]),
+            7: np.array([1,1,1,2.0]),
+            8: np.array([1,1,1,2.5]),
+            9: np.array([1,1,1,3.0]),
+            10: np.array([1,1,1,3.5]),
+            11: np.array([1,1,1,4.0]),
+            12: np.array([1,1,1,4.5]),
+            13: np.array([1,1,1,5.0]),
+            14: np.array([1,1,1,5.5]),
+            15: np.array([1,1,1,6.0]),
+        }
 
+        # define the game's starting position:
+  
         # create an empty board without a bar
         self.starting_pos = np.zeros((24, 4))
 
         # place the correct number of checkers in the correct positions
-        self.starting_pos[0] = five
-        self.starting_pos[11] = two
-        self.starting_pos[17] = five
-        self.starting_pos[19] = three
+        self.starting_pos[0] = self._checker_encoding[5]
+        self.starting_pos[11] = self._checker_encoding[2]
+        self.starting_pos[17] = self._checker_encoding[5]
+        self.starting_pos[19] = self._checker_encoding[3]
 
         # add the bar
         self.starting_pos.insert(0,[0])
