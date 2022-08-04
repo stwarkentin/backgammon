@@ -141,17 +141,24 @@ class BackgammonEnv(gym.Env):
             player = 'B'
             opponent = 'W'
 
+
         # assume for now that an action is a list of up to four 'old position - new position' tupels
         for move in action:
             old_pos, new_pos = move
-            # get the current number of checkers at the position from which we need to remove a checker
-            encoded_checkers = self.state[player][board][old_pos]
-            # decode
-            for key, value in self._encoding.items():
-                if encoded_checkers == value:
-                    n_checkers = key
-            # subtract a checker
-            self.state[player][board][old_pos] = self._encoding[n_checkers-1]
+            # are we moving a piece off the bar?
+            if old_pos == 0:
+                # remove a checker from the bar
+                self.state[player][board][0] -= 0.5
+
+            else:
+                # get the current number of checkers at the position from which we need to remove a checker
+                encoded_checkers = self.state[player][board][old_pos]
+                # decode
+                for key, value in self._encoding.items():
+                    if encoded_checkers == value:
+                        n_checkers = key
+                # subtract a checker
+                self.state[player][board][old_pos] = self._encoding[n_checkers-1]
 
 
             # get the current number of checkers at the position to which we need to add a checker
@@ -170,12 +177,10 @@ class BackgammonEnv(gym.Env):
             # check for blots (
             mirror_pos = new_pos+25-2*new_pos
             if self.state[opponent][board][mirror_pos] != [0,0,0,0]:
+                # if there is a blot, move the opponent's piece to the bar
                 self.state[opponent][board][mirror_pos] = [0,0,0,0]
                 self.state[opponent][board][0] += 0.5
-
-
-                # if there is a blot, move the opponent's piece to the bar
-            
+                
         # moving pieces off the bar
 
         # bearing off
