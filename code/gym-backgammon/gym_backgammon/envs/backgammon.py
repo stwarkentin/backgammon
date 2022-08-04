@@ -142,9 +142,6 @@ class BackgammonEnv(gym.Env):
             opponent = 'W'
 
         # assume for now that an action is a list of up to four 'old position - new position' tupels
-        # i.e. "remove one checker at this position, add one checker at that position"
-        # then, check for blots (translating from one board to the other: n+25-(2n))
-        # if there are blots, move the opponents piece to the bar
         for move in action:
             old_pos, new_pos = move
             # get the current number of checkers at the position from which we need to remove a checker
@@ -165,6 +162,19 @@ class BackgammonEnv(gym.Env):
                     n_checkers = key
             # add a checker
             self.state[player][board][new_pos] = self._encoding[n_checkers+1]
+
+
+            # 0 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+            #  24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1 0
+
+            # check for blots (
+            mirror_pos = new_pos+25-2*new_pos
+            if self.state[opponent][board][mirror_pos] != [0,0,0,0]:
+                self.state[opponent][board][mirror_pos] = [0,0,0,0]
+                self.state[opponent][board][0] += 0.5
+
+
+                # if there is a blot, move the opponent's piece to the bar
             
         # moving pieces off the bar
 
