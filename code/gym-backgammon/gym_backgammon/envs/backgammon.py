@@ -68,7 +68,7 @@ class BackgammonEnv(gym.Env):
         }
 
         # the previously mentioned truncated unary encoding:
-        self._checkers_encoding = {
+        self._encoding = {
             0: np.array([0,0,0,0]),
             1: np.array([1,0,0,0]),
             2: np.array([1,1,0,0]),
@@ -93,10 +93,10 @@ class BackgammonEnv(gym.Env):
         self.starting_pos = np.zeros((24, 4))
 
         # place the correct number of checkers in the correct positions
-        self.starting_pos[0] = self._checker_encoding[5]
-        self.starting_pos[11] = self._checker_encoding[2]
-        self.starting_pos[17] = self._checker_encoding[5]
-        self.starting_pos[19] = self._checker_encoding[3]
+        self.starting_pos[0] = self._encoding[5]
+        self.starting_pos[11] = self._encoding[2]
+        self.starting_pos[17] = self._encoding[5]
+        self.starting_pos[19] = self._encoding[3]
 
         # add the bar
         self.starting_pos.insert(0,[0])
@@ -133,9 +133,42 @@ class BackgammonEnv(gym.Env):
 
     def step(self, action):
 
+        # who's turn is it?
+        if self.state['W']['turn'] == 1:
+            player = 'W'
+            opponent = 'B'
+        else:
+            player = 'B'
+            opponent = 'W'
+
+        # assume for now that an action is a list of up to four 'old position - new position' tupels
+        # i.e. "remove one checker at this position, add one checker at that position"
+        # then, check for blots (translating from one board to the other: n+25-(2n))
+        # if there are blots, move the opponents piece to the bar
         for move in action:
+            old_pos, new_pos = move
+            # get the current number of checkers at the position from which we need to remove a checker
+            encoded_checkers = self.state[player][board][old_pos]
+            # decode
+            for key, value in self._encoding.items():
+                if encoded_checkers == value:
+                    n_checkers = key
+            # subtract a checker
+            self.state[player][board][old_pos] = self._encoding[n_checkers-1]
+
+
+            # get the current number of checkers at the position to which we need to add a checker
+            encoded_checkers = self.state.[player][board][new_pos]
+            # decode
+            for key, value in self._encoding.items():
+                if encoded_checkers == value:
+                    n_checkers = key
+            # add a checker
+            self.state[player][board][new_pos] = self._encoding[n_checkers+1]
             
-            pass
+        # moving pieces off the bar
+
+        # bearing off
 
         # swap whose turn it is
         self.state['W']['turn'] = 1-self.state['W']['turn']
@@ -166,10 +199,9 @@ class BackgammonEnv(gym.Env):
         return observation, reward, done
 
         
-        
-        
-        
  # W:    0 1 ... 24
 # B:      24 ... 1 0
 
 # translating from one board to the other: n+25-(2n)
+
+# idea: replace W and B with 1 and 0 
