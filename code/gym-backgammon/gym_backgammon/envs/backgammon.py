@@ -160,30 +160,29 @@ class BackgammonEnv(gym.Env):
                 # subtract a checker
                 self.state[player][board][old_pos] = self._encoding[n_checkers-1]
 
+            # are we bearing off?
+            if new_pos == 25:
+                self.state[player][menoff] += 1/15
 
-            # get the current number of checkers at the position to which we need to add a checker
-            encoded_checkers = self.state.[player][board][new_pos]
-            # decode
-            for key, value in self._encoding.items():
-                if encoded_checkers == value:
-                    n_checkers = key
-            # add a checker
-            self.state[player][board][new_pos] = self._encoding[n_checkers+1]
+            else:
+                # get the current number of checkers at the position to which we need to add a checker
+                encoded_checkers = self.state.[player][board][new_pos]
+                # decode
+                for key, value in self._encoding.items():
+                    if encoded_checkers == value:
+                        n_checkers = key
+                # add a checker
+                self.state[player][board][new_pos] = self._encoding[n_checkers+1]
 
+                # check for blots
+                mirror_pos = new_pos+25-2*new_pos
+                if self.state[opponent][board][mirror_pos] != [0,0,0,0]:
+                    # if there is a blot, move the opponent's piece to the bar
+                    self.state[opponent][board][mirror_pos] = [0,0,0,0]
+                    self.state[opponent][board][0] += 0.5
 
             # 0 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
             #  24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1 0
-
-            # check for blots (
-            mirror_pos = new_pos+25-2*new_pos
-            if self.state[opponent][board][mirror_pos] != [0,0,0,0]:
-                # if there is a blot, move the opponent's piece to the bar
-                self.state[opponent][board][mirror_pos] = [0,0,0,0]
-                self.state[opponent][board][0] += 0.5
-                
-        # moving pieces off the bar
-
-        # bearing off
 
         # swap whose turn it is
         self.state['W']['turn'] = 1-self.state['W']['turn']
