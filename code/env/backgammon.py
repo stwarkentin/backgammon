@@ -166,7 +166,7 @@ class BackgammonEnv(gym.Env):
 
             else:
                 # get the current number of checkers at the position to which we need to add a checker
-                encoded_checkers = self.state.[player][board][new_pos]
+                encoded_checkers = self.state[player][board][new_pos]
                 # decode
                 for key, value in self._encoding.items():
                     if encoded_checkers == value:
@@ -195,13 +195,13 @@ class BackgammonEnv(gym.Env):
         reward = 0
 
         # White wins, Black is gammoned
-        if self.state['W']['menoff'] ==  1 and self.state['B']['menoff'] = 0:
+        if self.state['W']['menoff'] ==  1 and self.state['B']['menoff'] == 0:
             reward = 2
         # White wins
         elif self.state['W']['menoff'] ==  1:
             reward = 1
         # Black wins, White is gammoned
-        elif self.state['B']['menoff'] ==  1 and self.state['W']['menoff'] = 0: 
+        elif self.state['B']['menoff'] ==  1 and self.state['W']['menoff'] == 0: 
             reward = -2
         # Black wins
         elif self.state['B']['menoff'] ==  1:
