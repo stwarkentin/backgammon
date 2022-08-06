@@ -1,1 +1,0 @@
-from gym_backgammon.envs.backgammon import BackgammonEnv
