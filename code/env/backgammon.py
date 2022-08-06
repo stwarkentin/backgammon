@@ -127,11 +127,13 @@ class BackgammonEnv(gym.Env):
         self.state = {
             'W': {
                 'board':starting_pos, 
+                'barmen': 0,
                 'menoff': 0,
                 'turn': int(coin)
             },
             'B': {
                 'board':starting_pos,
+                'barmen': 0,
                 'menoff': 0,
                 'turn': 1-int(coin)
             }
@@ -156,17 +158,17 @@ class BackgammonEnv(gym.Env):
             # are we moving a piece off the bar?
             if old_pos == 0:
                 # remove a checker from the bar
-                self.state[player][board][0] -= 0.5
+                self.state[player][barmen] -= 0.5
 
             else:
                 # get the current number of checkers at the position from which we need to remove a checker
-                encoded_checkers = self.state[player][board][old_pos]
+                encoded_checkers = self.state[player][board][old_pos-1]
                 # decode
                 for key, value in self.encoding.items():
                     if encoded_checkers == value:
                         n_checkers = key
                 # subtract a checker
-                self.state[player][board][old_pos] = self.encoding[n_checkers-1]
+                self.state[player][board][old_pos-1] = self.encoding[n_checkers-1]
 
             # are we bearing off?
             if new_pos == 25:
@@ -174,13 +176,13 @@ class BackgammonEnv(gym.Env):
 
             else:
                 # get the current number of checkers at the position to which we need to add a checker
-                encoded_checkers = self.state[player][board][new_pos]
+                encoded_checkers = self.state[player][board][new_pos-1]
                 # decode
                 for key, value in self.encoding.items():
                     if encoded_checkers == value:
                         n_checkers = key
                 # add a checker
-                self.state[player][board][new_pos] = self.encoding[n_checkers+1]
+                self.state[player][board][new_pos-1] = self.encoding[n_checkers+1]
 
                 # check for blots
                 mirror_pos = new_pos+25-2*new_pos
