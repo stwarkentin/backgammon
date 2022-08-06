@@ -55,15 +55,16 @@ class BackgammonEnv(gym.Env):
         # to allow for indexing of board positions, the environment's state uses an array of arrays to store the values of the bar and each point
         # later we simply flatten this array to create observations
 
-        empty = np.
         self.state = {
             'W': {
-                'board':np.insert(arr=np.zeros((24, 4)),obj=0,values=0)
+                'board': np.zeros((24, 4)),
+                'barmen': 0,
                 'menoff': 0,
                 'turn': 0
             },
             'B': {
-                'board': np.zeros((24, 4)).insert(0,[0]),
+                'board': np.zeros((24, 4)),
+                'barmen': 0,
                 'menoff': 0,
                 'turn': 0
             }
@@ -86,7 +87,7 @@ class BackgammonEnv(gym.Env):
             12: np.array([1,1,1,4.5]),
             13: np.array([1,1,1,5.0]),
             14: np.array([1,1,1,5.5]),
-            15: np.array([1,1,1,6.0]),
+            15: np.array([1,1,1,6.0])
         }
 
         # define the game's starting position:
@@ -100,13 +101,18 @@ class BackgammonEnv(gym.Env):
         self.starting_pos[17] = self.encoding[5]
         self.starting_pos[19] = self.encoding[3]
 
-        # add the bar
-        self.starting_pos.insert(0,[0])
-
     def _get_obs(self):
-        observation = copy(state)
-        observation['W']['board'] = observation['W']['board'].flatten().tolist()
-        observation['B']['board'] = observation['B']['board'].flatten().tolist()
+        w_board = self.state['W']['board']
+        w_barmen = self.state['W']['barmen']
+        w_menoff = self.state['W']['menoff']
+        w_turn = self.state['W']['turn']
+        b_board = self.state['B']['board']
+        b_barmen = self.state['B']['barmen']
+        b_menoff = self.state['B']['menoff']
+        b_turn = self.state['B']['turn']
+        observation = np.concatenate((w_board,w_barmen,w_menoff,w_turn,b_board,b_barmen,b_menoff,b_turn),dtype=np.float32)
+        # observation['W']['board'] = observation['W']['board'].flatten().tolist()
+        # observation['B']['board'] = observation['B']['board'].flatten().tolist()
         return observation
 
     def _get_info(self):
