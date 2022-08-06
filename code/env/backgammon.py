@@ -24,7 +24,6 @@ class BackgammonEnv(gym.Env):
             high[i] = 6.0
 
         high = np.insert(arr=high,obj=0,values=7.5) # and the very first value, which encodes the number of checkers on the bar, can go as high as 15/2 = 7.5
-        print(high.shape)
         # to make them more readable to humans, our observations are dictionaries
         # but we can't feed dictionaries to our ANN, so we are going to have to use gym's 'FlattenObservation' wrapper to flatten the dictionary into a single array later
         self.observation_space = Dict(
@@ -103,16 +102,20 @@ class BackgammonEnv(gym.Env):
 
     def _get_obs(self):
         w_board = self.state['W']['board']
-        w_barmen = self.state['W']['barmen']
-        w_menoff = self.state['W']['menoff']
-        w_turn = self.state['W']['turn']
+        w_board = w_board.flatten()
+        
         b_board = self.state['B']['board']
-        b_barmen = self.state['B']['barmen']
-        b_menoff = self.state['B']['menoff']
-        b_turn = self.state['B']['turn']
-        observation = np.concatenate((w_board,w_barmen,w_menoff,w_turn,b_board,b_barmen,b_menoff,b_turn),dtype=np.float32)
-        # observation['W']['board'] = observation['W']['board'].flatten().tolist()
-        # observation['B']['board'] = observation['B']['board'].flatten().tolist()
+        b_board = b_board.flatten()
+
+        observation = []
+        observation = np.append(observation,w_board)
+        observation = np.append(observation,self.state['W']['barmen'])
+        observation = np.append(observation,self.state['W']['menoff'])
+        observation = np.append(observation,self.state['W']['turn'])
+        observation = np.append(observation,b_board)
+        observation = np.append(observation,self.state['B']['barmen'])
+        observation = np.append(observation,self.state['B']['menoff'])
+        observation = np.append(observation,self.state['B']['turn'])
         return observation
 
     def _get_info(self):
@@ -126,13 +129,13 @@ class BackgammonEnv(gym.Env):
         # reset the board to the game's starting position and assign a turn order based on the coin flip
         self.state = {
             'W': {
-                'board':starting_pos, 
+                'board':self.starting_pos, 
                 'barmen': 0,
                 'menoff': 0,
                 'turn': int(coin)
             },
             'B': {
-                'board':starting_pos,
+                'board':self.starting_pos,
                 'barmen': 0,
                 'menoff': 0,
                 'turn': 1-int(coin)
@@ -153,43 +156,45 @@ class BackgammonEnv(gym.Env):
 
 
         # assume for now that an action is a list of up to four 'old position - new position' tupels
+        # move = (int,int)
+        # action  = [move,move]
         for move in action:
             old_pos, new_pos = move
             # are we moving a piece off the bar?
             if old_pos == 0:
                 # remove a checker from the bar
-                self.state[player][barmen] -= 0.5
+                self.state[player]['barmen'] -= 0.5
 
             else:
                 # get the current number of checkers at the position from which we need to remove a checker
-                encoded_checkers = self.state[player][board][old_pos-1]
+                encoded_checkers = self.state[player]['board'][old_pos-1]
                 # decode
                 for key, value in self.encoding.items():
                     if encoded_checkers == value:
                         n_checkers = key
                 # subtract a checker
-                self.state[player][board][old_pos-1] = self.encoding[n_checkers-1]
+                self.state[player]['board'][old_pos-1] = self.encoding[n_checkers-1]
 
             # are we bearing off?
             if new_pos == 25:
-                self.state[player][menoff] += 1/15
+                self.state[player]['menoff'] += 1/15
 
             else:
                 # get the current number of checkers at the position to which we need to add a checker
-                encoded_checkers = self.state[player][board][new_pos-1]
+                encoded_checkers = self.state[player]['board'][new_pos-1]
                 # decode
                 for key, value in self.encoding.items():
                     if encoded_checkers == value:
                         n_checkers = key
                 # add a checker
-                self.state[player][board][new_pos-1] = self.encoding[n_checkers+1]
+                self.state[player]['board'][new_pos-1] = self.encoding[n_checkers+1]
 
                 # check for blots
                 mirror_pos = new_pos+25-2*new_pos
-                if self.state[opponent][board][mirror_pos] != [0,0,0,0]:
+                if self.state[opponent]['board'][mirror_pos] != [0,0,0,0]:
                     # if there is a blot, move the opponent's piece to the bar
-                    self.state[opponent][board][mirror_pos] = [0,0,0,0]
-                    self.state[opponent][board][0] += 0.5
+                    self.state[opponent]['board'][mirror_pos] = [0,0,0,0]
+                    self.state[opponent]['board'][0] += 0.5
 
             # 0 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
             #  24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1 0
