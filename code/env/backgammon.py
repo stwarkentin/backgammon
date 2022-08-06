@@ -1,5 +1,5 @@
 import gym
-from gym.spaces import Dict, Discrete
+from gym.spaces import Dict, Box, Discrete
 import numpy as np
 from random import random
 from copy import copy
@@ -17,14 +17,14 @@ class BackgammonEnv(gym.Env):
         # (one for each player) rather than one 
 
         # defining some ranges for our observation space
-        low = np.zeros((97, 1)) # 1 value for the bar + 4 per each of the 24 positions on the board
-        high = np.ones((96, 1)) # the first three of the four values encoding the number of checkers at a given position are either 0 or 1...
+        low = np.zeros((97,)) # 1 value for the bar + 4 per each of the 24 positions on the board
+        high = np.ones((96,)) # the first three of the four values encoding the number of checkers at a given position are either 0 or 1...
 
         for i in range(3, 97, 4): # but every fourth value can go as high as (15-3)/2 = 6...
             high[i] = 6.0
 
-        high.insert(0,7.5) # and the very first value, which encodes the number of checkers on the bar, can go as high as 15/2 = 7.5
-
+        high = np.insert(arr=high,obj=0,values=7.5) # and the very first value, which encodes the number of checkers on the bar, can go as high as 15/2 = 7.5
+        print(high.shape)
         # to make them more readable to humans, our observations are dictionaries
         # but we can't feed dictionaries to our ANN, so we are going to have to use gym's 'FlattenObservation' wrapper to flatten the dictionary into a single array later
         self.observation_space = Dict(
@@ -33,7 +33,7 @@ class BackgammonEnv(gym.Env):
                 'W': Dict(
                     {
                         'board': Box(low=low, high=high,dtype=np.float32), # the board, consisting of the bar and 24 'points'
-                        'menoff': Box(low=0,high=1,dtype=np.float32), # number of checkers removed from the board as a fraction of the total number of checkers i.e. n/15
+                        'menoff': Box(low=0.0,high=1.0,shape=(1,),dtype=np.float32), # number of checkers removed from the board as a fraction of the total number of checkers i.e. n/15
                         'turn': Discrete(2) # '1' if it is this player's turn, '0' if not
                     }
                 ),
@@ -41,7 +41,7 @@ class BackgammonEnv(gym.Env):
                 'B': Dict(
                     {
                         'board': Box(low=low, high=high,dtype=np.float32),
-                        'menoff': Box(low=0,high=1,dtype=np.float32),
+                        'menoff': Box(low=0.0,high=1.0,shape=(1,),dtype=np.float32),
                         'turn': Discrete(2)
                     }
                 )
@@ -54,9 +54,11 @@ class BackgammonEnv(gym.Env):
         # create an empty board:
         # to allow for indexing of board positions, the environment's state uses an array of arrays to store the values of the bar and each point
         # later we simply flatten this array to create observations
+
+        empty = np.
         self.state = {
             'W': {
-                'board':np.zeros((24, 4)).insert(0,[0]), 
+                'board':np.insert(arr=np.zeros((24, 4)),obj=0,values=0)
                 'menoff': 0,
                 'turn': 0
             },
@@ -68,7 +70,7 @@ class BackgammonEnv(gym.Env):
         }
 
         # the previously mentioned truncated unary encoding:
-        self._encoding = {
+        self.encoding = {
             0: np.array([0,0,0,0]),
             1: np.array([1,0,0,0]),
             2: np.array([1,1,0,0]),
@@ -93,10 +95,10 @@ class BackgammonEnv(gym.Env):
         self.starting_pos = np.zeros((24, 4))
 
         # place the correct number of checkers in the correct positions
-        self.starting_pos[0] = self._encoding[5]
-        self.starting_pos[11] = self._encoding[2]
-        self.starting_pos[17] = self._encoding[5]
-        self.starting_pos[19] = self._encoding[3]
+        self.starting_pos[0] = self.encoding[5]
+        self.starting_pos[11] = self.encoding[2]
+        self.starting_pos[17] = self.encoding[5]
+        self.starting_pos[19] = self.encoding[3]
 
         # add the bar
         self.starting_pos.insert(0,[0])
@@ -154,11 +156,11 @@ class BackgammonEnv(gym.Env):
                 # get the current number of checkers at the position from which we need to remove a checker
                 encoded_checkers = self.state[player][board][old_pos]
                 # decode
-                for key, value in self._encoding.items():
+                for key, value in self.encoding.items():
                     if encoded_checkers == value:
                         n_checkers = key
                 # subtract a checker
-                self.state[player][board][old_pos] = self._encoding[n_checkers-1]
+                self.state[player][board][old_pos] = self.encoding[n_checkers-1]
 
             # are we bearing off?
             if new_pos == 25:
@@ -168,11 +170,11 @@ class BackgammonEnv(gym.Env):
                 # get the current number of checkers at the position to which we need to add a checker
                 encoded_checkers = self.state[player][board][new_pos]
                 # decode
-                for key, value in self._encoding.items():
+                for key, value in self.encoding.items():
                     if encoded_checkers == value:
                         n_checkers = key
                 # add a checker
-                self.state[player][board][new_pos] = self._encoding[n_checkers+1]
+                self.state[player][board][new_pos] = self.encoding[n_checkers+1]
 
                 # check for blots
                 mirror_pos = new_pos+25-2*new_pos
