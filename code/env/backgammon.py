@@ -95,10 +95,10 @@ class BackgammonEnv(gym.Env):
         self.starting_pos = np.zeros((24, 4))
 
         # place the correct number of checkers in the correct positions
-        self.starting_pos[0] = self.encoding[5]
-        self.starting_pos[11] = self.encoding[2]
-        self.starting_pos[17] = self.encoding[5]
-        self.starting_pos[19] = self.encoding[3]
+        self.starting_pos[0] = copy(self.encoding[5])
+        self.starting_pos[11] = copy(self.encoding[2])
+        self.starting_pos[17] = copy(self.encoding[5])
+        self.starting_pos[19] = copy(self.encoding[3])
 
     def _get_obs(self):
         w_board = self.state['W']['board']
@@ -124,22 +124,21 @@ class BackgammonEnv(gym.Env):
     def reset(self): 
 
         # a 'coin flip' to determine which side goes first
-        coin = random() > 0.5
-        print(coin)
+        coin = int(random()>0.5)
 
         # reset the board to the game's starting position and assign a turn order based on the coin flip
         self.state = {
             'W': {
-                'board':self.starting_pos, 
+                'board':copy(self.starting_pos), 
                 'barmen': 0,
                 'menoff': 0,
-                'turn': int(coin)
+                'turn': coin
             },
             'B': {
-                'board':self.starting_pos,
+                'board':copy(self.starting_pos),
                 'barmen': 0,
                 'menoff': 0,
-                'turn': 1-int(coin)
+                'turn': 1-coin
             }
         }
 
@@ -155,14 +154,13 @@ class BackgammonEnv(gym.Env):
             player = 'B'
             opponent = 'W'
 
-        print(player)
-        print(opponent)
-        print(self.state[player])
-
         # assume for now that an action is a list of up to four 'old position - new position' tupels
         # move = (int,int)
         # action  = [move,move]
         for move in action:
+
+            # 'LIFTING' A CHECKER
+
             old_pos, new_pos = move
             # are we moving a piece off the bar?
             if old_pos == 0:
@@ -172,13 +170,14 @@ class BackgammonEnv(gym.Env):
             else:
                 # get the current number of checkers at the position from which we need to remove a checker
                 encoded_checkers = self.state[player]['board'][old_pos-1]
-                print(encoded_checkers)
                 # decode
                 for key, value in self.encoding.items():
                     if np.array_equal(encoded_checkers,value):
                         n_checkers = key
                 # subtract a checker
-                self.state[player]['board'][old_pos-1] = self.encoding[n_checkers-1]
+                self.state[player]['board'][old_pos-1] = copy(self.encoding[n_checkers-1])
+
+            # 'PLACING DOWN' A CHECKER
 
             # are we bearing off?
             if new_pos == 25:
@@ -192,7 +191,7 @@ class BackgammonEnv(gym.Env):
                     if np.array_equal(encoded_checkers,value):
                         n_checkers = key
                 # add a checker
-                self.state[player]['board'][new_pos-1] = self.encoding[n_checkers+1]
+                self.state[player]['board'][new_pos-1] = copy(self.encoding[n_checkers+1])
 
                 # check for blots
                 mirror_pos = new_pos+25-2*new_pos
