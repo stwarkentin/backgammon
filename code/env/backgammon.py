@@ -71,22 +71,22 @@ class BackgammonEnv(gym.Env):
 
         # the previously mentioned truncated unary encoding:
         self.encoding = {
-            0: np.array([0,0,0,0]),
-            1: np.array([1,0,0,0]),
-            2: np.array([1,1,0,0]),
-            3: np.array([1,1,1,0]),
-            4: np.array([1,1,1,0.5]),
-            5: np.array([1,1,1,1]),
-            6: np.array([1,1,1,1.5]),
-            7: np.array([1,1,1,2.0]),
-            8: np.array([1,1,1,2.5]),
-            9: np.array([1,1,1,3.0]),
-            10: np.array([1,1,1,3.5]),
-            11: np.array([1,1,1,4.0]),
-            12: np.array([1,1,1,4.5]),
-            13: np.array([1,1,1,5.0]),
-            14: np.array([1,1,1,5.5]),
-            15: np.array([1,1,1,6.0])
+            0: np.array([0.,0.,0.,0.]),
+            1: np.array([1.,0.,0.,0.]),
+            2: np.array([1.,1.,0.,0.]),
+            3: np.array([1.,1.,1.,0.]),
+            4: np.array([1.,1.,1.,0.5]),
+            5: np.array([1.,1.,1.,1.]),
+            6: np.array([1.,1.,1.,1.5]),
+            7: np.array([1.,1.,1.,2.0]),
+            8: np.array([1.,1.,1.,2.5]),
+            9: np.array([1.,1.,1.,3.0]),
+            10: np.array([1.,1.,1.,3.5]),
+            11: np.array([1.,1.,1.,4.0]),
+            12: np.array([1.,1.,1.,4.5]),
+            13: np.array([1.,1.,1.,5.0]),
+            14: np.array([1.,1.,1.,5.5]),
+            15: np.array([1.,1.,1.,6.0])
         }
 
         # define the game's starting position:
@@ -125,6 +125,7 @@ class BackgammonEnv(gym.Env):
 
         # a 'coin flip' to determine which side goes first
         coin = random() > 0.5
+        print(coin)
 
         # reset the board to the game's starting position and assign a turn order based on the coin flip
         self.state = {
@@ -154,6 +155,9 @@ class BackgammonEnv(gym.Env):
             player = 'B'
             opponent = 'W'
 
+        print(player)
+        print(opponent)
+        print(self.state[player])
 
         # assume for now that an action is a list of up to four 'old position - new position' tupels
         # move = (int,int)
@@ -168,9 +172,10 @@ class BackgammonEnv(gym.Env):
             else:
                 # get the current number of checkers at the position from which we need to remove a checker
                 encoded_checkers = self.state[player]['board'][old_pos-1]
+                print(encoded_checkers)
                 # decode
                 for key, value in self.encoding.items():
-                    if encoded_checkers == value:
+                    if np.array_equal(encoded_checkers,value):
                         n_checkers = key
                 # subtract a checker
                 self.state[player]['board'][old_pos-1] = self.encoding[n_checkers-1]
@@ -184,14 +189,14 @@ class BackgammonEnv(gym.Env):
                 encoded_checkers = self.state[player]['board'][new_pos-1]
                 # decode
                 for key, value in self.encoding.items():
-                    if encoded_checkers == value:
+                    if np.array_equal(encoded_checkers,value):
                         n_checkers = key
                 # add a checker
                 self.state[player]['board'][new_pos-1] = self.encoding[n_checkers+1]
 
                 # check for blots
                 mirror_pos = new_pos+25-2*new_pos
-                if self.state[opponent]['board'][mirror_pos] != [0,0,0,0]:
+                if not np.array_equal(self.state[opponent]['board'][mirror_pos],[0,0,0,0]):
                     # if there is a blot, move the opponent's piece to the bar
                     self.state[opponent]['board'][mirror_pos] = [0,0,0,0]
                     self.state[opponent]['board'][0] += 0.5
@@ -206,19 +211,19 @@ class BackgammonEnv(gym.Env):
         # get observation
         observation = self._get_obs()
 
-        # reward is zero unless one of four conditions is met
+        # reward is zero unless one of four conditions is met:
         reward = 0
 
-        # White wins, Black is gammoned
+        # 1) White wins, Black is gammoned
         if self.state['W']['menoff'] ==  1 and self.state['B']['menoff'] == 0:
             reward = 2
-        # White wins
+        # 2) White wins
         elif self.state['W']['menoff'] ==  1:
             reward = 1
-        # Black wins, White is gammoned
+        # 3) Black wins, White is gammoned
         elif self.state['B']['menoff'] ==  1 and self.state['W']['menoff'] == 0: 
             reward = -2
-        # Black wins
+        # 4) Black wins
         elif self.state['B']['menoff'] ==  1:
             reward = -1
 
