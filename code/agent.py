@@ -1,78 +1,88 @@
 from dice import roll
-
 class Agent:
-    def __init__(self, gamma, network):
-
+    def __init__(self, gamma, network, env):
+        self.env = env
         self.gamma = gamma
-        self.state_memory = []
-        self.action_memory = []
-        self.reward_memory = []
         self.network = network
-        
-    def find_legal_actions(self, obs, dice):
-        for die in dice:
-            
-        return actions
 
     def choose_action(self, obs):
-        obs['W']['board'] = obs['W']['board'].flatten().tolist()
-        obs['B']['board'] = obs['B']['board'].flatten().tolist()
         
         dice = roll()
         
-        actions = find_legal_actions(obs, dice)
-        # insert function that determines possible actions and appends them
-        # to actions array
-        
-        values = [length_of_actions]
-        
-        # the states are all subsequent states that can be reached based on 
-        # the possible actions
-        
-        for action in actions:
-            values[i] = self.network.call(obs+action)
-            
-        index = np.where(values == values.max())
-            
-        return actions[index]
+        legal_actions = []
+        size = len(dice)
+        action = []
 
-    def store_transition(self, observation, action, reward):
-        self.state_memory.append(observation)
-        self.action_memory.append(action)
-        self.reward_memory.append(reward)
+        # check whose turn it is
+        if obs['W']['turn'] == 1:
+            player_obs = obs['W']
+            opponent_obs = obs['B']
+        else:
+            player_obs = obs['B']
+            opponent_obs = obs['W']
+            
+        # make board more easily readable
+        new_board = []
+        for idx, pos in enumerate(player_obs['board']):
+            new_board.append(pos[0] + pos[1] + pos[2] + pos[3] * 2)
+        player_obs['board'] = new_board
+        
+        def find_board_actions(action, dice, player_obs):
+            # if our action has reached the desired size it is appended and we return
+            # !!! problem: what if we cannot use all the dice?? We still need to find legal actions !!!
+            if len(action) == size:
+                legal_actions.append(action)
+                return
+
+            # in case there are chips in the bar they have to be removed before any other actions can be taken
+            if player_obs['barmen'] > 0:
+                for i, die in enumerate(dice):
+                    if opponent_obs['board'][die + 25 - 2 * die][1] == 0:
+                        new_player_obs = player_obs.copy()
+                        new_player_obs['board'][die] += 1
+                        new_player_obs['barmen'] -= 1
+                        find_board_actions(action.copy() + [(0, die)], dice[1:], new_player_obs)
+
+            # is it legal to move off the board?
+            moveoff = True
+            for idx in range(18):
+                if player_obs['board'][idx] == 1:
+                    moveoff = False
+                    break
+
+            for idx, pos in enumerate(player_obs['board']):
+                if pos > 0 and idx + dice[0] > 23:
+                    if moveoff:
+                        new_player_obs = player_obs.copy()
+                        new_player_obs['board'][idx] -= 1
+                        find_board_actions(action.copy() + [(idx + 1, 25)], dice[1:], new_player_obs)
+
+                if pos > 0 and opponent_obs['board'][(idx + dice[0]) + 24 - 2 * (idx + dice[0])][1] == 0:
+                    new_player_obs = player_obs.copy()
+                    new_player_obs['board'][idx] -= 1
+                    new_player_obs['board'][idx + dice[0]] -= 1
+                    find_board_actions(action.copy() + [(idx + 1, idx + dice[0] + 1)], dice[1:], new_player_obs)
+
+        find_board_actions(action, dice, player_obs)
+        
+        # test print out looking good for initial turn
+        print(legal_actions)
+        
+        states = [] 
+        # call function that returns the state 
+        for action in legal_actions:
+            states.append(env.state_from_action(obs, action))
+        
+        values = []
+        for state in states:
+            state['W']['board'] = state['W']['board'].flatten().tolist()
+            state['B']['board'] = state['B']['board'].flatten().tolist()
+            values.append(self.network.call(state))
+            
+        # !!! missing something that evaluates at which value index we have the best probability of winning !!!
+        # maybe using numpy arrays??
+        
+        return legal_actions[index]
 
     def learn(self):
-        rewards = np.array(self.reward_memory)
-
-        # apply gamma discount factor to rewards
-        G = np.zeros_like(rewards)
-        for t in range(len(rewards)):
-            G_sum = 0
-            discount = 1
-            for k in range(t, len(rewards)):
-                G_sum += rewards[k] * discount
-                discount *= self.gamma
-            G[t] = G_sum
-
-
-        # get log_prob for all actions in trajectory and calculate loss
-        # https://keras.io/api/optimizers/
-        with tf.GradientTape() as tape:
-            loss = 0
-            for idx, (g, state, action) in enumerate(zip(G, self.state_memory, self.action_memory)):
-              state = tf.convert_to_tensor([state], dtype=tf.float32)
-              actions = [action]
-              states = [state]
-              log_prob = self.policy.probs_from_states_and_actions(states, actions)
-              
-              loss += -g * tf.squeeze(log_prob)
-
-        gradient = tape.gradient(loss, self.policy.trainable_variables)
-
-        # apply gradient doesn't work
-        # how to get hold of optimizer?
-        self.policy.optimizer.apply_gradients(zip(gradient, self.policy.trainable_variables))
-
-        self.state_memory = []
-        self.action_memory = []
-        self.reward_memory = []
+        pass
