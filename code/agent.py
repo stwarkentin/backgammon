@@ -27,6 +27,7 @@ class Agent:
             new_board.append(pos[0] + pos[1] + pos[2] + pos[3] * 2)
         player_obs['board'] = new_board
         
+        # recursive function to search "action-tree"
         def find_board_actions(action, dice, player_obs):
             # if our action has reached the desired size it is appended and we return
             # !!! problem: what if we cannot use all the dice?? We still need to find legal actions !!!
