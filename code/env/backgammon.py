@@ -284,12 +284,6 @@ class BackgammonEnv(gym.Env):
         observation['W']['turn'] = 1-observation['W']['turn']
         observation['B']['turn'] = 1-observation['B']['turn']
         
-        return self._get_obs(observation)
-
-        
- # W:    0 1 ... 23
-# B:      23 ... 1 0
-
-# translating from one board to the other: n+23-(2n)
+        return self._flatten_obs(observation)
 
 # idea: replace W and B with 1 and 0
