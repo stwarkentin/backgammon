@@ -92,21 +92,18 @@ class BackgammonEnv(gym.Env):
 
         # define the game's starting position:
   
-        # create an empty board without a bar
+        # create an empty board
         self.starting_pos = np.zeros((24, 4))
 
-        # !!! NEW: values where the wrong way around
         # place the correct number of checkers in the correct positions
         self.starting_pos[0] = copy(self.encoding[2])
         self.starting_pos[11] = copy(self.encoding[5])
         self.starting_pos[16] = copy(self.encoding[3])
         self.starting_pos[18] = copy(self.encoding[5])
 
-    # !!! NEW: now parametarized
-    def _get_obs(self, obs):
+    def _flatten_obs(self, obs):
         w_board = obs['W']['board']
         w_board = w_board.flatten()
-        
         b_board = obs['B']['board']
         b_board = b_board.flatten()
 
@@ -119,6 +116,7 @@ class BackgammonEnv(gym.Env):
         observation = np.append(observation,obs['B']['barmen'])
         observation = np.append(observation,obs['B']['menoff'])
         observation = np.append(observation,obs['B']['turn'])
+
         return observation
 
     def _get_info(self):
