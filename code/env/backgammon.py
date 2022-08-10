@@ -122,7 +122,6 @@ class BackgammonEnv(gym.Env):
     def _get_info(self):
         pass
 
-    # !!! NEW: return unflattened state
     def reset(self): 
 
         # a 'coin flip' to determine which side goes first
@@ -144,9 +143,8 @@ class BackgammonEnv(gym.Env):
             }
         }
 
-        return self.state
+        return copy(self.state)
 
-    # !!! NEW: Indexing, returns unflattened state
     def step(self, action):
 
         # who's turn is it?
@@ -157,11 +155,7 @@ class BackgammonEnv(gym.Env):
             player = 'B'
             opponent = 'W'
 
-        # assume for now that an action is a list of up to four 'old position - new position' tupels
-        # move = (int,int)
-        # action  = [move,move]
         for move in action:
-
             # 'LIFTING' A CHECKER
 
             old_pos, new_pos = move
@@ -203,15 +197,9 @@ class BackgammonEnv(gym.Env):
                     self.state[opponent]['board'][mirror_pos] = [0,0,0,0]
                     self.state[opponent]['barmen'] += 0.5
 
-            # 0 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
-            #  24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1 0
-
-        # swap whose turn it is
+        # update the turn order
         self.state['W']['turn'] = 1-self.state['W']['turn']
         self.state['B']['turn'] = 1-self.state['B']['turn']
-
-        # !!! nicht mehr hier flatten sondern stadtdessen n der neuen Funktion !!!
-        # observation = self._get_obs()
 
         # reward is zero unless one of four conditions is met:
         reward = 0
@@ -232,7 +220,7 @@ class BackgammonEnv(gym.Env):
         # if one of the four conditions is met, the game is finished and the episode ends
         done = reward != 0
 
-        return self.state, reward, done
+        return copy(self.state), reward, done
     
     # !!! NEW: paremetarized copy of stepfunction without reward and done return and flattened
     def get_state(self, observation, action):
