@@ -17,13 +17,12 @@ class BackgammonEnv(gym.Env):
         # (one for each player) rather than one 
 
         # defining some ranges for our observation space
-        low = np.zeros((97,)) # 1 value for the bar + 4 per each of the 24 positions on the board
+        low = np.zeros((96,)) # 4 per each of the 24 positions on the board
         high = np.ones((96,)) # the first three of the four values encoding the number of checkers at a given position are either 0 or 1...
 
         for i in range(3, 97, 4): # but every fourth value can go as high as (15-3)/2 = 6...
             high[i] = 6.0
 
-        high = np.insert(arr=high,obj=0,values=7.5) # and the very first value, which encodes the number of checkers on the bar, can go as high as 15/2 = 7.5
         # to make them more readable to humans, our observations are dictionaries
         # but we can't feed dictionaries to our ANN, so we are going to have to use gym's 'FlattenObservation' wrapper to flatten the dictionary into a single array later
         self.observation_space = Dict(
@@ -32,6 +31,7 @@ class BackgammonEnv(gym.Env):
                 'W': Dict(
                     {
                         'board': Box(low=low, high=high,dtype=np.float32), # the board, consisting of the bar and 24 'points'
+                        'barmen' Box(low=0.0,high=7.5,shape=(1,),dtype=np.float32), # and the very first value, which encodes the number of checkers on the bar, can go as high as 15/2 = 7.5
                         'menoff': Box(low=0.0,high=1.0,shape=(1,),dtype=np.float32), # number of checkers removed from the board as a fraction of the total number of checkers i.e. n/15
                         'turn': Discrete(2) # '1' if it is this player's turn, '0' if not
                     }
@@ -40,6 +40,7 @@ class BackgammonEnv(gym.Env):
                 'B': Dict(
                     {
                         'board': Box(low=low, high=high,dtype=np.float32),
+                        'barmen' Box(low=0.0,high=7.5,shape=(1,),dtype=np.float32), 
                         'menoff': Box(low=0.0,high=1.0,shape=(1,),dtype=np.float32),
                         'turn': Discrete(2)
                     }
