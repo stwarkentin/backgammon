@@ -1,6 +1,7 @@
 from dice import roll
 from random import choice
 from copy import deepcopy
+from human_readable import human_readable
 
 class Agent:
     def __init__(self, env, network):
@@ -28,10 +29,7 @@ class Agent:
         opponent_obs = obs[opponent]
         
         # make board more easily readable
-        new_board = []
-        for pos in player_obs['board']:
-            new_board.append(pos[0] + pos[1] + pos[2] + pos[3] * 2)
-        player_obs['board'] = new_board
+        player_obs['board'] = human_readable(player_obs)
         
         # !!! just for testing purposes !!!
         # if not length == size and not len(action) == 0:
