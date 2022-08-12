@@ -6,15 +6,6 @@ from copy import copy
 
 class BackgammonEnv(gym.Env):
     def __init__(self):
-  
-        # Tesauro's backgammon algorithms encode the board using a specific 'truncated unary encoding' with some quirks. You can read more about it here:
-        # https://en.wikipedia.org/wiki/Unary_coding 
-        # http://www.scholarpedia.org/article/User:Gerald_Tesauro/Proposed/Td-gammon
-        # https://www.bkgm.com/rgb/rgb.cgi?view+610
-
-        # although its purported benefits are not immediately apparent to us (perhaps we've been spoiled by the advances in computational power which have made such optimizations optional?),
-        # our encoding is largely based on the one used in Tesauro's 'pubeval.c', with the only changes made being the order of the values, and perhaps the use of two such figurative boards 
-        # (one for each player) rather than one 
 
         # defining some ranges for our observation space
         low = np.zeros((96,)) # 4 per each of the 24 positions on the board
@@ -31,7 +22,7 @@ class BackgammonEnv(gym.Env):
                 'W': Dict(
                     {
                         'board': Box(low=low, high=high,dtype=np.float32), # the board, consisting of the bar and 24 'points'
-                        'barmen' Box(low=0.0,high=7.5,shape=(1,),dtype=np.float32), # and the very first value, which encodes the number of checkers on the bar, can go as high as 15/2 = 7.5
+                        'barmen': Box(low=0.0, high=7.5,shape=(1,),dtype=np.float32), # and the very first value, which encodes the number of checkers on the bar, can go as high as 15/2 = 7.5
                         'menoff': Box(low=0.0,high=1.0,shape=(1,),dtype=np.float32), # number of checkers removed from the board as a fraction of the total number of checkers i.e. n/15
                         'turn': Discrete(2) # '1' if it is this player's turn, '0' if not
                     }
@@ -40,7 +31,7 @@ class BackgammonEnv(gym.Env):
                 'B': Dict(
                     {
                         'board': Box(low=low, high=high,dtype=np.float32),
-                        'barmen' Box(low=0.0,high=7.5,shape=(1,),dtype=np.float32), 
+                        'barmen': Box(low=0.0,high=7.5,shape=(1,),dtype=np.float32), 
                         'menoff': Box(low=0.0,high=1.0,shape=(1,),dtype=np.float32),
                         'turn': Discrete(2)
                     }
@@ -145,15 +136,15 @@ class BackgammonEnv(gym.Env):
 
         return copy(self.state)
 
-    def step(self, prediction = False, action):
+    def step(self, persistent, action):
 
-        if prediction:
-            state = copy(self.state)
-        else:
+        if persistent:
             state = self.state
+        else:
+            state = deepcopy(self.state)
 
         # who's turn is it?
-        if ['W']['turn'] == 1:
+        if self.state['W']['turn'] == 1:
             player = 'W'
             opponent = 'B'
         else:
@@ -164,6 +155,7 @@ class BackgammonEnv(gym.Env):
             # 'LIFTING' A CHECKER
 
             old_pos, new_pos = move
+            
             # are we moving a piece off the bar?
             if old_pos == -1:
                 # remove a checker from the bar
@@ -207,7 +199,7 @@ class BackgammonEnv(gym.Env):
         state['B']['turn'] = 1 - state['B']['turn']
 
         # if this is only a 'simulated' step, return the new state here
-        if prediction:
+        if not persistent:
             return self._flatten_obs(state)
 
         # reward is zero unless one of four conditions is met:
@@ -230,69 +222,3 @@ class BackgammonEnv(gym.Env):
         done = reward != 0
 
         return copy(self.state), reward, done
-    
-#     # !!! NEW: paremetarized copy of stepfunction without reward and done return and flattened
-#     def get_state(self, observation, action):
-        
-#         # who's turn is it?
-#         if observation['W']['turn'] == 1:
-#             player = 'W'
-#             opponent = 'B'
-#         else:
-#             player = 'B'
-#             opponent = 'W'
-
-#         # assume for now that an action is a list of up to four 'old position - new position' tupels
-#         # move = (int,int)
-#         # action  = [move,move]
-#         for move in action:
-
-#             # 'LIFTING' A CHECKER
-
-#             old_pos, new_pos = move
-            
-#             # are we moving a piece off the bar?
-#             if old_pos == -1:
-#                 # remove a checker from the bar
-#                 observation[player]['barmen'] -= 0.5
-
-#             else:
-#                 # get the current number of checkers at the position from which we need to remove a checker
-#                 encoded_checkers = observation[player]['board'][old_pos]
-#                 # decode
-#                 for key, value in self.encoding.items():
-#                     if np.array_equal(encoded_checkers,value):
-#                         n_checkers = key
-#                 # subtract a checker
-#                 observation[player]['board'][old_pos] = copy(self.encoding[n_checkers-1])
-
-#             # 'PLACING DOWN' A CHECKER
-
-#             # are we bearing off?
-#             if new_pos == 24:
-#                 observation[player]['menoff'] += 1/15
-
-#             else:
-#                 # get the current number of checkers at the position to which we need to add a checker
-#                 encoded_checkers = observation[player]['board'][new_pos]
-#                 # decode
-#                 for key, value in self.encoding.items():
-#                     if np.array_equal(encoded_checkers,value):
-#                         n_checkers = key
-#                 # add a checker
-#                 observation[player]['board'][new_pos] = copy(self.encoding[n_checkers+1])
-
-#                 # check for blots
-#                 mirror_pos = new_pos+23-2*new_pos
-#                 if not np.array_equal(observation[opponent]['board'][mirror_pos],[0,0,0,0]):
-#                     # if there is a blot, move the opponent's piece to the bar
-#                     observation[opponent]['board'][mirror_pos] = [0,0,0,0]
-#                     observation[opponent]['barmen'] += 0.5
-
-#         # swap whose turn it is
-#         observation['W']['turn'] = 1-observation['W']['turn']
-#         observation['B']['turn'] = 1-observation['B']['turn']
-        
-#         return self._flatten_obs(observation)
-
-# # idea: replace W and B with 1 and 0
