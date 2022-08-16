@@ -142,12 +142,15 @@ class TDAgent(Agent):
 
         values = []
         for state in afterstates:
-            values.append(self.network.call(state.reshape(1,-1)))
-            
-        print(values[0][0][0])
-           
-        action = choice(legal_actions)
-        
+            value = self.network.call(state.reshape(1,-1))[0]
+            # !!! do we need to redefine player?
+            if player == 'W':
+                values.append(float(value[0] + 2 * value[1] - value[2] - 2 * value[3]))
+            else:
+                values.append(float(-value[0] - 2 * value[1] + value[2] + 2 * value[3]))
+
+        action = legal_actions[values.index(max(values))] 
+
         print("Action: ", action)
             
         return action
@@ -160,15 +163,7 @@ class TDAgent(Agent):
         # maybe using numpy arrays??
         # !!! PLACEHOLDER !!!
 
-        # values = []
-        # for state in states:
-        # value = self.network.call(state.reshape(1,-1))[0]
-        # if player == 'W':
-        # values.append(float(value[0] + 2 * value[1] - value[2] - 2 * value[3]))
-        # else:
-        # values.append(float(-value[0] - 2 * value[1] + value[2] + 2 * value[3]))
-
-        # action = legal_actions[values.index(max(values))]   
+          
     
         
 
