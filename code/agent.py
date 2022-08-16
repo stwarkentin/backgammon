@@ -119,6 +119,20 @@ class RandomAgent(Agent):
     def choose_action(self,obs):
 
         legal_actions = self.find_actions(obs)
+            
+        return choice(legal_actions)
+
+class TDAgent(Agent):
+
+    def __init__(self, env, network, alpha, lmbd, gamma):
+        super.__init__(env,network)
+        self.alpha = alpha
+        self.lmbd = lmdd
+        self.gamma = gamma
+
+    def choose_action(self, obs):
+        
+        legal_actions = self.find_actions(obs)
 
         afterstates = [] 
         # call function that returns the state
@@ -137,17 +151,6 @@ class RandomAgent(Agent):
         print("Action: ", action)
             
         return action
-
-class TDAgent(Agent):
-
-    def __init__(self, env, network, alpha, lmbd, gamma):
-        super.__init__(env,network)
-        self.alpha = alpha
-        self.lmbd = lmdd
-        self.gamma = gamma
-
-    def choose_action(self, obs):
-        pass
     
     def learn(self):
         pass
