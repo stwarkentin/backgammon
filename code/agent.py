@@ -126,8 +126,11 @@ class TDAgent(Agent):
 
     def __init__(self, env, network, alpha, lmbd, gamma):
         super.__init__(env,network)
+        # step size 
         self.alpha = alpha
+        # trace decay rate
         self.lmbd = lmdd
+        # ???
         self.gamma = gamma
 
     def choose_action(self, obs):
@@ -155,14 +158,20 @@ class TDAgent(Agent):
             
         return action
     
+    # this happens in one episode, call it many times during training
     def learn(self):
+        # initialize s
+        # make the eligibility trace vector. needs to have the same size as the weights vector
+        # for each step of the episode:
+            # choose action
+            # take action, observe R, S'
+            # update eligibility trace
+            # get TD error
+            # update weights
+            # move on to the next state
+        # until S' is terminal
+
         pass
-
-        # !!! missing something that evaluates at which value index we have the best probability of winning !!!
-        # example output: [.1,.2,.4,.3] 0.1+2*.02-0.4-2*0.3 = -0.5
-        # maybe using numpy arrays??
-        # !!! PLACEHOLDER !!!
-
           
     
         
