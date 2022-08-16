@@ -120,14 +120,14 @@ class RandomAgent(Agent):
 
         legal_actions = self.find_actions(obs)
 
-        states = [] 
+        afterstates = [] 
         # call function that returns the state
         for action in legal_actions:
             state = env.step(False, action)
-            states.append(state.copy())
+            afterstates.append(state.copy())
 
         values = []
-        for state in states:
+        for state in afterstates:
             values.append(self.network.call(state.reshape(1,-1)))
             
         print(values[0][0][0])
