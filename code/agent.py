@@ -9,7 +9,7 @@ class Agent:
         #self.gamma = gamma
         self.network = network        
 
-    def choose_action(self, obs):
+    def find_actions(self, obs):
         
         dice = roll()
         
@@ -43,7 +43,7 @@ class Agent:
         #print("Opponent:\t", opponent, test_opponent['board'])
         
         # recursive function to search "action-tree"
-        def find_board_actions(action, dice, player_obs):
+        def build_actions(action, dice, player_obs):
             
             # if we have iterated through all dice the action is appended and we return
             if len(dice) == 0:
@@ -64,7 +64,7 @@ class Agent:
                         new_dice = copy(dice)
                         new_dice.pop(i)
                         # append the chosen move to action, pass new observation and dice to the recursion
-                        find_board_actions(action.copy() + [(-1, die)], new_dice, new_player_obs)
+                        build_actions(action.copy() + [(-1, die)], new_dice, new_player_obs)
                         
             else:
                 # is it legal to move off the board?
@@ -87,7 +87,7 @@ class Agent:
                                 new_player_obs = deepcopy(player_obs)
                                 new_player_obs['board'][pos] -= 1
                                 # recursively call function
-                                find_board_actions(action.copy() + [(pos, 24)], dice[1:], new_player_obs)       
+                                build_actions(action.copy() + [(pos, 24)], dice[1:], new_player_obs)       
                             
                     # If there is no checker on the point indicated by the roll, the player must make a legal move using a checker on a higher-numbered point. If there are no checkers on higher-numbered points, the player is permitted (and required) to remove a checker from the highest point on which one of his checkers resides.
                     
@@ -97,18 +97,33 @@ class Agent:
                         new_player_obs['board'][pos] -= 1
                         new_player_obs['board'][pos + dice[0]] += 1
                         # recursively call function
-                        find_board_actions(action.copy() + [(pos, pos + dice[0])], dice[1:], new_player_obs)
+                        build_actions(action.copy() + [(pos, pos + dice[0])], dice[1:], new_player_obs)
                             
             # if we couldn't move and reach return we recursively call the function with the same state and action but iterated dice 
-            find_board_actions(action.copy(), dice[1:], player_obs)
+            build_actions(action.copy(), dice[1:], player_obs)
     
         # call the recursive function
-        find_board_actions(action, dice, player_obs)
+        build_actions(action, dice, player_obs)
         
         # only keep actions if they have the max length
         length = max(len(x) for x in legal_actions)
         legal_actions = list(l for l in legal_actions if len(l) == length)
-          
+
+        return legal_actions
+
+    def learn(self):
+        pass
+
+class RandomAgent(Agent):
+
+    # # If the __init__ method is not defined in a child class then the __init__ method from the parent class is automatically used.
+    # def __init__(self,env,network):
+    #     super.__init__(env,network)
+
+    def choose_action(self,obs):
+
+        legal_actions = self.find_actions(obs)
+
         states = [] 
         # call function that returns the state
         for action in legal_actions:
@@ -120,16 +135,28 @@ class Agent:
             values.append(self.network.call(state.reshape(1,-1)))
             
         print(values[0][0][0])
-        
-        # !!! missing something that evaluates at which value index we have the best probability of winning !!!
-        # example output: [.1,.2,.4,.3] 0.1+2*.02-0.4-2*0.3 = -0.5
-        # maybe using numpy arrays??
-        # !!! PLACEHOLDER !!!
+           
         action = choice(legal_actions)
         
         print("Action: ", action)
             
         return action
 
-    def learn(self):
-        pass
+
+        # !!! missing something that evaluates at which value index we have the best probability of winning !!!
+        # example output: [.1,.2,.4,.3] 0.1+2*.02-0.4-2*0.3 = -0.5
+        # maybe using numpy arrays??
+        # !!! PLACEHOLDER !!!
+
+        # values = []
+        # for state in states:
+        # value = self.network.call(state.reshape(1,-1))[0]
+        # if player == 'W':
+        # values.append(float(value[0] + 2 * value[1] - value[2] - 2 * value[3]))
+        # else:
+        # values.append(float(-value[0] - 2 * value[1] + value[2] + 2 * value[3]))
+
+        # action = legal_actions[values.index(max(values))]   
+    
+        
+
