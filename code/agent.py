@@ -6,7 +6,6 @@ from human_readable import human_readable
 class Agent:
     def __init__(self, env, network):
         self.env = env
-        #self.gamma = gamma
         self.network = network        
 
     def find_actions(self, obs):
@@ -111,9 +110,6 @@ class Agent:
 
         return legal_actions
 
-    def learn(self):
-        pass
-
 class RandomAgent(Agent):
 
     # # If the __init__ method is not defined in a child class then the __init__ method from the parent class is automatically used.
@@ -142,6 +138,19 @@ class RandomAgent(Agent):
             
         return action
 
+class TDAgent(Agent):
+
+    def __init__(self, env, network, alpha, lmbd, gamma):
+        super.__init__(env,network)
+        self.alpha = alpha
+        self.lmbd = lmdd
+        self.gamma = gamma
+
+    def choose_action(self, obs):
+        pass
+    
+    def learn(self):
+        pass
 
         # !!! missing something that evaluates at which value index we have the best probability of winning !!!
         # example output: [.1,.2,.4,.3] 0.1+2*.02-0.4-2*0.3 = -0.5
