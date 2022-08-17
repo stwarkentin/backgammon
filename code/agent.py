@@ -129,9 +129,16 @@ class TDAgent(Agent):
         # step size 
         self.alpha = alpha
         # trace decay rate
-        self.lmbd = lmdd
+        self.lmbd = lmbd
         # ???
         self.gamma = gamma
+        self.state = []
+        self.post_state = []
+        self.reward = 0
+        self.z = np.zeros(self.network.weight_shape)
+
+    def score(self):
+        pass
 
     def choose_action(self, obs):
         
@@ -146,6 +153,7 @@ class TDAgent(Agent):
         values = []
         for state in afterstates:
             value = self.network.call(state.reshape(1,-1))[0]
+            # score function
             # !!! do we need to redefine player?
             if player == 'W':
                 values.append(float(value[0] + 2 * value[1] - value[2] - 2 * value[3]))
@@ -157,21 +165,51 @@ class TDAgent(Agent):
         print("Action: ", action)
             
         return action
-    
-    # this happens in one episode, call it many times during training
-    def learn(self):
-        # initialize s
-        # make the eligibility trace vector. needs to have the same size as the weights vector
-        # for each step of the episode:
-            # choose action
-            # take action, observe R, S'
-            # update eligibility trace
-            # get TD error
-            # update weights
-            # move on to the next state
-        # until S' is terminal
 
-        pass
+    def store_transition(self, state, post_state, reward):
+        self.state = state
+        self.post_state = post_state
+        self.reward = rewards
+    
+    # for each step of the episode:
+    def learn(self):
+            # update eligibility trace
+            self.z = self.gamma*self.lmbd*self.z+gradient_current_state
+            # get TD error
+            # GRADIENT?!?!?!?
+            delta = self.reward+self.gamma*score(post_state)-score(current_state)
+
+            # get and flatten weights
+            w = []
+            for layer in self.list_of_layers:
+                w.append(layer.get_weights())
+            w = weights.flatten()
+
+            if len(self.network.list_of_layers) == 1:
+                two_layers = True 
+            else:
+                two_layers = False
+
+            # update the weights vector
+            w = w + self.alpha*delta*self.z
+
+            # set the weights (split by layer)
+            if two_layers:
+                self.network.hidden_layer.set_weights(:-4)
+                self.network.output_layer.set_weights(-4:)
+            else:
+                self.network.output_layer.set_weights(w)
+
+
+        # main loop:
+        # for episodes:
+            # reset environment
+            # while not done:
+                # choose action
+                # step
+                # store transition: state, action(?),post_state(?), reward
+                # learn
+
           
     
         

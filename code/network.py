@@ -17,6 +17,11 @@ class Network(tf.keras.Model):
     self.output_layer = tf.keras.layers.Dense(4, activation=tf.nn.sigmoid, kernel_initializer = initializer)
     self.list_of_layers.append(self.output_layer)
 
+    weights = []
+    for layer in self.list_of_layers:
+      weights.append(layer.get_weights())
+    self.weights_shape = len(weights.flatten())
+
   def call(self, x):
     for layer in self.list_of_layers:
         x = layer(x)
