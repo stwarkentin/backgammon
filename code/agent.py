@@ -110,6 +110,32 @@ class Agent:
 
         return legal_actions
 
+    def whose_turn(self,obs):
+        
+        if obs['W']['turn'] == 1:
+            player = 'W'
+            opponent = 'B'
+        else:
+            player = 'B'
+            opponent = 'W'
+
+        return player, opponent
+
+    def score(self,obs):
+
+        player, opponent = self.whose_turn(obs)
+
+        value = self.network.call(state.reshape(1,-1))[0]
+
+        if player == 'W':
+            score = float(value[0] + 2 * value[1] - value[2] - 2 * value[3])
+        else:
+            score = float(-value[0] - 2 * value[1] + value[2] + 2 * value[3])
+        
+        return score
+
+
+
 class RandomAgent(Agent):
 
     # # If the __init__ method is not defined in a child class then the __init__ method from the parent class is automatically used.
@@ -137,17 +163,9 @@ class TDAgent(Agent):
         self.reward = 0
         self.z = np.zeros(self.network.weight_shape)
 
-    def score(self):
-        pass
-
     def choose_action(self, obs):
 
-        if obs['W']['turn'] == 1:
-            player = 'W'
-            opponent = 'B'
-        else:
-            player = 'B'
-            opponent = 'W'
+        player, opponent = self.whose_turn(obs)'
         
         legal_actions = self.find_actions(obs)
 
@@ -157,16 +175,12 @@ class TDAgent(Agent):
             state = env.step(False, action)
             afterstates.append(state.copy())
 
-        values = []
+        scores = []
         for state in afterstates:
-            value = self.network.call(state.reshape(1,-1))[0]
-            # score function
-            if player == 'W':
-                values.append(float(value[0] + 2 * value[1] - value[2] - 2 * value[3]))
-            else:
-                values.append(float(-value[0] - 2 * value[1] + value[2] + 2 * value[3]))
+            scores.append(self.score(state))
 
-        action = legal_actions[values.index(max(values))] 
+
+        action = legal_actions[scores.index(max(scores))] 
 
         print("Action: ", action)
             
@@ -182,7 +196,6 @@ class TDAgent(Agent):
             # update eligibility trace
             self.z = self.gamma*self.lmbd*self.z+gradient_current_state
             # get TD error
-            # GRADIENT?!?!?!?
             delta = self.reward+self.gamma*score(post_state)-score(current_state)
 
             # get and flatten weights
@@ -205,18 +218,5 @@ class TDAgent(Agent):
                 self.network.output_layer.set_weights(-4:)
             else:
                 self.network.output_layer.set_weights(w)
-
-
-        # main loop:
-        # for episodes:
-            # reset environment
-            # while not done:
-                # choose action
-                # step
-                # store transition: state, action(?),post_state(?), reward
-                # learn
-
-          
-    
         
 
