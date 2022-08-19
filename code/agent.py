@@ -141,6 +141,13 @@ class TDAgent(Agent):
         pass
 
     def choose_action(self, obs):
+
+        if obs['W']['turn'] == 1:
+            player = 'W'
+            opponent = 'B'
+        else:
+            player = 'B'
+            opponent = 'W'
         
         legal_actions = self.find_actions(obs)
 
@@ -154,7 +161,6 @@ class TDAgent(Agent):
         for state in afterstates:
             value = self.network.call(state.reshape(1,-1))[0]
             # score function
-            # !!! do we need to redefine player?
             if player == 'W':
                 values.append(float(value[0] + 2 * value[1] - value[2] - 2 * value[3]))
             else:
