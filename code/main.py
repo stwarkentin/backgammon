@@ -5,7 +5,7 @@ from env.backgammon import BackgammonEnv
 
 env = BackgammonEnv()
 network = Network()
-alpha = 0.001
+alpha = 0.1
 lmbd = 0.7
 gamma = 1
 agent = TDAgent(env, network, alpha, lmbd, gamma)
