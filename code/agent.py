@@ -149,7 +149,7 @@ class RandomAgent(Agent):
 class TDAgent(Agent):
 
     def __init__(self, env, network, alpha, lmbd, gamma):
-        super.__init__(env,network)
+        super().__init__(env,network)
         self.alpha = alpha
         self.lmbd = lmbd
         self.gamma = gamma
@@ -166,7 +166,7 @@ class TDAgent(Agent):
         afterstates = [] 
         # call function that returns the state
         for action in legal_actions:
-            state = env.step(False, action)
+            state = self.env.step(False, action)
             afterstates.append(state.copy())
         scores = []
         for state in afterstates:

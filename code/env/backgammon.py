@@ -3,6 +3,7 @@ from gym.spaces import Dict, Box, Discrete
 import numpy as np
 from random import random
 from copy import copy
+from copy import deepcopy
 
 class BackgammonEnv(gym.Env):
     def __init__(self):
