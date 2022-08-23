@@ -1,5 +1,6 @@
 import tensorflow as tf
-from tf.keras.initializers import RandomUniform
+import numpy as np
+from tensorflow.keras.initializers import RandomUniform
 
 class Network(tf.keras.Model):
 
@@ -17,13 +18,20 @@ class Network(tf.keras.Model):
     self.output_layer = tf.keras.layers.Dense(4, activation=tf.nn.sigmoid, kernel_initializer = initializer)
     self.list_of_layers.append(self.output_layer)
 
-    weights = []
+    weights = np.empty(0)
     for layer in self.list_of_layers:
-      weights.append(layer.get_weights())
+      np.append(weights, layer.get_weights())
     self.weights_shape = len(weights.flatten())
 
   def call(self, x):
     for layer in self.list_of_layers:
         x = layer(x)
     return x
+
+  def test(self):
+    test = self.build([192,1])
+    for layer in self.list_of_layers:
+      print("weights:", len(layer.weights))
+      print("trainable_weights:", len(layer.trainable_weights))
+      print("non_trainable_weights:", len(layer.non_trainable_weights))
 
