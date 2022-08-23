@@ -160,7 +160,7 @@ class TDAgent(Agent):
 
     def choose_action(self, obs):
 
-        player, opponent = self.whose_turn(obs)'
+        player, opponent = self.whose_turn(obs)
         legal_actions = self.find_actions(obs)
 
         afterstates = [] 
@@ -185,6 +185,7 @@ class TDAgent(Agent):
     # play one episode, learn
     def learn(self):
         # reset the board
+        # do this in main?
         obs = self.env.reset()
         done = False
         # initialize eligibility trace
@@ -192,6 +193,8 @@ class TDAgent(Agent):
         w = self.network.trainable_weights
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
+
+        print("Empty z:",z)
         
         # play the game
         while not done:
@@ -204,23 +207,29 @@ class TDAgent(Agent):
                 value = self.network(obs)
             gradients = tape.gradient(value, w)
 
+            print("One Gradient:",gradients[0])
+
             # update eligibility trace
-            for z_, g in zip(z, gradients):
-                z_.assign(self.gamma * self.lmbd * z_ + g)
+            for z_, gradient in zip(z, gradients):
+                z_.assign(self.gamma * self.lmbd * z_ + gradient)
+
+            print("z:",z)
 
             # TD error
-             if done:
+            if done:
                 target = reward
             else:
                 target = reward + self.gamma *  self.network(obs_)
             delta = target - self.network(obs)
+
+            print("TD error:", delta)
 
             # update weights
             for w_, z_ in zip(w, z):
                 w.assign_add(tf.reshape(self.alpha * delta * z_, w_.shape)) # 'w.assign_add' = 'w+...'
 
             obs = obs_
-            
+
         # # get and flatten weights
         # w = []
         #     for layer in self.list_of_layers:
@@ -243,5 +252,6 @@ class TDAgent(Agent):
         #         self.network.output_layer.set_weights(w)
 
 class DQNAgent(Agent):
+    pass
         
 
