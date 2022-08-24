@@ -2,7 +2,7 @@ import gym
 from gym.spaces import Dict, Box, Discrete
 import numpy as np
 from random import random
-from copy import copy
+from copy import copy, deepcopy
 
 class BackgammonEnv(gym.Env):
     def __init__(self):
@@ -200,7 +200,7 @@ class BackgammonEnv(gym.Env):
 
         # if this is only a 'simulated' step, return the new state here
         if not persistent:
-            return self._flatten_obs(state)
+            return state
 
         # reward is zero unless one of four conditions is met:
         reward = 0

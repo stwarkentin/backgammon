@@ -1,7 +1,8 @@
 from dice import roll
 from random import choice
-from copy import deepcopy
+from copy import copy, deepcopy
 from human_readable import human_readable
+import tensorflow as tf
 
 class Agent:
     def __init__(self, env, network):
@@ -110,6 +111,31 @@ class Agent:
 
         return legal_actions
 
+    def whose_turn(self,obs):
+        
+        if obs["W"]['turn'] == 1:
+            player = 'W'
+            opponent = 'B'
+        else:
+            player = 'B'
+            opponent = 'W'
+
+        return player, opponent
+
+    def score(self,state):
+
+        player, opponent = self.whose_turn(state)
+
+        state = self.env._flatten_obs(state)
+        value = self.network.call(state.reshape(1,-1))[0]
+
+        if player == 'W':
+            score = float(value[0] + 2 * value[1] - value[2] - 2 * value[3])
+        else:
+            score = float(-value[0] - 2 * value[1] + value[2] + 2 * value[3])
+        
+        return score
+
 class RandomAgent(Agent):
 
     # # If the __init__ method is not defined in a child class then the __init__ method from the parent class is automatically used.
@@ -125,92 +151,110 @@ class RandomAgent(Agent):
 class TDAgent(Agent):
 
     def __init__(self, env, network, alpha, lmbd, gamma):
-        super.__init__(env,network)
-        # step size 
+        super().__init__(env,network)
         self.alpha = alpha
-        # trace decay rate
         self.lmbd = lmbd
-        # ???
         self.gamma = gamma
-        self.state = []
-        self.post_state = []
-        self.reward = 0
-        self.z = np.zeros(self.network.weight_shape)
-
-    def score(self):
-        pass
+        # self.state = []
+        # self.post_state = []
+        # self.reward = 0
+        # self.z = np.zeros(self.network.weight_shape)
 
     def choose_action(self, obs):
-        
+
+        player, opponent = self.whose_turn(obs)
         legal_actions = self.find_actions(obs)
 
         afterstates = [] 
         # call function that returns the state
         for action in legal_actions:
-            state = env.step(False, action)
+            state = self.env.step(False, action)
             afterstates.append(state.copy())
-
-        values = []
+        scores = []
         for state in afterstates:
-            value = self.network.call(state.reshape(1,-1))[0]
-            # score function
-            # !!! do we need to redefine player?
-            if player == 'W':
-                values.append(float(value[0] + 2 * value[1] - value[2] - 2 * value[3]))
-            else:
-                values.append(float(-value[0] - 2 * value[1] + value[2] + 2 * value[3]))
+            scores.append(self.score(state))
 
-        action = legal_actions[values.index(max(values))] 
-
+        action = legal_actions[scores.index(max(scores))] 
         print("Action: ", action)
             
         return action
 
-    def store_transition(self, state, post_state, reward):
-        self.state = state
-        self.post_state = post_state
-        self.reward = rewards
+    # def store_transition(self, state, post_state, reward):
+    #     self.state = state
+    #     self.post_state = post_state
+    #     self.reward = reward
     
-    # for each step of the episode:
+    # play one episode, learn
     def learn(self):
-            # update eligibility trace
-            self.z = self.gamma*self.lmbd*self.z+gradient_current_state
-            # get TD error
-            # GRADIENT?!?!?!?
-            delta = self.reward+self.gamma*score(post_state)-score(current_state)
+        # reset the board
+        # do this in main?
+        obs = self.env.reset()
+        done = False
+        # initialize eligibility trace
+        z = []
+        w = self.network.trainable_weights
+        for layer in w:
+            z.append(tf.Variable(tf.zeros_like(layer)))
 
-            # get and flatten weights
-            w = []
-            for layer in self.list_of_layers:
-                w.append(layer.get_weights())
-            w = weights.flatten()
-
-            if len(self.network.list_of_layers) == 1:
-                two_layers = True 
-            else:
-                two_layers = False
-
-            # update the weights vector
-            w = w + self.alpha*delta*self.z
-
-            # set the weights (split by layer)
-            if two_layers:
-                self.network.hidden_layer.set_weights(:-4)
-                self.network.output_layer.set_weights(-4:)
-            else:
-                self.network.output_layer.set_weights(w)
-
-
-        # main loop:
-        # for episodes:
-            # reset environment
-            # while not done:
-                # choose action
-                # step
-                # store transition: state, action(?),post_state(?), reward
-                # learn
-
-          
-    
+        print("Empty z:",z)
         
+        # play the game
+        while not done:
+            # choose an action, observe outcome
+            action = self.choose_action(obs)
+            obs_, reward, done = self.env.step(True, action)
 
+            # get the value gradient so that we can update the eligibility trace
+            with tf.GradientTape() as tape: # 'with...as...' automatically closes the GradientTape object at the end of the block
+                state = self.env._flatten_obs(obs)
+                value = self.network(state.reshape(1,-1))
+            gradients = tape.gradient(value, w)
+
+            print("One Gradient:",gradients)
+
+            # update eligibility trace
+            for z_, gradient in zip(z, gradients):
+                z_.assign(self.gamma * self.lmbd * z_ + gradient)
+
+            print("z:",z)
+
+            # TD error
+            if done:
+                target = reward
+            else:
+                state_ = self.env._flatten_obs(obs_)
+                target = reward + self.gamma *  self.network(state_.reshape(1,-1))
+            delta = target - self.network(state.reshape(1,-1))
+
+            print("TD error:", delta)
+
+            # update weights
+            print("going in")
+            for w_, z_ in zip(w, z):
+                w.assign_add(tf.reshape(self.alpha * delta * z_, w_.shape)) # 'w.assign_add' = 'w+...'
+
+            obs = obs_
+
+        # # get and flatten weights
+        # w = []
+        #     for layer in self.list_of_layers:
+        #         w.append(layer.get_weights())
+        #     w = weights.flatten()
+
+        #     if len(self.network.list_of_layers) == 1:
+        #         two_layers = True 
+        #     else:
+        #         two_layers = False
+
+        #     # update the weights vector
+        #     w = w + self.alpha*delta*self.z
+
+        #     # set the weights (split by layer)
+        #     if two_layers:
+        #         self.network.hidden_layer.set_weights(:-4)
+        #         self.network.output_layer.set_weights(-4:)
+        #     else:
+        #         self.network.output_layer.set_weights(w)
+
+class DQNAgent(Agent):
+    pass
