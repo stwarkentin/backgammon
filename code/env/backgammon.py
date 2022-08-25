@@ -4,6 +4,7 @@ import numpy as np
 from random import random
 from copy import copy, deepcopy
 
+
 class BackgammonEnv(gym.Env):
     def __init__(self):
 

@@ -113,7 +113,7 @@ class Agent:
 
     def whose_turn(self,obs):
         
-        if obs["W"]['turn'] == 1:
+        if obs['W']['turn'] == 1:
             player = 'W'
             opponent = 'B'
         else:
@@ -212,6 +212,10 @@ class TDAgent(Agent):
 
             print("One Gradient:",gradients)
 
+                value = self.network(obs)
+            gradients = tape.gradient(value, w)
+
+
             # update eligibility trace
             for z_, gradient in zip(z, gradients):
                 z_.assign(self.gamma * self.lmbd * z_ + gradient)
@@ -226,10 +230,14 @@ class TDAgent(Agent):
                 target = reward + self.gamma *  self.network(state_.reshape(1,-1))
             delta = target - self.network(state.reshape(1,-1))
 
+                target = reward + self.gamma *  self.network(obs_)
+            delta = target - self.network(obs)
+
+
             print("TD error:", delta)
 
             # update weights
-            print("going in")
+
             for w_, z_ in zip(w, z):
                 w.assign_add(tf.reshape(self.alpha * delta * z_, w_.shape)) # 'w.assign_add' = 'w+...'
 
@@ -258,3 +266,4 @@ class TDAgent(Agent):
 
 class DQNAgent(Agent):
     pass
+        
