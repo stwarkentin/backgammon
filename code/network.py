@@ -36,9 +36,9 @@ class Network(tf.keras.Model):
     #   np.append(weights, layer.get_weights())
     # self.weights_shape = len(weights.flatten())
 
-  def call(self, x):
-    for layer in self.list_of_layers:
-        x = layer(x)
-    return x
+    def call(self, x):
+        for layer in self.list_of_layers:
+            x = layer(x)
+        return x
 
 

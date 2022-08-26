@@ -175,7 +175,7 @@ class TDAgent(Agent):
             scores.append(self.score(state))
 
         action = legal_actions[scores.index(max(scores))] 
-        print("Action: ", action)
+        #print("Action: ", action)
             
         return action
 
@@ -210,11 +210,7 @@ class TDAgent(Agent):
                 value = self.network(state.reshape(1,-1))
             gradients = tape.gradient(value, w)
 
-            print("One Gradient:",gradients)
-
-                value = self.network(obs)
-            gradients = tape.gradient(value, w)
-
+            print("Gradients:",gradients)
 
             # update eligibility trace
             for z_, gradient in zip(z, gradients):
@@ -230,16 +226,12 @@ class TDAgent(Agent):
                 target = reward + self.gamma *  self.network(state_.reshape(1,-1))
             delta = target - self.network(state.reshape(1,-1))
 
-                target = reward + self.gamma *  self.network(obs_)
-            delta = target - self.network(obs)
-
-
             print("TD error:", delta)
 
             # update weights
 
             for w_, z_ in zip(w, z):
-                w.assign_add(tf.reshape(self.alpha * delta * z_, w_.shape)) # 'w.assign_add' = 'w+...'
+                w_.assign_add(tf.reshape(self.alpha * delta * z_, w_.shape)) # 'w.assign_add' = 'w+...'
 
             obs = obs_
 

@@ -5,6 +5,7 @@ from env.backgammon import BackgammonEnv
 
 env = BackgammonEnv()
 network = Network()
+network.build([1,198])
 alpha = 0.1
 lmbd = 0.7
 gamma = 1
