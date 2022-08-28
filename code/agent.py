@@ -183,8 +183,6 @@ class TDAgent(Agent):
         w = self.network.trainable_weights
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
-
-        print("Empty z:",z)
         
         # play the game
         while not done:
@@ -199,13 +197,9 @@ class TDAgent(Agent):
                 value = self.network(state.reshape(1,-1))
             gradients = tape.gradient(value, w)
 
-            print("Gradients:",gradients)
-
             # update eligibility trace
             for z_, gradient in zip(z, gradients):
                 z_.assign(self.gamma * self.lmbd * z_ + gradient)
-
-            print("z:",z)
 
             # TD error
             if done:
@@ -214,8 +208,6 @@ class TDAgent(Agent):
                 state_ = self.env._flatten_obs(obs_)
                 target = reward + self.gamma *  self.network(state_.reshape(1,-1))
             delta = target - self.network(state.reshape(1,-1))
-
-            print("TD error:", delta)
 
             # update weights
 
