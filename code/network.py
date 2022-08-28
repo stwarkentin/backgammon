@@ -23,22 +23,5 @@ class Network(tf.keras.Model):
             x = layer(x)
         return x
 
-    # def get_weights(self):
-    #     weights = []
-    #     for layer in self.list_of_layers:
-    #         weights.append(layer.get_weights())
-    #     return weights
-        
-#     def set_weights(self):
-
-    # weights = np.empty(0)
-    # for layer in self.list_of_layers:
-    #   np.append(weights, layer.get_weights())
-    # self.weights_shape = len(weights.flatten())
-
-    def call(self, x):
-        for layer in self.list_of_layers:
-            x = layer(x)
-        return x
 
 

@@ -4,6 +4,7 @@ import numpy as np
 from random import random
 from copy import copy, deepcopy
 
+
 class BackgammonEnv(gym.Env):
     def __init__(self):
 
@@ -136,15 +137,40 @@ class BackgammonEnv(gym.Env):
 
         return copy(self.state)
 
-    def step(self, persistent, action):
+    def simulate_step(self, state, action):
+        print("Before: ", state)
+        state_ = self.take_step(deepcopy(state), action)
+        print("After: ", state)
+        return state_ 
+    
+    # step takes in an action to be performed on the state the current game is in and returns subsequent state, reward and done
+    def step(self, action):
+        self.state = self.take_step(self.state, action)
+        # reward is zero unless one of four conditions is met:
+        reward = 0
 
-        if persistent:
-            state = self.state
-        else:
-            state = deepcopy(self.state)
+        # 1) White wins, Black is gammoned
+        if self.state['W']['menoff'] > 0.9 and self.state['B']['menoff'] == 0:
+            reward = 2
+        # 2) White wins
+        elif self.state['W']['menoff'] > 0.9:
+            reward = 1
+        # 3) Black wins, White is gammoned
+        elif self.state['B']['menoff'] > 0.9 and self.state['W']['menoff'] == 0: 
+            reward = -2
+        # 4) Black wins
+        elif self.state['B']['menoff'] > 0.9:
+            reward = -1
+
+        # if one of the four conditions is met, the game is finished and the episode ends
+        done = reward != 0
+
+        return copy(self.state), reward, done
+        
+    def take_step(self, state, action):
 
         # who's turn is it?
-        if self.state['W']['turn'] == 1:
+        if state['W']['turn'] == 1:
             player = 'W'
             opponent = 'B'
         else:
@@ -197,28 +223,7 @@ class BackgammonEnv(gym.Env):
         # update the turn order
         state['W']['turn'] = 1 - state['W']['turn']
         state['B']['turn'] = 1 - state['B']['turn']
+        
+        return state
 
-        # if this is only a 'simulated' step, return the new state here
-        if not persistent:
-            return self._flatten_obs(state)
-
-        # reward is zero unless one of four conditions is met:
-        reward = 0
-
-        # 1) White wins, Black is gammoned
-        if self.state['W']['menoff'] > 0.9 and self.state['B']['menoff'] == 0:
-            reward = 2
-        # 2) White wins
-        elif self.state['W']['menoff'] > 0.9:
-            reward = 1
-        # 3) Black wins, White is gammoned
-        elif self.state['B']['menoff'] > 0.9 and self.state['W']['menoff'] == 0: 
-            reward = -2
-        # 4) Black wins
-        elif self.state['B']['menoff'] > 0.9:
-            reward = -1
-
-        # if one of the four conditions is met, the game is finished and the episode ends
-        done = reward != 0
-
-        return copy(self.state), reward, done
+        

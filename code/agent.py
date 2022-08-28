@@ -3,6 +3,8 @@ from random import choice
 from copy import copy, deepcopy
 from human_readable import human_readable
 import tensorflow as tf
+from tensorflow import keras
+import numpy as np
 
 class Agent:
     def __init__(self, env, network):
@@ -17,13 +19,7 @@ class Agent:
         size = len(dice)
         action = []
 
-        # check whose turn it is
-        if obs['W']['turn'] == 1:
-            player = 'W'
-            opponent = 'B'
-        else:
-            player = 'B'
-            opponent = 'W'
+        player, opponent = self.whose_turn(obs)
             
         player_obs = deepcopy(obs[player])
         opponent_obs = obs[opponent]
@@ -155,10 +151,6 @@ class TDAgent(Agent):
         self.alpha = alpha
         self.lmbd = lmbd
         self.gamma = gamma
-        # self.state = []
-        # self.post_state = []
-        # self.reward = 0
-        # self.z = np.zeros(self.network.weight_shape)
 
     def choose_action(self, obs):
 
@@ -168,7 +160,8 @@ class TDAgent(Agent):
         afterstates = [] 
         # call function that returns the state
         for action in legal_actions:
-            state = self.env.step(False, action)
+            # !!!! simulate_step is now a distinct function that has state and action as input and triggers take_step function
+            state = self.env.simulate_step(obs, action)
             afterstates.append(state.copy())
         scores = []
         for state in afterstates:
@@ -179,11 +172,6 @@ class TDAgent(Agent):
             
         return action
 
-    # def store_transition(self, state, post_state, reward):
-    #     self.state = state
-    #     self.post_state = post_state
-    #     self.reward = reward
-    
     # play one episode, learn
     def learn(self):
         # reset the board
@@ -202,7 +190,8 @@ class TDAgent(Agent):
         while not done:
             # choose an action, observe outcome
             action = self.choose_action(obs)
-            obs_, reward, done = self.env.step(True, action)
+            # !!!! step is now a distinct function that only has action as input and triggers take_step function
+            obs_, reward, done = self.env.step(action)
 
             # get the value gradient so that we can update the eligibility trace
             with tf.GradientTape() as tape: # 'with...as...' automatically closes the GradientTape object at the end of the block
@@ -235,27 +224,71 @@ class TDAgent(Agent):
 
             obs = obs_
 
-        # # get and flatten weights
-        # w = []
-        #     for layer in self.list_of_layers:
-        #         w.append(layer.get_weights())
-        #     w = weights.flatten()
-
-        #     if len(self.network.list_of_layers) == 1:
-        #         two_layers = True 
-        #     else:
-        #         two_layers = False
-
-        #     # update the weights vector
-        #     w = w + self.alpha*delta*self.z
-
-        #     # set the weights (split by layer)
-        #     if two_layers:
-        #         self.network.hidden_layer.set_weights(:-4)
-        #         self.network.output_layer.set_weights(-4:)
-        #     else:
-        #         self.network.output_layer.set_weights(w)
-
+            
 class DQNAgent(Agent):
-    pass
+    def __init__(self, env, network, gamma, lr, epsilon, min_epsilon, epsilon_decay, memory, batch_size):
+        super().__init__(env, network)
+        self.gamma = gamma
+        self.epsilon = epsilon
+        self.min_epsilon = min_epsilon
+        self.epsilon_decay = epsilon_decay
+        self.memory = memory
+        self.batch_size = batch_size
+        self.network.compile(optimizer = keras.optimizers.Adam(learning_rate = lr), loss = 'mean_squared_error')
+
+    def store_transition(self, state, action, reward, done, new_state):
+        self.memory.append([state, action, reward, done, new_state])
+
+    # choose action function is the exact same     
+    def choose_action(self, obs):
+        player, opponent = self.whose_turn(obs)
+        legal_actions = self.find_actions(obs)
+        
+        if np.random.random() < self.epsilon:
+            action = choice(legal_actions)
+            
+        else:
+            afterstates = [] 
+            # call function that returns the state
+            for action in legal_actions:
+                state = self.env.simulate_step(obs, action)
+                afterstates.append(deepcopy(state))
+            scores = []
+            for state in afterstates:
+                scores.append(self.score(state))
+
+            action = legal_actions[scores.index(max(scores))] 
+
+        return action
+
+    def learn(self):
+        if len(self.memory.buffer) < self.batch_size:
+            return
+
+        states, actions, rewards, dones, states_ = self.memory.sample(self.batch_size)
+        
+        flat_states = []
+        target = []
+
+        for i in range(self.batch_size):
+            flat_states.append(self.env._flatten_obs(states[i]))
+
+            if dones[i]:
+                target.append(rewards[i] * tf.zeros(4,))
+            else:
+                # here we find the "q-value" of the subsequent state, by evaluating the sub-subsequent state
+                # by choosing the best action in the subsequent state we basically choose the maximum q-value
+                state__ = self.env.simulate_step(states_[i], self.choose_action(states_[i]))
+                state__ = self.env._flatten_obs(state__)
+                target.append(rewards[i] + self.gamma * self.network(state__.reshape(1,-1))[0])
+
+        target = np.array(target)
+        flat_states = np.array(flat_states)
+
+        # train network
+        self.network.train_on_batch(flat_states, target)
+
+        # decay epsilon
+        self.epsilon = max(self.min_epsilon, self.epsilon*self.epsilon_decay)
+            
         
