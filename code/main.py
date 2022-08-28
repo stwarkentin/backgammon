@@ -11,8 +11,9 @@ alpha = 0.1
 lmbd = 0.7
 gamma = 1
 agent = TDAgent(env, network, alpha, lmbd, gamma)
-episodes = 3
+episodes = 50000
 for i in tqdm (range(episodes), desc = "Learning..."):
     agent.learn()
+network.save_weights('0checkpoint50000')
 print("Done")
 
