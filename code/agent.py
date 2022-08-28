@@ -183,6 +183,8 @@ class TDAgent(Agent):
         w = self.network.trainable_weights
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
+
+        n_moves = 0
         
         # play the game
         while not done:
@@ -215,6 +217,9 @@ class TDAgent(Agent):
                 w_.assign_add(tf.reshape(self.alpha * delta * z_, w_.shape)) # 'w.assign_add' = 'w+...'
 
             obs = obs_
+            n_moves += 1
+
+        return n_moves
 
             
 class DQNAgent(Agent):
