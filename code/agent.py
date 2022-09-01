@@ -1,47 +1,70 @@
 from dice import roll
-from random import choice
-from copy import copy, deepcopy
 from human_readable import human_readable
+
 import tensorflow as tf
-from tensorflow import keras
+from tensorflow.keras.optimizers import Adam
 import numpy as np
 
+
+from random import choice
+from copy import copy, deepcopy
+
+
+
 class Agent:
+    """Parent class from which all other agent classes inherit.
+
+    ...
+
+    Attributes
+    ----------
+    env : object
+        custom backgammon gym environment
+    network : object
+        artificial neural network which learns the policy
+
+    Methods
+    -------
+    find_actions(obs):
+        Returns all legal actions given an observation
+
+    whose_turn(obs):
+        Returns current player and opponent given an observation
+
+    score(state):
+        Evaluates the current state/observation? from the perspective of the current player
+
+    """
     def __init__(self, env, network):
         self.env = env
         self.network = network        
 
     def find_actions(self, obs):
-        
+        """
+        Returns all legal actions given an observation
+
+            Parameters:
+
+            Returns:
+
+        """
+        # fetch game-relevant information
+        player, opponent = self.whose_turn(obs)
         dice = roll()
         
-        legal_actions = []
-        size = len(dice)
-        action = []
-
-        player, opponent = self.whose_turn(obs)
-            
+        # split the observation into player and opponent boards
         player_obs = deepcopy(obs[player])
         opponent_obs = obs[opponent]
         
-        # make board more easily readable
+        # decode the board to simplify addition and subtraction
         player_obs['board'] = human_readable(player_obs)
-        
-        # !!! just for testing purposes !!!
-        # if not length == size and not len(action) == 0:
-        #test_opponent = deepcopy(opponent_obs)
-        #new_op_board = []
-        #for idx, pos in enumerate(test_opponent['board']):
-        #    new_op_board.append(pos[0] + pos[1] + pos[2] + pos[3] * 2)
-        #test_opponent['board'] = new_op_board
-        #print("Dice: ", dice)
-        #print("Player:\t\t", player, player_obs['board'])
-        #print("Opponent:\t", opponent, test_opponent['board'])
+
+        legal_actions = []
         
         # recursive function to search "action-tree"
-        def build_actions(action, dice, player_obs):
+        def build_actions(action=[], dice, player_obs):
             
-            # if we have iterated through all dice the action is appended and we return
+            # check if we have iterated through all dice. if so, the action is appended to the list of legal actions and we return
             if len(dice) == 0:
                 legal_actions.append(action)
                 return
@@ -231,7 +254,7 @@ class DQNAgent(Agent):
         self.epsilon_decay = epsilon_decay
         self.memory = memory
         self.batch_size = batch_size
-        self.network.compile(optimizer = keras.optimizers.Adam(learning_rate = lr), loss = 'mean_squared_error')
+        self.network.compile(optimizer = Adam(learning_rate = lr), loss = 'mean_squared_error')
 
     def store_transition(self, state, action, reward, done, new_state):
         self.memory.append([state, action, reward, done, new_state])
