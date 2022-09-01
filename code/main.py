@@ -1,4 +1,3 @@
-#!/usr/bin/env python 3
 from network import Network
 from agent import TDAgent
 from env.backgammon import BackgammonEnv
