@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from network import Network
 from agent import TDAgent
 from env.backgammon import BackgammonEnv
@@ -21,7 +19,6 @@ agent = TDAgent(env, network, alpha, lmbd, gamma)
 
 episodes = 50000
 moves_per_game = np.asarray([])
-
 
 for i in tqdm (range(episodes), desc = "Learning..."):
     n_moves = agent.learn()
