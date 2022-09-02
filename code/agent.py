@@ -44,8 +44,10 @@ class Agent:
         Returns all legal actions given an observation
 
             Parameters:
+                    obs (dict): current state
 
             Returns:
+                    legal_actions (array): contains all legal actions for the given state
 
         """
         # fetch game-relevant information
@@ -62,7 +64,7 @@ class Agent:
         legal_actions = []
         
         # recursive function to search "action-tree"
-        def build_actions(action=[], dice, player_obs):
+        def build_actions(action, dice, player_obs):
             
             # check if we have iterated through all dice. if so, the action is appended to the list of legal actions and we return
             if len(dice) == 0:
@@ -121,6 +123,9 @@ class Agent:
             # if we couldn't move and reach return we recursively call the function with the same state and action but iterated dice 
             build_actions(action.copy(), dice[1:], player_obs)
     
+        # 
+        action = []
+        
         # call the recursive function
         build_actions(action, dice, player_obs)
         
@@ -130,8 +135,18 @@ class Agent:
 
         return legal_actions
 
-    def whose_turn(self,obs):
+    def whose_turn(self, obs):
+        """
+        Returns current player and opponent given an observation
+            
+            Parameters:
+                    obs (dict): current state
+            
+            Returns:
+                    player (str): key for current player
+                    opponent (str): key for current opponent
         
+        """
         if obs['W']['turn'] == 1:
             player = 'W'
             opponent = 'B'
@@ -141,13 +156,20 @@ class Agent:
 
         return player, opponent
 
-    def score(self,state):
-
-        player, opponent = self.whose_turn(state)
-
-        state = self.env._flatten_obs(state)
+    def score(self, player, state):
+        """
+        Evaluates the current state, using the network, from the perspective of the current player
+        
+            Parameters:
+                    player (str): key for current player
+                    state (dict): current state
+            
+            Returns:
+                    score (float): player dependently weighted sum of winning probabilities
+        """
         value = self.network.call(state.reshape(1,-1))[0]
 
+        # create player dependently weighted sum of probabilities of 4 different outcomes
         if player == 'W':
             score = float(value[0] + 2 * value[1] - value[2] - 2 * value[3])
         else:
@@ -156,18 +178,53 @@ class Agent:
         return score
 
 class RandomAgent(Agent):
+    """Random agent class.
 
-    # # If the __init__ method is not defined in a child class then the __init__ method from the parent class is automatically used.
-    # def __init__(self,env,network):
-    #     super.__init__(env,network)
+    ...
 
+    Methods
+    -------
+    choose_actions(obs):
+        Chooses a random action
+
+    """
     def choose_action(self,obs):
+        """
+        Chooses random action
 
+            Parameters:
+                    obs (dict): current state
+
+            Returns:
+                    action (array): random action
+        """
         legal_actions = self.find_actions(obs)
-            
-        return choice(legal_actions)
+        action = choice(legal_actions)
+        return action
 
 class TDAgent(Agent):
+    """TDAgent that implements td-lambda algorithm 
+
+    ...
+    
+    Attributes
+    ----------
+    alpha : float
+        step-size
+    lambda_ : float
+        lambda weighting factor
+    gamma : float
+        discount factor
+
+    Methods
+    -------
+    choose_action(obs):
+        Chooses action that results in the state with the highest score for the current player
+
+    learn():
+        Plays the game and trains the network on sampled batch
+
+    """
 
     def __init__(self, env, network, alpha, lmbd, gamma):
         super().__init__(env,network)
@@ -176,44 +233,54 @@ class TDAgent(Agent):
         self.gamma = gamma
 
     def choose_action(self, obs):
+        """
+        Chooses action that results in the state with the highest score for the current player
 
+            Parameters:
+                    obs (dict): current observation
+
+            Returns:
+                    action (array): legal action that maximizes the score for the next state
+        """
         player, opponent = self.whose_turn(obs)
         legal_actions = self.find_actions(obs)
 
-        afterstates = [] 
-        # call function that returns the state
+        scores = [] 
+        # iterate through all actions and collect the post-state score
         for action in legal_actions:
-            # !!!! simulate_step is now a distinct function that has state and action as input and triggers take_step function
-            state = self.env.simulate_step(obs, action)
-            afterstates.append(state.copy())
-        scores = []
-        for state in afterstates:
-            scores.append(self.score(state))
+            obs_ = self.env.simulate_step(obs, action)
+            state = self.env._flatten_obs(obs_)
+            scores.append(self.score(player, state))
 
+        # assign action that maximizes score
         action = legal_actions[scores.index(max(scores))] 
-        #print("Action: ", action)
             
         return action
 
-    # play one episode, learn
+    
     def learn(self):
-        # reset the board
-        # do this in main?
+        """
+        Plays the game and trains the network on sampled batch
+            
+            Returns:
+                    n_moves (int): number of moves that were made during the game
+        """
+        # reset the board and movecounter
         obs = self.env.reset()
         done = False
+        n_moves = 0
+        
         # initialize eligibility trace
         z = []
         w = self.network.trainable_weights
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
 
-        n_moves = 0
         
         # play the game
         while not done:
             # choose an action, observe outcome
             action = self.choose_action(obs)
-            # !!!! step is now a distinct function that only has action as input and triggers take_step function
             obs_, reward, done = self.env.step(action)
 
             # get the value gradient so that we can update the eligibility trace
@@ -235,10 +302,10 @@ class TDAgent(Agent):
             delta = target - self.network(state.reshape(1,-1))
 
             # update weights
-
             for w_, z_ in zip(w, z):
                 w_.assign_add(tf.reshape(self.alpha * delta * z_, w_.shape)) # 'w.assign_add' = 'w+...'
-
+            
+            # update observation and movecounter
             obs = obs_
             n_moves += 1
 
@@ -246,6 +313,38 @@ class TDAgent(Agent):
 
             
 class DQNAgent(Agent):
+    """Agentclass that implements the dqn algorithm
+    
+    ...
+
+    Attributes
+    ----------
+    gamma : float
+        discount factor
+    epsilon : float
+        probability for taking a random action
+    min_epsilon : float
+        lowest value of epsilon
+    epsilon_decay : float
+        epsilon discount factor
+    memory : object
+        instance of a replay buffer to store and sample data
+    batch_size : int
+        length of sample data the network uses to learn
+
+    Methods
+    -------
+    store_transition(state, action, reward, done, new_state):
+        Appends state transition to memory
+
+    choose_action(obs, random):
+        Chooses random action or action that results in the state with the highest value for the current player based on epsilon
+
+    learn():
+        Plays the game, trains the network on sampled batch and decays epsilon
+
+
+    """
     def __init__(self, env, network, gamma, lr, epsilon, min_epsilon, epsilon_decay, memory, batch_size):
         super().__init__(env, network)
         self.gamma = gamma
@@ -257,58 +356,103 @@ class DQNAgent(Agent):
         self.network.compile(optimizer = Adam(learning_rate = lr), loss = 'mean_squared_error')
 
     def store_transition(self, state, action, reward, done, new_state):
+        """
+        Appends state transition to memory
+        
+             Parameters:
+                    state (dict): previous state
+                    action (array): action that was taken
+                    reward (int): reward that was received
+                    new_state (dict) : new state that was reached
+
+        """
         self.memory.append([state, action, reward, done, new_state])
 
-    # choose action function is the exact same     
-    def choose_action(self, obs):
+      
+    def choose_action(self, obs, random = True):
+        """
+        Chooses random action or action that results in the state with the highest value for the current player based on epsilon
+        
+            Parameters:
+                    obs (dict): current observation
+                    random (bool): mode with epsilon or without
+            
+            Returns:
+                    action (array): legal action that either is chosen at random or maximizes the score for the next state
+        """
         player, opponent = self.whose_turn(obs)
         legal_actions = self.find_actions(obs)
         
-        if np.random.random() < self.epsilon:
+        # choose random action or "next-state-value" maximizing action with odds epsilon : 1-epsilon
+        if np.random.random() < self.epsilon and random:
             action = choice(legal_actions)
             
         else:
-            afterstates = [] 
-            # call function that returns the state
+            scores = [] 
+            # iterate through all actions and collect the post-state score
             for action in legal_actions:
-                state = self.env.simulate_step(obs, action)
-                afterstates.append(deepcopy(state))
-            scores = []
-            for state in afterstates:
-                scores.append(self.score(state))
+                obs_ = self.env.simulate_step(obs, action)
+                state = self.env._flatten_obs(obs_)
+                scores.append(self.score(player, state))
 
+            # assign action that maximizes score
             action = legal_actions[scores.index(max(scores))] 
 
         return action
 
     def learn(self):
-        if len(self.memory.buffer) < self.batch_size:
-            return
-
-        states, actions, rewards, dones, states_ = self.memory.sample(self.batch_size)
-        
-        flat_states = []
-        target = []
-
-        for i in range(self.batch_size):
-            flat_states.append(self.env._flatten_obs(states[i]))
-
-            if dones[i]:
-                target.append(rewards[i] * tf.zeros(4,))
-            else:
-                # here we find the "q-value" of the subsequent state, by evaluating the sub-subsequent state
-                # by choosing the best action in the subsequent state we basically choose the maximum q-value
-                state__ = self.env.simulate_step(states_[i], self.choose_action(states_[i]))
-                state__ = self.env._flatten_obs(state__)
-                target.append(rewards[i] + self.gamma * self.network(state__.reshape(1,-1))[0])
-
-        target = np.array(target)
-        flat_states = np.array(flat_states)
-
-        # train network
-        self.network.train_on_batch(flat_states, target)
-
-        # decay epsilon
-        self.epsilon = max(self.min_epsilon, self.epsilon*self.epsilon_decay)
+        """
+        Plays the game, trains the network on sampled batch and decays epsilon
             
-        
+            Returns:
+                    n_moves (int): number of moves that were made during the game
+        """
+        # reset board and movecounter
+        obs = self.env.reset()
+        done = False
+        n_moves = 0
+
+        # play the game
+        while not done:
+            # choose an action, observe outcome, store observation
+            action = self.choose_action(obs)
+            obs_, reward, done = self.env.step(action)
+            self.store_transition(obs, action, reward, done, obs_)
+
+            # if our buffer is not filled sufficiently return, else train
+            if len(self.memory.buffer) < self.batch_size:
+                return
+
+            # sample batch
+            states, actions, rewards, dones, states_ = self.memory.sample(self.batch_size)
+
+            flat_states = []
+            target = []
+
+            # build targets
+            for i in range(self.batch_size):
+                flat_states.append(self.env._flatten_obs(states[i]))
+
+                if dones[i]:
+                    target.append(rewards[i] * tf.zeros(4,))
+                else:
+                    # find the max state-action value of the subsequent state (action that maximzes the sub-subsequent state value)
+                    state__ = self.env.simulate_step(states_[i], self.choose_action(states_[i], False))
+                    state__ = self.env._flatten_obs(state__)
+                    target.append(rewards[i] + self.gamma * self.network(state__.reshape(1,-1))[0])
+
+            flat_states = np.array(flat_states)
+            target = np.array(target)
+
+            # train network on target batch
+            self.network.train_on_batch(flat_states, target)
+
+            # decay epsilon
+            self.epsilon = max(self.min_epsilon, self.epsilon*self.epsilon_decay)
+            
+            # update observation and movecounter
+            obs = obs_
+            n_moves += 1
+
+        return n_moves
+
