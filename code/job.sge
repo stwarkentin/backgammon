@@ -1,0 +1,10 @@
+#!/bin/bash
+#$ -N tdagent
+#$ -l mem=4G,cpu=4,cuda=1,cuda_cores=768,cuda_capability=600
+#$ -v PATH
+#$ -cwd
+
+source ~/.bashrc
+conda activate DRL2022
+
+python main.py
