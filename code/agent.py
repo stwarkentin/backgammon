@@ -229,7 +229,7 @@ class TDAgent(Agent):
     def __init__(self, env, network, alpha, lmbd, gamma):
         super().__init__(env,network)
         self.alpha = alpha
-        self.lmbd = lmbd
+        self._lambda = _lambda
         self.gamma = gamma
 
     def choose_action(self, obs):
