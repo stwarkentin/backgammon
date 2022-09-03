@@ -6,6 +6,28 @@ from copy import copy, deepcopy
 
 
 class BackgammonEnv(gym.Env):
+    """
+    A custom gym environment implementing the game of backgammon.
+
+    ...
+
+    Methods
+    -------
+    reset(): 
+        Reset the gym environment to its initial state
+
+    _flatten_obs(obs):
+        Flatten the observation dictionary into an array
+
+    take_step(state, action):
+        Applies an action to the environment and returns the new state
+
+    step(state,action):
+        Environment step method. Calls take_step() and checks for winning conditions
+
+    simulate_step(state,action):
+        Computes afterstates for the TD algorithm without making lasting changes to the environment
+    """
     def __init__(self):
 
         # defining some ranges for our observation space
@@ -82,41 +104,22 @@ class BackgammonEnv(gym.Env):
             15: np.array([1.,1.,1.,6.0])
         }
 
-        # define the game's starting position:
-  
-        # create an empty board
-        self.starting_pos = np.zeros((24, 4))
+        self.starting_pos = np.zeros((24, 4)) # create an empty board
 
-        # place the correct number of checkers in the correct positions
+        # place checkers in their starting positions
         self.starting_pos[0] = copy(self.encoding[2])
         self.starting_pos[11] = copy(self.encoding[5])
         self.starting_pos[16] = copy(self.encoding[3])
         self.starting_pos[18] = copy(self.encoding[5])
 
-    def _flatten_obs(self, obs):
-        w_board = obs['W']['board']
-        w_board = w_board.flatten()
-        b_board = obs['B']['board']
-        b_board = b_board.flatten()
+    def reset(self):
+        """
+        Reset the gym environment to its initial state
 
-        observation = []
-        observation = np.append(observation,w_board)
-        observation = np.append(observation,obs['W']['barmen'])
-        observation = np.append(observation,obs['W']['menoff'])
-        observation = np.append(observation,obs['W']['turn'])
-        observation = np.append(observation,b_board)
-        observation = np.append(observation,obs['B']['barmen'])
-        observation = np.append(observation,obs['B']['menoff'])
-        observation = np.append(observation,obs['B']['turn'])
+            Returns: A copy of the state
+        """ 
 
-        return observation
-
-    def _get_info(self):
-        pass
-
-    def reset(self): 
-
-        # a 'coin flip' to determine which side goes first
+        # a 'coin flip' determines which side goes first
         coin = int(random()>0.5)
 
         # reset the board to the game's starting position and assign a turn order based on the coin flip
@@ -137,35 +140,46 @@ class BackgammonEnv(gym.Env):
 
         return deepcopy(self.state)
 
-    def simulate_step(self, state, action):
-        state_ = self.take_step(deepcopy(state), action)
-        return state_ 
-    
-    # step takes in an action to be performed on the state the current game is in and returns subsequent state, reward and done
-    def step(self, action):
-        self.state = self.take_step(self.state, action)
-        # reward is zero unless one of four conditions is met:
-        reward = 0
+    def _flatten_obs(self, obs):
+        """
+        Flatten the observation dictionary into an array
 
-        # 1) White wins, Black is gammoned
-        if self.state['W']['menoff'] > 0.9 and self.state['B']['menoff'] == 0:
-            reward = 2
-        # 2) White wins
-        elif self.state['W']['menoff'] > 0.9:
-            reward = 1
-        # 3) Black wins, White is gammoned
-        elif self.state['B']['menoff'] > 0.9 and self.state['W']['menoff'] == 0: 
-            reward = -2
-        # 4) Black wins
-        elif self.state['B']['menoff'] > 0.9:
-            reward = -1
+            Parameters:
+                obs (dict): An observation dictionary e.g. self.state
 
-        # if one of the four conditions is met, the game is finished and the episode ends
-        done = reward != 0
+            Returns:
+                observation (array): The flattened observation
 
-        return deepcopy(self.state), reward, done
+        """
+        w_board = obs['W']['board']
+        w_board = w_board.flatten()
+        b_board = obs['B']['board']
+        b_board = b_board.flatten()
+
+        observation = []
+        observation = np.append(observation,w_board)
+        observation = np.append(observation,obs['W']['barmen'])
+        observation = np.append(observation,obs['W']['menoff'])
+        observation = np.append(observation,obs['W']['turn'])
+        observation = np.append(observation,b_board)
+        observation = np.append(observation,obs['B']['barmen'])
+        observation = np.append(observation,obs['B']['menoff'])
+        observation = np.append(observation,obs['B']['turn'])
+
+        return observation
         
     def take_step(self, state, action):
+        """
+        Applies an action to the environment and returns the new state
+
+            Parameters:
+                state (dict): An observation dictionary e.g. self.state
+
+                action (array): An array of (old_position, new_position) tuples 
+
+            Returns:
+                state (dict): The updated observation
+        """
 
         # who's turn is it?
         if state['W']['turn'] == 1:
@@ -177,7 +191,6 @@ class BackgammonEnv(gym.Env):
 
         for move in action:
             # 'LIFTING' A CHECKER
-
             old_pos, new_pos = move
             
             # are we moving a piece off the bar?
@@ -223,5 +236,55 @@ class BackgammonEnv(gym.Env):
         state['B']['turn'] = 1 - state['B']['turn']
         
         return state
+
+    # step takes in an action to be performed on the state the current game is in and returns subsequent state, reward and done
+    def step(self, action):
+        """
+        Environment step method. Calls take_step() and checks for winning conditions
+
+            Parameters:
+                action (array): An array of (old_position, new_position) tuples
+
+            Returns:
+                observation (dict): A copy of the new self.state
+                reward (int): Reward for the action taken in this step
+                done (bool): Indicates whether the game has finished yet
+        """
+        self.state = self.take_step(self.state, action)
+        observation = deepcopy(self.state)
+        # reward is zero unless one of four conditions is met:
+        reward = 0
+
+        # 1) White wins, Black is gammoned
+        if self.state['W']['menoff'] > 0.9 and self.state['B']['menoff'] == 0:
+            reward = 2
+        # 2) White wins
+        elif self.state['W']['menoff'] > 0.9:
+            reward = 1
+        # 3) Black wins, White is gammoned
+        elif self.state['B']['menoff'] > 0.9 and self.state['W']['menoff'] == 0: 
+            reward = -2
+        # 4) Black wins
+        elif self.state['B']['menoff'] > 0.9:
+            reward = -1
+
+        # if one of the four conditions is met, the game is finished and the episode ends
+        done = reward != 0
+
+        return observation, reward, done
+
+    def simulate_step(self, state, action):
+        """
+        Computes afterstates for the TD algorithm, making no lasting changes to the environment
+
+            Parameters:
+                state (dict): An observation dictionary e.g. self.state
+                action (array): An array of (old_position, new_position) tuples
+
+            Returns:
+                state_ (dict): Afterstate, non-persistent
+        """
+        state_ = self.take_step(deepcopy(state), action)
+        return state_ 
 
         
