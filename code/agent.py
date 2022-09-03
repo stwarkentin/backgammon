@@ -5,11 +5,8 @@ import tensorflow as tf
 from tensorflow.keras.optimizers import Adam
 import numpy as np
 
-
 from random import choice
 from copy import copy, deepcopy
-
-
 
 class Agent:
     """Parent class from which all other agent classes inherit.
@@ -33,7 +30,6 @@ class Agent:
 
     score(state):
         Evaluates the current state/observation? from the perspective of the current player
-
     """
     def __init__(self, env, network):
         self.env = env
@@ -48,7 +44,6 @@ class Agent:
 
             Returns:
                     legal_actions (array): contains all legal actions for the given state
-
         """
         # fetch game-relevant information
         player, opponent = self.whose_turn(obs)
@@ -169,7 +164,7 @@ class Agent:
         """
         value = self.network.call(state.reshape(1,-1))[0]
 
-        # create player dependently weighted sum of probabilities of 4 different outcomes
+        # create player dependent weighted sum of probabilities of 4 different outcomes
         if player == 'W':
             score = float(value[0] + 2 * value[1] - value[2] - 2 * value[3])
         else:
@@ -211,7 +206,7 @@ class TDAgent(Agent):
     ----------
     alpha : float
         step-size
-    lambda_ : float
+    _lambda : float
         lambda weighting factor
     gamma : float
         discount factor
@@ -223,7 +218,6 @@ class TDAgent(Agent):
 
     learn():
         Plays the game and trains the network on sampled batch
-
     """
 
     def __init__(self, env, network, alpha, lmbd, gamma):
@@ -257,7 +251,6 @@ class TDAgent(Agent):
             
         return action
 
-    
     def learn(self):
         """
         Plays the game and trains the network on sampled batch
@@ -276,7 +269,6 @@ class TDAgent(Agent):
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
 
-        
         # play the game
         while not done:
             # choose an action, observe outcome
@@ -310,7 +302,6 @@ class TDAgent(Agent):
             n_moves += 1
 
         return n_moves
-
             
 class DQNAgent(Agent):
     """Agentclass that implements the dqn algorithm
@@ -342,8 +333,6 @@ class DQNAgent(Agent):
 
     learn():
         Plays the game, trains the network on sampled batch and decays epsilon
-
-
     """
     def __init__(self, env, network, gamma, lr, epsilon, min_epsilon, epsilon_decay, memory, batch_size):
         super().__init__(env, network)
@@ -455,4 +444,3 @@ class DQNAgent(Agent):
             n_moves += 1
 
         return n_moves
-
