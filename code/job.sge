@@ -3,6 +3,7 @@
 #$ -l mem=2G,cpu=4,cuda=1,cuda_cores=768,cuda_capability=600
 #$ -v PATH
 #$ -cwd
+#$ -M stwarkentin@uos.de,mspreen@uos.de
 
 source ~/.bashrc
 conda activate DRL2022
