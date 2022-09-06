@@ -399,7 +399,7 @@ class DQNAgent(Agent):
         # reset board and movecounter
         obs = self.env.reset()
         done = False
-        n_moves = 0
+        # n_moves = 0
 
         # play the game
         while not done:
@@ -441,6 +441,6 @@ class DQNAgent(Agent):
             
             # update observation and movecounter
             obs = obs_
-            n_moves += 1
+            # n_moves += 1
 
-        return n_moves
+        return #n_moves
