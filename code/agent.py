@@ -220,7 +220,7 @@ class TDAgent(Agent):
         Plays the game and trains the network on sampled batch
     """
 
-    def __init__(self, env, network, alpha, lmbd, gamma):
+    def __init__(self, env, network, alpha, _lambda, gamma):
         super().__init__(env,network)
         self.alpha = alpha
         self._lambda = _lambda
