@@ -31,7 +31,7 @@ class Agent:
     score(state):
         Evaluates the current state/observation? from the perspective of the current player
     """
-    def __init__(self, env, network):
+    def __init__(self, env, network = None):
         self.env = env
         self.network = network        
 
