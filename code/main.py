@@ -56,7 +56,7 @@ if completed_episodes > 0:
 # WE GET THE TIME LAST SO THAT OUR START TIME IS ACCURATE
 
 # get the wall time
-walltimeString = str(os.environ['WALL'])
+walltimeString = str(os.environ['$WALL'])
 
 # method for translating wall time into seconds
 def get_sec(time_str):
