@@ -84,7 +84,7 @@ for i in tqdm (range(episodes2go), desc = "Learning..."):
     reachedwalltime = watch.on_episode_end() 
     if reachedwalltime:
         # create a checkpoint
-        network.save_weights('TDAgent'+str(hidden_units)+'/episode'+str(completed_episodes)+'of'+str(max_episodes)+'.hdf5')
+        network.save_weights('TDAgent'+str(hidden_units)+'episode'+str(completed_episodes)+'of'+str(max_episodes)+'.hdf5')
         # export number of completed episodes to a file
         n = [completed_episodes]
         np.save('completed_episodes.npy',n)
