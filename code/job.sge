@@ -1,6 +1,7 @@
 #!/bin/bash
 #$ -N tdagent
-#$ -l mem=2G,cpu=4,cuda=1,cuda_cores=768,cuda_capability=600
+#$ WALL = 01:00:00
+#$ -l mem=2G,cpu=4,cuda=1,cuda_cores=768,cuda_capability=600,
 #$ -v PATH
 #$ -cwd
 #$ -M stwarkentin@uos.de,mspreen@uos.de
