@@ -283,7 +283,7 @@ class TDAgent(Agent):
 
             # update eligibility trace
             for z_, gradient in zip(z, gradients):
-                z_.assign(self.gamma * self.lmbd * z_ + gradient)
+                z_.assign(self.gamma * self._lambda * z_ + gradient)
 
             # TD error
             if done:
