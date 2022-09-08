@@ -49,7 +49,9 @@ episodes2go = max_episodes-completed_episodes
 
 # if the wall time has previously run out, load the most recent checkpoint
 if completed_episodes > 0:
-    network.load_weights('checkpoints/TDAgent'+str(hidden_units)+'/episode'+str(completed_episodes)+'of'+str(max_episodes)+'.hdf5')
+    filepath = 'TDAgent'+str(hidden_units)+'episode'+str(completed_episodes)+'of'+str(max_episodes)+'.hdf5'
+    print('filepath: '+filepath)
+    network.load_weights(filepath)
 
 ###############################################################################################################################################################
 # WALL TIME STUFF
@@ -74,7 +76,7 @@ watch = WallTimeWatcher(start_time,walltime)
 ###############################################################################################################################################################
 # LEARNING AND RESUBMISSION STUFF
 
-for i in tqdm (range(episodes2go), desc = "Learning..."):
+for i in tqdm (range(episodes), desc = "Learning..."):
     watch.on_episode_begin()
     agent.learn()
     completed_episodes += 1
@@ -82,7 +84,7 @@ for i in tqdm (range(episodes2go), desc = "Learning..."):
     reachedwalltime = watch.on_episode_end() 
     if reachedwalltime:
         # create a checkpoint
-        network.save_weights('checkpoints/TDAgent'+str(hidden_units)+'/episode'+str(completed_episodes)+'of'+str(max_episodes)+'.hdf5')
+        network.save_weights('TDAgent'+str(hidden_units)+'/episode'+str(completed_episodes)+'of'+str(max_episodes)+'.hdf5')
         # export number of completed episodes to a file
         n = [completed_episodes]
         np.save('completed_episodes.npy',n)
