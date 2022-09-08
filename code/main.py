@@ -76,7 +76,7 @@ watch = WallTimeWatcher(start_time,walltime)
 ###############################################################################################################################################################
 # LEARNING AND RESUBMISSION STUFF
 
-for i in tqdm (range(episodes), desc = "Learning..."):
+for i in tqdm (range(episodes2go), desc = "Learning..."):
     watch.on_episode_begin()
     agent.learn()
     completed_episodes += 1
