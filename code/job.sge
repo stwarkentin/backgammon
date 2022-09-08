@@ -2,7 +2,7 @@
 #$ -N tdagent
 #$ -l mem=2G,cpu=4,cuda=1,cuda_cores=768,cuda_capability=600,
 #$ -v PATH
-#$ -v WALL=00:10:00
+#$ -v WALL=01:30:00
 #$ -cwd
 #$ -M stwarkentin@uos.de,mspreen@uos.de
 
