@@ -1,5 +1,6 @@
 import os
 import time
+from subprocess import call
 
 import numpy as np
 from tqdm import tqdm
@@ -89,6 +90,6 @@ for i in tqdm (range(episodes2go), desc = "Learning..."):
         n = [completed_episodes]
         np.save('completed_episodes.npy',n)
         # resubmit the job
-        from subprocess import call
         call('qsub job.sge', shell=True)
+        break
 
