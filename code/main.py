@@ -93,3 +93,5 @@ for i in tqdm (range(episodes2go), desc = "Learning..."):
         call('qsub job.sge', shell=True)
         break
 
+network.save_weights('checkpoints/TDAgent'+str(hidden_units)+'episode'+str(max_episodes)+'.hdf5')
+
