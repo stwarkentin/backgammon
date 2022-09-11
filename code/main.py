@@ -81,6 +81,8 @@ for i in tqdm (range(episodes2go), desc = "Learning..."):
     watch.on_episode_begin()
     agent.learn()
     completed_episodes += 1
+    if completed_episodes % int(max_episodes/4) == 0:
+        network.save_weights('checkpoints/TDAgent'+str(hidden_units)+'episode'+str(completed_episodes)+'.hdf5')
     # check if our wall time might run out next episode
     reachedwalltime = watch.on_episode_end() 
     if reachedwalltime:
