@@ -1,0 +1,29 @@
+#!/bin/bash
+#$ -N tdagent
+#$ -l mem=2G,cpu=4,cuda=1,cuda_cores=768,cuda_capability=600,
+#$ -v PATH
+#$ -v WALL=01:30:00
+#$ -cwd
+#$ -M stwarkentin@uos.de,mspreen@uos.de
+
+echo "*** Start of SGE job ***"
+date
+echo "Hostname:"
+echo "$HOSTNAME"
+echo 'Job-ID:'
+echo $JOB_ID
+echo 'WALL Time:'
+echo $WALL
+echo ""
+echo "Start"
+echo ""
+
+
+source ~/.bashrc
+conda activate DRL2022
+python main.py
+conda deactivate
+
+echo ""
+date
+echo "*** End of SGE job ***"
