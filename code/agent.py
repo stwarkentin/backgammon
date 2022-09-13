@@ -271,10 +271,6 @@ class TDAgent(Agent):
 
         # play the game
         while not done:
-            print("weights")
-            print(w)
-            print("trace")
-            print(z)
             # choose an action, observe outcome
             action = self.choose_action(obs)
             obs_, reward, done = self.env.step(action)
@@ -284,8 +280,7 @@ class TDAgent(Agent):
                 state = self.env._flatten_obs(obs)
                 value = self.network(state.reshape(1,-1))
             gradients = tape.gradient(value, w)
-            print("gradient")
-            print(gradients)
+
 
             # update eligibility trace
             for z_, gradient in zip(z, gradients):
@@ -298,8 +293,6 @@ class TDAgent(Agent):
                 state_ = self.env._flatten_obs(obs_)
                 target = reward + self.gamma *  self.network(state_.reshape(1,-1))
             delta = target - self.network(state.reshape(1,-1))
-            print("delta")
-            print(delta)
 
             # update weights
             for w_, z_ in zip(w, z):
@@ -308,6 +301,7 @@ class TDAgent(Agent):
             # update observation and movecounter
             obs = obs_
             n_moves += 1
+
 
         return n_moves
             
