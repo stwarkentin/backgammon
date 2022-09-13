@@ -269,7 +269,9 @@ class TDAgent(Agent):
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
 
+        print("weights")
         print(w)
+        print("trace")
         print(z)
 
         # play the game
@@ -283,6 +285,7 @@ class TDAgent(Agent):
                 state = self.env._flatten_obs(obs)
                 value = self.network(state.reshape(1,-1))
             gradients = tape.gradient(value, w)
+            print("gradient")
             print(gradients)
 
             # update eligibility trace
