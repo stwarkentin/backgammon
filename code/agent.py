@@ -299,10 +299,12 @@ class TDAgent(Agent):
                 state_ = self.env._flatten_obs(obs_)
                 target = reward + self.gamma *  self.network(state_.reshape(1,-1))
             delta = target - self.network(state.reshape(1,-1))
+            print("delta")
+            print(delta)
 
             # update weights
             for w_, z_ in zip(w, z):
-                w_.assign_add(self.alpha * delta * z_)
+                w_.assign_add(tf.reshape(self.alpha * delta * z_,w_.shape))
             
             # update observation and movecounter
             obs = obs_
