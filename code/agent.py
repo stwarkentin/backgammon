@@ -269,6 +269,9 @@ class TDAgent(Agent):
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
 
+        print(w)
+        print(z)
+
         # play the game
         while not done:
             # choose an action, observe outcome
@@ -280,6 +283,7 @@ class TDAgent(Agent):
                 state = self.env._flatten_obs(obs)
                 value = self.network(state.reshape(1,-1))
             gradients = tape.gradient(value, w)
+            print(gradients)
 
             # update eligibility trace
             for z_, gradient in zip(z, gradients):
