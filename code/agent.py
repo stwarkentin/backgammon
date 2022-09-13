@@ -299,7 +299,7 @@ class TDAgent(Agent):
 
             # update weights
             for w_, z_ in zip(w, z):
-                w_.assign_add(tf.reshape(self.alpha * delta * z_, w_.shape)) # 'w.assign_add' = 'w+...'
+                w_.assign_add(self.alpha * delta * z_)
             
             # update observation and movecounter
             obs = obs_
@@ -308,7 +308,7 @@ class TDAgent(Agent):
         return n_moves
             
 class DQNAgent(Agent):
-    """Agentclass that implements the dqn algorithm
+    """Agent class that implements the dqn algorithm
     
     ...
 
