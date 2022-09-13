@@ -269,13 +269,12 @@ class TDAgent(Agent):
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
 
-        print("weights")
-        print(w)
-        print("trace")
-        print(z)
-
         # play the game
         while not done:
+            print("weights")
+            print(w)
+            print("trace")
+            print(z)
             # choose an action, observe outcome
             action = self.choose_action(obs)
             obs_, reward, done = self.env.step(action)
