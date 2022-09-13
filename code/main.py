@@ -18,7 +18,7 @@ from WallTime import WallTimeWatcher
 # 20 , int(1e5)
 # 40 . int(4e5)
 
-hidden_units, max_episodes = 10, int(5e4)
+hidden_units, max_episodes = 4, int(5e4)
 
 ###############################################################################################################################################################
 # AGENT STUFF  
