@@ -298,7 +298,7 @@ class TDAgent(Agent):
             delta = target - self.network(state.reshape(1,-1))
 
             # update weights
-            for i in range(n_layer):
+            for i in range(n_layers):
                 for w_, z_ in zip(w[i], z[i]):
                     w_.assign_add(tf.reshape(self.alpha * delta * z_,w_.shape))
             
