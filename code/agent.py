@@ -271,7 +271,7 @@ class TDAgent(Agent):
 
         n_layers = 0
         for layer in w:
-            n_layer += 1 
+            n_layers += 1 
 
         # play the game
         while not done:
