@@ -295,6 +295,10 @@ class TDAgent(Agent):
 
             # update weights
             for w_layer, z_layer in zip(w, z):
+                print("w")
+                print(w_layer)
+                print("z")
+                print(z_layer)
                 w_layer.assign_add(tf.reshape(self.alpha * delta * z_layer,w_layer.shape))
             
             # update observation and movecounter
