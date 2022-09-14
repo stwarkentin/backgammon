@@ -269,6 +269,10 @@ class TDAgent(Agent):
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
 
+        n_layers = 0
+        for layer in w:
+            n_layer += 1 
+
         # play the game
         while not done:
             # choose an action, observe outcome
@@ -294,8 +298,8 @@ class TDAgent(Agent):
             delta = target - self.network(state.reshape(1,-1))
 
             # update weights
-            for layer in range(len(w)):
-                for w_, z_ in zip(w[layer], z[layer]):
+            for i in range(n_layer):
+                for w_, z_ in zip(w[i], z[i]):
                     w_.assign_add(tf.reshape(self.alpha * delta * z_,w_.shape))
             
             # update observation and movecounter
