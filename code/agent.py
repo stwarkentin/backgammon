@@ -264,8 +264,8 @@ class TDAgent(Agent):
         n_moves = 0
         
         # initialize eligibility trace
-        z = []
         w = self.network.trainable_weights
+        z = []
         for layer in w:
             z.append(tf.Variable(tf.zeros_like(layer)))
 
@@ -276,11 +276,10 @@ class TDAgent(Agent):
             obs_, reward, done = self.env.step(action)
 
             # get the value gradient so that we can update the eligibility trace
-            with tf.GradientTape() as tape: # 'with...as...' automatically closes the GradientTape object at the end of the block
+            with tf.GradientTape() as tape:
                 state = self.env._flatten_obs(obs)
                 value = self.network(state.reshape(1,-1))
             gradients = tape.gradient(value, w)
-
 
             # update eligibility trace
             for z_, gradient in zip(z, gradients):
@@ -295,8 +294,9 @@ class TDAgent(Agent):
             delta = target - self.network(state.reshape(1,-1))
 
             # update weights
-            for w_, z_ in zip(w, z):
-                w_.assign_add(tf.reshape(self.alpha * delta * z_,w_.shape))
+            for layer in w:
+                for w_, z_ in zip(w[layer], z[layer]):
+                    w_.assign_add(tf.reshape(self.alpha * delta * z_,w_.shape))
             
             # update observation and movecounter
             obs = obs_
