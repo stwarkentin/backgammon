@@ -261,7 +261,6 @@ class TDAgent(Agent):
         # reset the board and movecounter
         obs = self.env.reset()
         done = False
-        n_moves = 0
         
         # initialize eligibility trace
         w = self.network.trainable_weights
@@ -286,22 +285,25 @@ class TDAgent(Agent):
                 z_.assign(self.gamma * self._lambda * z_ + gradient)
 
             # TD error
+            # HIDDEN LAYER TD ERROR?
             if done:
                 target = reward
             else:
                 state_ = self.env._flatten_obs(obs_)
-                target = reward + self.gamma *  self.network(state_.reshape(1,-1))
+                target = reward + self.gamma * self.network(state_.reshape(1,-1))
             delta = target - self.network(state.reshape(1,-1))
             print("delta")
             print(delta)
 
             # update weights
-            for w_layer, z_layer in zip(w, z):
+            # UPDATE WEIGHTS BY LAYER
+            for w_layer, z_layer, delta_layer in zip(w, z, delta):
                 print("w")
                 print(w_layer)
                 print("z")
                 print(z_layer)
-                w_layer.assign_add(tf.reshape(self.alpha * delta * z_layer,w_layer.shape))
+
+                w_layer.assign_add(tf.reshape(self.alpha * delta_layer * z_layer,w_layer.shape))
             
             # update observation and movecounter
             obs = obs_
