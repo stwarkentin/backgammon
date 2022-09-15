@@ -1,10 +1,9 @@
 #!/bin/bash
-#$ -N tdagent
+#$ -N dqnagent
 #$ -l mem=2G,cpu=4,cuda=1,cuda_cores=768,cuda_capability=600,
 #$ -v PATH
 #$ -v WALL=01:30:00
 #$ -cwd
-#$ -M stwarkentin@uos.de,mspreen@uos.de
 
 echo "*** Start of SGE job ***"
 date
@@ -21,7 +20,7 @@ echo ""
 
 source ~/.bashrc
 conda activate DRL2022
-python main.py
+python main_dqn.py
 conda deactivate
 
 echo ""
