@@ -46,7 +46,7 @@ if os.path.exists('completed_episodes.npy'): # make sure to delete this file bet
 else:
     completed_episodes = 0
 
-completed episodes = 48100
+completed_episodes = 48100
 
 episodes2go = max_episodes-completed_episodes
 
@@ -94,7 +94,7 @@ for i in tqdm (range(episodes2go), desc = "Learning..."):
         n = [completed_episodes]
         np.save('completed_episodes.npy',n)
         # resubmit the job
-        call('qsub train_tdagent.sge', shell=True)
+        call('qsub finish_tdagent.sge', shell=True)
         break
 
 network.save_weights('checkpoints/TDAgent'+str(hidden_units)+'episode'+str(max_episodes)+'.hdf5')
