@@ -45,20 +45,24 @@ class Agent:
             Returns:
                     legal_actions (array): contains all legal actions for the given state
         """
-        # fetch game-relevant information
+         # fetch game-relevant information
         player, opponent = self.whose_turn(obs)
         dice = roll()
         
         # split the observation into player and opponent boards
-        player_obs = deepcopy(obs[player])
+        player_obs = []
         opponent_obs = obs[opponent]
         
         # decode the board to simplify addition and subtraction
-        player_obs['board'] = human_readable(player_obs)
+        for pos in obs[player]["board"]:
+            player_obs.append(pos[0] + pos[1] + pos[2] + pos[3] * 2)
+            
+        player_obs.append(obs[player]["barmen"])
 
         legal_actions = []
         
         # recursive function to search "action-tree"
+         # recursive function to search "action-tree"
         def build_actions(action, dice, player_obs):
             
             # check if we have iterated through all dice. if so, the action is appended to the list of legal actions and we return
@@ -67,15 +71,15 @@ class Agent:
                 return
 
             # in case there are chips in the bar they have to be removed before any other actions can be taken
-            if player_obs['barmen'] > 0:
+            if player_obs[24] > 0:
                 # check for free points/blots
                 for i, die in enumerate(dice):
                     # for each die, check if the barmen would land on a free spot/a blot
                     if opponent_obs['board'][die + 23 - 2 * die][1] == 0:
                         # create a new observation in which the barman has been freed
-                        new_player_obs = deepcopy(player_obs)
-                        new_player_obs['board'][die] += 1
-                        new_player_obs['barmen'] -= 0.5
+                        new_player_obs = copy(player_obs)
+                        new_player_obs[die] += 1
+                        new_player_obs[24] -= 0.5
                         # remove the used die
                         new_dice = copy(dice)
                         new_dice.pop(i)
@@ -88,20 +92,20 @@ class Agent:
                 # check for checkers in the first three quadrants
                 # NOTE: easier to just add up all the values and compare them to zero?
                 for idx in range(18):
-                    if player_obs['board'][idx] > 0:
+                    if player_obs[idx] > 0:
                         bearingoff = False
                         break
                         
                 # iterate through all positions and check if we can move to position + current dice
-                for pos, n_checkers in enumerate(player_obs['board']):
+                for pos, n_checkers in enumerate(player_obs[:24]):
                     # check if a dice roll could exceed the limitations of the board
                     if n_checkers > 0 and (pos + dice[0]) > 23:
                         # can a checker be moved off the board
                         if bearingoff:
-                            if pos+dice[0] == 24 or sum(player_obs['board'][:pos]) == 0:
+                            if pos+dice[0] == 24 or sum(player_obs[:pos]) == 0:
                                 # create a new observation
-                                new_player_obs = deepcopy(player_obs)
-                                new_player_obs['board'][pos] -= 1
+                                new_player_obs = copy(player_obs)
+                                new_player_obs[pos] -= 1
                                 # recursively call function
                                 build_actions(action.copy() + [(pos, 24)], dice[1:], new_player_obs)       
                             
@@ -109,9 +113,9 @@ class Agent:
                     
                     # move a checker only if the move is legal
                     elif n_checkers > 0 and opponent_obs['board'][(pos + dice[0]) + 23 - 2 * (pos + dice[0])][1] == 0:
-                        new_player_obs = deepcopy(player_obs)
-                        new_player_obs['board'][pos] -= 1
-                        new_player_obs['board'][pos + dice[0]] += 1
+                        new_player_obs = copy(player_obs)
+                        new_player_obs[pos] -= 1
+                        new_player_obs[pos + dice[0]] += 1
                         # recursively call function
                         build_actions(action.copy() + [(pos, pos + dice[0])], dice[1:], new_player_obs)
                             
@@ -129,7 +133,7 @@ class Agent:
         legal_actions = list(l for l in legal_actions if len(l) == length)
 
         return legal_actions
-
+    
     def whose_turn(self, obs):
         """
         Returns current player and opponent given an observation
@@ -261,6 +265,8 @@ class TDAgent(Agent):
         # reset the board and movecounter
         obs = self.env.reset()
         done = False
+        # !!!!
+        n_moves = 0
         
         # initialize eligibility trace
         w = self.network.trainable_weights
@@ -292,9 +298,7 @@ class TDAgent(Agent):
                 state_ = self.env._flatten_obs(obs_)
                 target = reward + self.gamma * self.network(state_.reshape(1,-1))
             delta = target - self.network(state.reshape(1,-1))
-            print("delta")
-            print(delta)
-
+         
             # update weights
             # UPDATE WEIGHTS BY LAYER
             for w_layer, z_layer, delta_layer in zip(w, z, delta):
@@ -302,7 +306,12 @@ class TDAgent(Agent):
             
             # update observation and movecounter
             obs = obs_
-            
+            # !!!!<
+            n_moves += 1
+        
+        # !!!!
+        return n_moves
+        
 class DQNAgent(Agent):
     """Agent class that implements the dqn algorithm
     
@@ -343,7 +352,7 @@ class DQNAgent(Agent):
         self.memory = memory
         self.batch_size = batch_size
         self.network.compile(optimizer = Adam(learning_rate = lr), loss = 'mean_squared_error')
-
+        
     def store_transition(self, state, action, reward, done, new_state):
         """
         Appends state transition to memory
@@ -353,10 +362,9 @@ class DQNAgent(Agent):
                     action (array): action that was taken
                     reward (int): reward that was received
                     new_state (dict) : new state that was reached
-
         """
+        state = self.env._flatten_obs(state)
         self.memory.append([state, action, reward, done, new_state])
-
       
     def choose_action(self, obs, random = True):
         """
@@ -399,7 +407,7 @@ class DQNAgent(Agent):
         # reset board and movecounter
         obs = self.env.reset()
         done = False
-        # n_moves = 0
+        n_moves = 0
 
         # play the game
         while not done:
@@ -408,39 +416,38 @@ class DQNAgent(Agent):
             obs_, reward, done = self.env.step(action)
             self.store_transition(obs, action, reward, done, obs_)
 
+            n_moves += 1
+            
             # if our buffer is not filled sufficiently return, else train
-            if len(self.memory.buffer) < self.batch_size:
-                return
+            if len(self.memory.buffer) >= self.batch_size:
+    
+                # sample batch
+                states, actions, rewards, dones, states_ = self.memory.sample(self.batch_size)
 
-            # sample batch
-            states, actions, rewards, dones, states_ = self.memory.sample(self.batch_size)
+                target = []
+                
+                # build targets
+                for i in range(self.batch_size):
 
-            flat_states = []
-            target = []
+                    if dones[i]:
+                        target.append(rewards[i] * tf.zeros(4,))
+                    else:
+                        # find the max state-action value of the subsequent state (action that maximzes the sub-subsequent state value)
+                        state__ = self.env.simulate_step(states_[i], self.choose_action(states_[i], False))
+                        state__ = self.env._flatten_obs(state__)
+                        target.append(rewards[i] + self.gamma * self.network(state__.reshape(1,-1))[0])
 
-            # build targets
-            for i in range(self.batch_size):
-                flat_states.append(self.env._flatten_obs(states[i]))
+                states = tf.convert_to_tensor(states)
+                target = tf.convert_to_tensor(target)
 
-                if dones[i]:
-                    target.append(rewards[i] * tf.zeros(4,))
-                else:
-                    # find the max state-action value of the subsequent state (action that maximzes the sub-subsequent state value)
-                    state__ = self.env.simulate_step(states_[i], self.choose_action(states_[i], False))
-                    state__ = self.env._flatten_obs(state__)
-                    target.append(rewards[i] + self.gamma * self.network(state__.reshape(1,-1))[0])
+                # train network on target batch
+                self.network.train_on_batch(states, target)
 
-            flat_states = np.array(flat_states)
-            target = np.array(target)
-
-            # train network on target batch
-            self.network.train_on_batch(flat_states, target)
-
-            # decay epsilon
-            self.epsilon = max(self.min_epsilon, self.epsilon*self.epsilon_decay)
+                # decay epsilon
+                self.epsilon = max(self.min_epsilon, self.epsilon*self.epsilon_decay)
             
             # update observation and movecounter
             obs = obs_
-            # n_moves += 1
+            
 
-        return #n_moves
+        return n_moves

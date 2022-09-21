@@ -38,7 +38,7 @@ lr = 0.01
 epsilon = 0.9
 min_epsilon = 0.1
 epsilon_decay = 0.99999
-batch_size = 60 
+batch_size = 20 
 agent = DQNAgent(env, network, gamma, lr, epsilon, min_epsilon, epsilon_decay, memory, batch_size)
 
 ###############################################################################################################################################################
@@ -94,6 +94,7 @@ for i in tqdm (range(episodes2go), desc = "Learning..."):
         # export number of completed episodes to a file
         n = [completed_episodes]
         np.save('completed_episodes.npy',n)
+        agent.memory.save()
         # resubmit the job
         call('qsub train_dqnagent.sge', shell=True)
         break

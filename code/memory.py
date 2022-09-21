@@ -1,3 +1,5 @@
+import os
+import pickle
 import numpy as np
 from collections import deque 
 
@@ -20,7 +22,13 @@ class ReplayBuffer:
     """
     
     def __init__(self, capacity):
-        self.buffer = deque(maxlen = capacity)
+        self.max_length = capacity
+        if os.path.exists('memory_buffer.pkl'): # make sure to delete this file between agents!!!!!!!
+            self.buffer = pickle.load(open('memory_buffer.pkl', 'rb'))
+        else:
+            self.buffer = []
+            
+        print(len(self.buffer))
 
     def append(self, experience):
         """
@@ -30,8 +38,12 @@ class ReplayBuffer:
                     experience (array): datapoint
         
         """
-        self.buffer.append(experience)
-
+        if len(self.buffer) < self.max_length:
+            self.buffer.append(experience)
+        else:
+            del(self.buffer[0])
+            self.buffer.append(experience)
+        
     def sample(self, batch_size):
         """
         Returns sample with random datapoints of length batch_size
@@ -49,10 +61,20 @@ class ReplayBuffer:
         """
         batch = np.random.choice(len(self.buffer), batch_size, replace=False)
         
-        states = [self.buffer[i][0] for i in batch]
-        actions = [self.buffer[i][1] for i in batch]
-        rewards = [self.buffer[i][2] for i in batch]
-        dones = [self.buffer[i][3] for i in batch]
-        states_ = [self.buffer[i][4] for i in batch]
+        states = []
+        actions = []
+        rewards = []
+        dones = []
+        states_ = []
+        
+        for i in batch:
+            states.append(self.buffer[i][0])
+            actions.append(self.buffer[i][1])
+            rewards.append(self.buffer[i][2])
+            dones.append(self.buffer[i][3])
+            states_.append(self.buffer[i][4])
         
         return states, actions, rewards, dones, states_
+    
+    def save(self):
+        pickle.dump(self.buffer, open('memory_buffer.pkl', 'wb'))
