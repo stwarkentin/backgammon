@@ -54,15 +54,14 @@ class Agent:
         opponent_obs = obs[opponent]
         
         # decode the board to simplify addition and subtraction
+        # !!! No longer in need of human readable !!!
         for pos in obs[player]["board"]:
             player_obs.append(pos[0] + pos[1] + pos[2] + pos[3] * 2)
-            
         player_obs.append(obs[player]["barmen"])
 
         legal_actions = []
         
         # recursive function to search "action-tree"
-         # recursive function to search "action-tree"
         def build_actions(action, dice, player_obs):
             
             # check if we have iterated through all dice. if so, the action is appended to the list of legal actions and we return
@@ -265,8 +264,6 @@ class TDAgent(Agent):
         # reset the board and movecounter
         obs = self.env.reset()
         done = False
-        # !!!!
-        n_moves = 0
         
         # initialize eligibility trace
         w = self.network.trainable_weights
@@ -306,11 +303,6 @@ class TDAgent(Agent):
             
             # update observation and movecounter
             obs = obs_
-            # !!!!<
-            n_moves += 1
-        
-        # !!!!
-        return n_moves
         
 class DQNAgent(Agent):
     """Agent class that implements the dqn algorithm
@@ -407,7 +399,6 @@ class DQNAgent(Agent):
         # reset board and movecounter
         obs = self.env.reset()
         done = False
-        n_moves = 0
 
         # play the game
         while not done:
@@ -415,8 +406,6 @@ class DQNAgent(Agent):
             action = self.choose_action(obs)
             obs_, reward, done = self.env.step(action)
             self.store_transition(obs, action, reward, done, obs_)
-
-            n_moves += 1
             
             # if our buffer is not filled sufficiently return, else train
             if len(self.memory.buffer) >= self.batch_size:
@@ -424,18 +413,20 @@ class DQNAgent(Agent):
                 # sample batch
                 states, actions, rewards, dones, states_ = self.memory.sample(self.batch_size)
 
-                target = []
-                
-                # build targets
+                states__ = []
                 for i in range(self.batch_size):
-
-                    if dones[i]:
-                        target.append(rewards[i] * tf.zeros(4,))
-                    else:
-                        # find the max state-action value of the subsequent state (action that maximzes the sub-subsequent state value)
-                        state__ = self.env.simulate_step(states_[i], self.choose_action(states_[i], False))
-                        state__ = self.env._flatten_obs(state__)
-                        target.append(rewards[i] + self.gamma * self.network(state__.reshape(1,-1))[0])
+                    # find the max state-action value of the subsequent state (action that maximzes the sub-subsequent state value)
+                    state__ = self.env.simulate_step(states_[i], self.choose_action(states_[i], False))
+                    state__ = self.env._flatten_obs(state__)
+                    states__.append(state__.reshape(1,-1))
+                    # reshape dones and rewards
+                    dones[i] = np.full((1,4), 1 - dones[i]) 
+                    rewards[i] = np.full((1,4), rewards[i])
+                    
+                # convert state__ array to dataset to perform batched prediction
+                states__ = tf.data.Dataset.from_tensor_slices(states__).batch(1)
+                # build targets
+                target = rewards + self.gamma * self.network.predict(states__) * dones
 
                 states = tf.convert_to_tensor(states)
                 target = tf.convert_to_tensor(target)
@@ -449,5 +440,3 @@ class DQNAgent(Agent):
             # update observation and movecounter
             obs = obs_
             
-
-        return n_moves

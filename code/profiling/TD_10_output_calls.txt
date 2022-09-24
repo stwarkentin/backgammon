@@ -1,562 +1,466 @@
-Mon Sep 19 13:25:32 2022    output.dat
+Tue Sep 20 18:57:50 2022    output.dat
 
-         774883762 function calls (742418812 primitive calls) in 440.723 seconds
+         293407445 function calls (284768797 primitive calls) in 167.347 seconds
 
    Ordered by: call count
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
- 79433890    5.289    0.000    5.289    0.000 {built-in method numpy.asarray}
- 41980128    3.413    0.000    3.413    0.000 {method 'get' of 'dict' objects}
- 39055658    5.062    0.000    7.809    0.000 {built-in method builtins.isinstance}
- 32745923    2.306    0.000    2.306    0.000 {built-in method builtins.id}
-31888261/28284853   12.690    0.000   89.186    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
- 27729192    2.214    0.000    2.214    0.000 {method 'append' of 'list' objects}
- 26708504    7.598    0.000    8.162    0.000 {built-in method builtins.getattr}
- 26483140   24.107    0.000   24.107    0.000 {method 'reduce' of 'numpy.ufunc' objects}
- 26476928    7.468    0.000   36.244    0.000 {method 'all' of 'numpy.ndarray' objects}
- 26476928    9.453    0.000   89.685    0.000 <__array_function__ internals>:2(array_equal)
- 26476928    2.023    0.000    2.023    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/numeric.py:2381(_array_equal_dispatcher)
- 26476928   28.076    0.000   69.607    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/numeric.py:2385(array_equal)
- 26476928    4.703    0.000   28.777    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_methods.py:60(_all)
-18537009/644789   16.678    0.000   41.135    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:128(deepcopy)
- 16111445    1.578    0.000    1.578    0.000 {built-in method builtins.issubclass}
- 12023623    4.648    0.000    6.376    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:242(_keep_alive)
- 10822347    0.910    0.000    0.910    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:2131(context_safe)
- 10822307    6.220    0.000    6.220    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:973(executing_eagerly)
- 10067424    4.669    0.000    4.669    0.000 {method '__deepcopy__' of 'numpy.generic' objects}
-  9157816    2.178    0.000    6.386    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/traceback_utils.py:32(is_traceback_filtering_enabled)
-8910959/3394286    7.516    0.000  223.420    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/traceback_utils.py:138(error_handler)
-7778312/3384864   14.105    0.000  200.110    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/dispatch.py:1068(op_dispatch_handler)
-  7755390    0.920    0.000    0.920    0.000 {method '_datatype_enum' of 'tensorflow.python.framework.ops.EagerTensor' objects}
-  7752284    2.925    0.000    3.845    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1129(dtype)
-  6590169    1.203    0.000    1.203    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1575(<genexpr>)
-  6513386    0.454    0.000    0.454    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:182(_deepcopy_atomic)
-  6385177    4.913    0.000    4.914    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:175(__eq__)
-5553798/5553796    3.320    0.000   86.012    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/profiler/trace.py:178(wrapped)
-5553798/5553796   11.551    0.000   82.692    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1572(convert_to_tensor)
-  5164982    2.233    0.000    7.230    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:355(flatten)
-  5164974    4.994    0.000    4.997    0.000 {built-in method tensorflow.python.util._pywrap_utils.Flatten}
-  3989419    0.631    0.000    0.633    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:580(ensure_initialized)
-  3989419    0.882    0.000    0.882    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:931(_handle)
-  3989416    1.656    0.000    1.656    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:995(device_name)
-  3986310   37.010    0.000   40.619    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:74(convert_to_eager_tensor)
-  3986310    1.569    0.000   50.455    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:170(constant)
-  3986310    3.485    0.000   48.887    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:271(_constant_impl)
-  3986310    1.789    0.000   42.409    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:302(_constant_eager_impl)
-  3980098    2.019    0.000    3.063    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_conversion_registry.py:112(get)
-  3926248    1.945    0.000    4.390    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:2161(executing_eagerly)
-3847197/3837879    0.352    0.000    0.354    0.000 {built-in method builtins.len}
-  3761082    1.571    0.000    3.461    0.000 {built-in method builtins.all}
-  3603408    0.883    0.000    0.883    0.000 {built-in method numpy.asanyarray}
-  3295084    2.330    0.000    9.439    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1569(_should_not_autopack)
-  3295084    1.100    0.000   10.539    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1579(_autopacking_conversion_function)
-  3295084    1.181    0.000   42.236    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:340(_constant_tensor_conversion_function)
-  3295083    1.922    0.000   68.900    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1419(stack)
-  3293948   49.720    0.000   49.723    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_FastPathExecute}
-  3150601    3.424    0.000    8.739    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6670(name_scope)
-  2930784    0.347    0.000    0.347    0.000 {method 'items' of 'dict' objects}
-  2870581    0.759    0.000    3.175    0.000 {built-in method builtins.hasattr}
-  2672108    1.637    0.000    1.637    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:990(scope_name)
-  2496428    1.306    0.000    2.163    0.000 {built-in method _abc._abc_instancecheck}
-  2496428    0.589    0.000    2.751    0.000 /home/marie/anaconda3/lib/python3.9/abc.py:117(__instancecheck__)
-  2061550    0.238    0.000    0.238    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:172(__init__)
-  2061550    0.194    0.000    0.194    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:175(__enter__)
-  2061550    0.246    0.000    0.246    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:178(__exit__)
-  1801704    0.202    0.000    0.202    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/lib/function_base.py:4758(_append_dispatcher)
-  1801704    1.922    0.000   10.051    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/lib/function_base.py:4762(append)
-  1801704    0.839    0.000   11.942    0.000 <__array_function__ internals>:2(append)
-  1801704    0.456    0.000    0.456    0.000 {method 'ravel' of 'numpy.ndarray' objects}
-  1801704    0.788    0.000    3.863    0.000 <__array_function__ internals>:2(ravel)
-  1801704    0.194    0.000    0.194    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:1714(_ravel_dispatcher)
-  1801704    1.070    0.000    2.329    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:1718(ravel)
-  1801704    1.052    0.000    3.929    0.000 <__array_function__ internals>:2(concatenate)
-  1801704    0.202    0.000    0.202    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/multiarray.py:148(concatenate)
-  1620332    0.796    0.000    0.796    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:50(_is_ref_dtype)
-  1620332    0.560    0.000    1.356    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:63(base_dtype)
-  1606380    1.410    0.000    2.628    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:66(copy)
-  1603811    0.661    0.000    0.661    0.000 {method '__copy__' of 'numpy.ndarray' objects}
-  1413682    0.722    0.000    1.416    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:723(as_dimension)
-  1404361    0.461    0.000    0.554    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:199(__init__)
-  1385719    0.187    0.000    0.187    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:265(value)
-  1367237    0.721    0.000    1.888    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:775(<genexpr>)
-  1338645    0.370    0.000    0.370    0.000 {method 'pop' of 'list' objects}
-  1336056    0.574    0.000    0.574    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:985(scope_name)
-  1336055    0.696    0.000    0.817    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6905(__init__)
-  1336055    3.028    0.000    5.192    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6923(__enter__)
-  1336055    1.283    0.000    3.301    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6957(__exit__)
-  1336054    0.690    0.000    1.649    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6947(_restore_name_scope)
-  1179308    0.762    0.000    0.862    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:678(as_dtype)
-1161765/1142651    0.444    0.000    1.058    0.000 {built-in method builtins.next}
-  1123111    1.361    0.000    9.477    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1343(maybe_promote_tensors)
-1102067/1098470    0.618    0.000    0.619    0.000 {built-in method _abc._abc_subclasscheck}
-1102067/1098470    0.239    0.000    0.857    0.000 /home/marie/anaconda3/lib/python3.9/abc.py:121(__subclasscheck__)
-  1098464    0.509    0.000    0.509    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6706(<genexpr>)
-  1098361    1.422    0.000   15.905    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:10522(strided_slice)
-  1098361    0.554    0.000    2.872    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:894(_check_index)
-  1098361   11.028    0.000  132.374    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:914(_slice_helper)
-  1098361    1.057    0.000   16.962    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1168(strided_slice)
-1089203/644789    2.473    0.000   39.656    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:226(_deepcopy_dict)
-   956674    0.520    0.000    0.520    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsNested}
-   931926    0.285    0.000    0.381    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:839(rank)
-   931866    0.093    0.000    0.093    0.000 {method 'pop' of 'dict' objects}
-   931822    0.254    0.000    0.643    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:912(<genexpr>)
-   922703    0.917    0.000    4.137    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1256(shape)
-   922551    0.339    0.000    1.089    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:188(__ne__)
-   712833    0.408    0.000    2.140    0.000 {built-in method builtins.any}
-   688221    0.580    0.000    0.580    0.000 {method '_shape_tuple' of 'tensorflow.python.framework.ops.EagerTensor' objects}
-   685128    1.013    0.000    3.176    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:765(__init__)
-   681906    0.406    0.000    9.639    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_conversion_registry.py:46(_default_conversion_function)
-   669529    1.569    0.000   12.644    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1398(binary_op_wrapper)
-510294/3106    2.063    0.000   34.090    0.011 /home/marie/backgammon/code/agent.py:62(build_actions)
-   509757    0.054    0.000    0.054    0.000 {method 'copy' of 'list' objects}
-   475178    0.085    0.000    0.085    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1053(name)
-   475176    0.241    0.000    0.280    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:951(<genexpr>)
-   475176    0.241    0.000    0.274    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3384(<genexpr>)
-   472124    0.534    0.000    1.214    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:651(_pack_sequence_as)
-   472124    0.246    0.000    1.460    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:691(pack_sequence_as)
-   469143    0.074    0.000    0.074    0.000 {built-in method builtins.callable}
-   466060    0.248    0.000    0.248    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:436(__getitem__)
-   465911    0.412    0.000   23.136    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:916(<listcomp>)
-   465911    1.861    0.000   27.150    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:808(map_structure)
-   465907    0.746    0.000    1.972    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2477(_should_cast_single_input)
-   462956    0.570    0.000    0.571    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:436(__getattr__)
-   462919    0.613    0.000    1.211    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:155(is_compatible_with)
-   459844    0.119    0.000    0.119    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:545(shape)
-   456742    0.638    0.000    0.883    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:980(__iter__)
-   456640    0.141    0.000    0.655    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2584(<genexpr>)
-   456640    0.069    0.000    0.069    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2622(<genexpr>)
-   453583    0.346    0.000    5.321    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:480(multiply)
-   453583    0.446    0.000    7.829    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1759(_mul_dispatch)
-   453583    0.512    0.000    4.975    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:6558(mul)
-   453582    1.270    0.000   19.362    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1435(r_binary_op_wrapper)
-   450426    0.569    0.000    0.569    0.000 {method 'flatten' of 'numpy.ndarray' objects}
-   447520    0.843    0.000    0.843    0.000 {method '__deepcopy__' of 'numpy.ndarray' objects}
-   425688    0.057    0.000    0.073    0.000 /home/marie/backgammon/code/agent.py:128(<genexpr>)
-   419476    2.842    0.000   27.044    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:200(_deepcopy_list)
-   356147    0.382    0.000    3.203    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:444(add_v2)
-   356146    0.664    0.000    4.429    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1728(_add_dispatch)
-   313382    0.240    0.000    2.963    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:544(subtract)
-   313382    0.322    0.000    2.723    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:11071(sub)
-   253269    0.209    0.000    0.209    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:525(dtype)
-   253177    0.158    0.000    0.544    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:858(<listcomp>)
-   253177    0.182    0.000    0.726    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:846(dims)
-246857/228321    1.145    0.000   95.691    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/traceback_utils.py:58(error_handler)
-   237632    0.075    0.000    0.075    0.000 {built-in method builtins.setattr}
-   237595    1.075    0.000    2.394    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/tf_decorator.py:61(make_decorator)
-   237595    0.487    0.000    0.689    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/tf_decorator.py:229(__init__)
-   237589    0.050    0.000    0.050    0.000 {method 'append' of 'collections.deque' objects}
-   237589    2.073    0.000    6.079    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/input_spec.py:155(assert_input_compatibility)
-   237589    0.064    0.000    0.064    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1110(input_spec)
-   237588    0.042    0.000    0.042    0.000 {method 'pop' of 'collections.deque' objects}
-   237588    0.227    0.000    0.227    0.000 {built-in method sys.exc_info}
-   237588    0.105    0.000    0.105    0.000 {built-in method sys._getframe}
-   237588    0.487    0.000    2.881    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/traceback_utils.py:74(inject_argument_info_in_traceback)
-   237588    0.180    0.000    0.180    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/autocast_variable.py:538(__init__)
-   237588    0.205    0.000    0.315    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/autocast_variable.py:543(__enter__)
-   237588    0.157    0.000    0.157    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/autocast_variable.py:547(__exit__)
-237588/228320    0.217    0.000   36.535    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/traceback_utils.py:88(error_handler)
-   237588    0.113    0.000    0.236    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:434(call_context)
-   237588    0.358    0.000    0.496    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:478(enter)
-   237588    0.122    0.000    0.122    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:512(training)
-   237588    0.138    0.000    0.138    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:540(__init__)
-   237588    0.152    0.000    0.152    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:545(__enter__)
-   237588    0.195    0.000    0.195    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:561(__exit__)
-237588/228320    6.508    0.000   94.282    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:893(__call__)
-   237588    0.280    0.000    0.402    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2332(_set_training_mode)
-   237588    1.007    0.000   17.568    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2449(_maybe_cast_inputs)
-   237588    0.482    0.000    1.461    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2611(_get_input_masks)
-   237588    0.182    0.000    0.182    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3089(_split_out_first_arg)
-   237588    0.371    0.000    1.472    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3380(_in_functional_construction_mode)
-   237588    0.300    0.000    9.476    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3389(_convert_numpy_or_python_types)
-   237588    0.167    0.000    8.106    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1430(convert_to_tensor_v2_with_dispatch)
-   237588    0.216    0.000    7.940    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1498(convert_to_tensor_v2)
-   237588    0.183    0.000    0.383    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:1548(currentframe)
-   237588    0.106    0.000    0.106    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:398(_create_exit_wrapper)
-   237588    0.200    0.000    0.200    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:408(__init__)
-   237588    0.430    0.000    2.184    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:438(enter_context)
-   237588    0.260    0.000    0.554    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:465(_push_cm_exit)
-   237588    0.138    0.000    0.188    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:470(_push_exit_callback)
-   237588    0.033    0.000    0.033    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:486(__enter__)
-   237588    0.633    0.000    1.621    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:489(__exit__)
-   231429    0.155    0.000    0.155    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1337(as_list)
-   231426    0.323    0.000   11.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:5986(mat_mul)
-   228322    0.081    0.000    0.177    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:860(ndims)
-   228320    1.941    0.000   35.129    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/layers/core/dense.py:166(call)
-   228320    0.065    0.000    0.065    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:871(compute_mask)
-   228320    0.330    0.000    0.601    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2162(_clear_losses)
-   228320    0.702    0.000    1.944    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2573(_set_mask_metadata)
-   228320    0.110    0.000    0.717    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2621(<listcomp>)
-   228320    0.064    0.000    0.064    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2631(_call_arg_was_passed)
-   228320    0.743    0.000    7.106    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/nn_ops.py:3479(bias_add)
-   228320    1.842    0.000   16.298    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:3488(matmul)
-   228320    0.700    0.000    4.049    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:4142(sigmoid)
-   228320    0.247    0.000    5.492    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_nn_ops.py:646(bias_add)
-   228320    0.240    0.000    2.239    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:9441(sigmoid)
-   228320    0.730    0.000   95.040    0.000 /home/marie/backgammon/code/network.py:21(call)
-   228319    0.275    0.000   13.248    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2483(_cast_single_input)
-   228319    0.161    0.000    0.207    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:556(<listcomp>)
-   228319    0.581    0.000    1.762    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:553(_shape_as_list)
-   228319    0.200    0.000    1.961    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:558(_shape_tuple)
-   228319    1.858    0.000   11.135    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:936(cast)
-   228319    0.309    0.000    6.446    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:1981(cast)
-   228319    0.221    0.000    0.221    0.000 {method 'reshape' of 'numpy.ndarray' objects}
-   225213    1.052    0.000   13.564    0.000 /home/marie/backgammon/code/env/backgammon.py:143(_flatten_obs)
-   222157    0.041    0.000    0.057    0.000 /home/marie/backgammon/code/agent.py:129(<genexpr>)
-   222157   10.976    0.000  103.469    0.000 /home/marie/backgammon/code/env/backgammon.py:171(take_step)
-   222157    0.162    0.000    1.423    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1123(_numpy)
-   222157    1.261    0.000    1.261    0.000 {method '_numpy_internal' of 'tensorflow.python.framework.ops.EagerTensor' objects}
-   219051    2.960    0.000  267.258    0.001 /home/marie/backgammon/code/agent.py:154(score)
-   219051    0.420    0.000  112.084    0.001 /home/marie/backgammon/code/env/backgammon.py:276(simulate_step)
-   219051    0.307    0.000    1.703    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1063(__float__)
-   127827    0.168    0.000    1.180    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:6730(neg)
-    52808    0.012    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:572(handle)
-    40852    0.019    0.000    0.020    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5792(get_default)
-    40852    0.030    0.000    0.049    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6263(get_default_graph)
-    31649    0.022    0.000    0.074    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:261(helper)
-31649/22093    0.023    0.000    0.052    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:123(__exit__)
-31649/22092    0.020    0.000    0.109    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:114(__enter__)
-    31649    0.045    0.000    0.052    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:86(__init__)
-    28056    0.119    0.000    0.206    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2949(_flatten_modules)
-    27956    0.028    0.000    0.236    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2943(_flatten_layers)
-    27954    0.004    0.000    0.004    0.000 {method 'popleft' of 'collections.deque' objects}
-    24850    0.004    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1326(<genexpr>)
-    24682    0.004    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:330(<genexpr>)
-    24526    0.002    0.000    0.002    0.000 {built-in method unicodedata.east_asian_width}
-    24448    0.029    0.000    0.029    0.000 {built-in method numpy.core._multiarray_umath.dragon4_positional}
-    22071    0.005    0.000    0.005    0.000 {method 'add' of 'set' objects}
-    19062    0.015    0.000    0.029    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:150(stop_recording)
-    19062    0.025    0.000    0.091    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5874(init_scope)
-    18815    0.013    0.000    0.013    0.000 {built-in method _codecs.lookup}
-    18684    0.020    0.000    0.035    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/compat.py:89(as_text)
-    18684    0.008    0.000    0.043    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/compat.py:115(as_str)
-    18639    0.008    0.000    0.017    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:255(_yield_value)
-    18639    0.009    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:260(_yield_sorted_items)
-    18636    0.008    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:442(__len__)
-    18636    0.007    0.000    0.017    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:241(_handle_graph)
-18636/3106    0.051    0.000    0.136    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:751(recurser)
-    18636    0.024    0.000    0.032    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:996(__reversed__)
-    15744    0.005    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1425(as_shape)
-    15694    0.053    0.000    0.134    0.000 {built-in method builtins.max}
-    15553    0.010    0.000    0.015    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5396(_distribution_strategy_stack)
-    15534    0.006    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:616(trainable)
-    15533    0.010    0.000    0.010    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribute_lib.py:843(extended)
-    15533    0.037    0.000    0.069    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:76(_get_per_thread_mode)
-    15533    0.008    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:397(_get_default_replica_mode)
-    15532    0.011    0.000    0.011    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeVariableAccessed}
-    15532    0.008    0.000    0.008    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_VariableWatcherVariableAccessed}
-    15532    0.003    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribute_lib.py:3721(value_container)
-    15532    0.015    0.000    0.085    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:269(get_strategy_and_replica_context)
-    15532    0.036    0.000    0.256    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:324(variable_accessed)
-    15532    0.060    0.000    0.176    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:104(variable_accessed)
-    15532    0.007    0.000    0.024    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5979(executing_eagerly_outside_functions)
-    15530    0.012    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:104(__init__)
-    15530    0.066    0.000    0.537    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:127(_gradient_function)
-    15530    0.024    0.000    0.048    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/registry.py:81(lookup)
-    15280    0.019    0.000    0.039    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:946(<genexpr>)
-    15280    0.009    0.000    0.053    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:951(<genexpr>)
-    15280    0.004    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:955(<genexpr>)
-    15280    0.003    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:956(<genexpr>)
-    12431    0.005    0.000    0.005    0.000 {method 'split' of 'str' objects}
-    12424    0.004    0.000    0.004    0.000 {method 'splitlines' of 'str' objects}
-    12424    0.004    0.000    0.004    0.000 {built-in method numpy.geterrobj}
-    12424    0.011    0.000    0.013    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:701(_extendLine)
-    12424    0.011    0.000    0.030    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:715(_extendLine_pretty)
-    12424    0.039    0.000    0.048    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:980(__call__)
-     9531    0.007    0.000    0.007    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetIsStopped}
-     9528    0.019    0.000    0.020    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:154(validate_synchronization_aggregation_trainable)
-9528/9423    0.033    0.000    0.350    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:261(__call__)
-     9423    0.073    0.000    0.247    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:336(__init__)
-     9422    0.003    0.000    0.003    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetRestartOnThread}
-     9422    0.004    0.000    0.004    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetStopOnThread}
-     9419    0.009    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_util.py:1030(is_tf_type)
-     9368    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:392(_values)
-     9321    0.008    0.000    0.011    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:271(is_compatible_with)
-     9319    0.009    0.000    0.020    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1323(is_fully_defined)
-     9318    0.009    0.000    0.042    0.000 {method 'extendleft' of 'collections.deque' objects}
-     9318    0.027    0.000    0.028    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:81(make_attr)
-     9318    0.020    0.000    0.054    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:111(get_attr)
-     9318    0.005    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:70(op_attr_type)
-     9318    0.036    0.000    0.533    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:867(_lazy_read)
-     9318    0.026    0.000    0.282    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:2092(__init__)
-     9318    0.004    0.000    0.017    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:2298(is_resource_variable)
-     9318    0.014    0.000    0.035    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop_util.py:24(_DTypeFromTensor)
-     9318    0.027    0.000    0.090    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop_util.py:48(IsTrainable)
-     9318    0.005    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:835(<genexpr>)
-     9268    0.029    0.000    4.889    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:459(__call__)
-     8290    0.003    0.000    0.003    0.000 {method 'getrandbits' of '_random.Random' objects}
-     6412    0.003    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1312(graph)
-     6317    0.009    0.000    0.112    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_resource_variable_ops.py:122(assign_variable_op)
-     6262    0.100    0.000    0.957    0.000 {built-in method builtins.print}
-     6228    0.003    0.000    0.003    0.000 {method 'rstrip' of 'str' objects}
-     6220    0.001    0.000    0.001    0.000 {method 'bit_length' of 'int' objects}
-     6220    0.009    0.000    0.013    0.000 /home/marie/anaconda3/lib/python3.9/random.py:237(_randbelow_with_getrandbits)
-     6214    0.003    0.000    0.003    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsCompositeTensor}
-     6214    0.002    0.000    0.003    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsTypeSpec}
-     6214    0.005    0.000    0.005    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsNamedtuple}
-     6214    0.003    0.000    0.003    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsMapping}
-     6214    0.004    0.000    0.004    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsMutableMapping}
-     6214    0.002    0.000    0.002    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsMappingView}
-     6214    0.002    0.000    0.002    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsAttrs}
-     6214    0.005    0.000    0.014    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:313(_maybe_set_handle_data)
-     6214    0.021    0.000    0.313    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:577(value)
-     6214    0.017    0.000    0.142    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:680(read_and_set_handle)
-     6214    0.014    0.000    0.270    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:677(_read_variable_op)
-     6214    0.009    0.000    0.108    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_resource_variable_ops.py:456(read_variable_op)
-     6214    0.005    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_util.py:1086(maybe_set_static_shape)
-     6214    0.025    0.000    0.091    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1231(is_compatible_with)
-     6214    0.007    0.000    0.015    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5527(_colocate_with_for_gradient)
-     6214    0.005    0.000    0.021    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5550(colocate_with)
-     6214    0.004    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:147(is_namedtuple)
-     6214    0.026    0.000    0.052    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:185(_sequence_like)
-6214/6213    0.015    0.000    0.039    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:611(_packed_nest_with_indices)
-     6212    0.003    0.000    0.003    0.000 /home/marie/backgammon/code/agent.py:133(whose_turn)
-     6212    0.005    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:731(_handle_or_self)
-     6212    0.013    0.000    0.665    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:1072(_run_op)
-     6212    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:468(_assign_dependencies)
-     6212    0.062    0.000    0.764    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:877(assign)
-     6212    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:2219(_ReadGrad)
-     6212    0.004    0.000    0.011    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:110(_get_tensors_for_gradient)
-     6212    0.008    0.000    0.021    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:159(get_flat_tensors_for_gradients)
-     6212    0.002    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:131(_replace_tensors_for_gradient)
-     6212    0.010    0.000    0.015    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:4422(conj)
-     6212    0.006    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/compat/compat.py:37(_date_to_date_number)
-     6212    0.005    0.000    0.011    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/compat/compat.py:65(forward_compatible)
-     6212    0.010    0.000    0.650    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:7273(__next__)
-     6212    0.020    0.000    0.140    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/execute.py:227(args_to_matching_eager)
-     6212    0.010    0.000    0.023    0.000 /home/marie/anaconda3/lib/python3.9/random.py:290(randrange)
-     6212    0.006    0.000    0.029    0.000 /home/marie/anaconda3/lib/python3.9/random.py:334(randint)
-     6212    0.006    0.000    0.006    0.000 {built-in method numpy.seterrobj}
-     6212    0.017    0.000    0.042    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_ufunc_config.py:32(seterr)
-     6212    0.015    0.000    0.015    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_ufunc_config.py:131(geterr)
-     6212    0.004    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:70(<dictcomp>)
-     6212    0.014    0.000    0.052    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:69(_wrapreduction)
-     5731    0.008    0.000    0.013    0.000 {built-in method builtins.sum}
-     3332    0.007    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/enum.py:358(__call__)
-     3332    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/enum.py:670(__new__)
-     3260    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:810(_v2_behavior)
-     3177    0.001    0.000    0.001    0.000 {method 'update' of 'dict' objects}
-     3153    0.002    0.000    0.002    0.000 {built-in method _thread.get_ident}
-     3126    0.004    0.000    0.009    0.000 {method 'join' of 'str' objects}
-     3112    0.004    0.000    0.004    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetIsEmpty}
-     3112    0.005    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:165(_must_record_gradient)
-     3109    0.006    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5561(control_dependencies)
-     3108    0.002    0.000    0.002    0.000 {method 'copy' of 'dict' objects}
-     3107    0.005    0.000    0.055    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:3456(fill)
-     3107    0.009    0.000    0.070    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:207(fill)
-     3107    0.008    0.000    0.076    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:352(_tensor_shape_tensor_conversion_function)
-     3106    0.010    0.000    0.010    0.000 {built-in method builtins.locals}
-     3106    0.002    0.000    0.002    0.000 {method 'discard' of 'set' objects}
-     3106    0.002    0.000    0.002    0.000 {method 'index' of 'list' objects}
-     3106    0.007    0.000    0.007    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetNew}
-     3106    0.004    0.000    0.004    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetRemove}
-     3106    0.044    0.000    0.044    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_Execute}
-     3106    0.105    0.000    0.885    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeGradient}
-     3106    0.005    0.000    0.005    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeWatchedVariables}
-     3106    0.062    0.000   34.523    0.011 /home/marie/backgammon/code/agent.py:38(find_actions)
-     3106    1.025    0.000  428.063    0.138 /home/marie/backgammon/code/agent.py:229(choose_action)
-     3106    0.010    0.000    0.039    0.000 /home/marie/backgammon/code/dice.py:3(roll)
-     3106    0.086    0.000    0.092    0.000 /home/marie/backgammon/code/human_readable.py:1(human_readable)
-     3106    0.013    0.000    0.995    0.000 /home/marie/backgammon/code/env/backgammon.py:241(step)
-     3106    0.015    0.000    0.084    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_grad.py:1164(_SigmoidGrad)
-     3106    0.009    0.000    0.089    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/nn_grad.py:319(_BiasAddGrad)
-     3106    0.013    0.000    0.212    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:668(_fast_fill)
-     3106    0.012    0.000    0.243    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:702(_ones)
-     3106    0.005    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:835(__init__)
-     3106    0.003    0.000    0.028    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:855(__enter__)
-     3106    0.004    0.000    0.019    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:860(__exit__)
-     3106    0.007    0.000    0.025    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:865(_push_tape)
-     3106    0.007    0.000    0.015    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:878(_pop_tape)
-     3106    0.005    0.000    0.014    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:1090(<listcomp>)
-     3106    0.058    0.000    1.313    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:995(gradient)
-     3106    0.021    0.000    0.943    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/imperative_grad.py:29(imperative_grad)
-     3106    0.029    0.000    0.363    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:842(assign_add)
-     3106    0.005    0.000    0.052    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_resource_variable_ops.py:24(assign_add_variable_op)
-     3106    0.005    0.000    0.011    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:200(<listcomp>)
-     3106    0.010    0.000    0.118    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:188(replace_flat_tensors_for_gradients)
-     3106    0.004    0.000    0.015    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:198(<listcomp>)
-     3106    0.004    0.000    0.047    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_nn_ops.py:722(bias_add_grad)
-     3106    0.004    0.000    0.036    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:9497(sigmoid_grad)
-     3106    0.017    0.000    0.334    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:8457(reshape)
-     3106    0.021    0.000    0.224    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:8561(reshape_eager_fallback)
-     3106    0.012    0.000    0.024    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:825(__str__)
-     3106    0.004    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:145(pop_tape)
-     3106    0.002    0.000    0.017    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:7120(_is_keras_symbolic_tensor)
-     3106    0.004    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:7265(__init__)
-     3106    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:36(__init__)
-     3106    0.003    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:39(watched_variables)
-     3106    0.008    0.000    0.017    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:43(push_new_tape)
-     3106    0.033    0.000    0.770    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:227(numpy_text)
-     3106    0.007    0.000    0.777    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:240(value_text)
-     3106    0.010    0.000    0.026    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:577(__iter__)
-     3106    0.024    0.000    0.857    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1095(__str__)
-     3106    0.009    0.000    0.179    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_grad.py:1705(_MatMulGradAgainstSecondOnly)
-     3106    0.006    0.000    0.185    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_grad.py:1721(_MatMulGrad)
-     3106    0.008    0.000    0.055    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/execute.py:29(quick_execute)
-     3106    0.004    0.000    0.021    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/execute.py:275(<listcomp>)
-     3106    0.011    0.000    0.351    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:66(reshape)
-     3106    0.001    0.000    0.001    0.000 {method '_prefer_custom_summarizer' of 'tensorflow.python.framework.ops.EagerTensor' objects}
-     3106    0.005    0.000    0.064    0.000 <__array_function__ internals>:2(amax)
-     3106    0.003    0.000    0.021    0.000 <__array_function__ internals>:2(amin)
-     3106    0.003    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_ufunc_config.py:425(__init__)
-     3106    0.006    0.000    0.038    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_ufunc_config.py:429(__enter__)
-     3106    0.004    0.000    0.013    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_ufunc_config.py:434(__exit__)
-     3106    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:66(<dictcomp>)
-     3106    0.014    0.000    0.027    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:61(_make_options_dict)
-     3106    0.008    0.000    0.414    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:375(<lambda>)
-     3106    0.012    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:367(_get_formatdict)
-     3106    0.028    0.000    0.456    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:416(_get_format_function)
-     3106    0.014    0.000    0.641    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:468(wrapper)
-     3106    0.023    0.000    0.621    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:485(_array2string)
-     3106    0.023    0.000    0.694    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:523(array2string)
-     3106    0.004    0.000    0.140    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:742(_formatArray)
-     3106    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:860(_none_or_positive_arg)
-     3106    0.015    0.000    0.406    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:869(__init__)
-     3106    0.174    0.000    0.386    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:896(fillFormat)
-     3106    0.013    0.000    0.707    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:1534(_array_str_implementation)
-     3106    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:2633(_amax_dispatcher)
-     3106    0.010    0.000    0.051    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:2638(amax)
-     3106    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:2758(_amin_dispatcher)
-     3106    0.003    0.000    0.014    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:2763(amin)
-     3106    0.003    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/enum.py:792(value)
-     3106    0.006    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/types.py:171(__get__)
-     1092    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
+ 36781353    2.260    0.000    2.260    0.000 {built-in method numpy.asarray}
+ 17700205    2.185    0.000    3.461    0.000 {built-in method builtins.isinstance}
+14711580/13077500    5.331    0.000   38.751    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+ 12260451    3.052    0.000   16.046    0.000 {method 'all' of 'numpy.ndarray' objects}
+ 12260451   10.808    0.000   10.808    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+ 12260451    4.160    0.000   39.439    0.000 <__array_function__ internals>:2(array_equal)
+ 12260451    0.940    0.000    0.940    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/numeric.py:2381(_array_equal_dispatcher)
+ 12260451   12.353    0.000   30.659    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/numeric.py:2385(array_equal)
+ 12260451    2.186    0.000   12.994    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_methods.py:60(_all)
+  7569794    2.880    0.000    3.092    0.000 {built-in method builtins.getattr}
+  6687410    0.641    0.000    0.641    0.000 {method 'get' of 'dict' objects}
+  4905541    0.403    0.000    0.403    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:2131(context_safe)
+  4905501    2.547    0.000    2.547    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:973(executing_eagerly)
+  4165903    0.929    0.000    2.785    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/traceback_utils.py:32(is_traceback_filtering_enabled)
+4057687/1536431    3.149    0.000   91.930    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/traceback_utils.py:138(error_handler)
+3545203/1533791    5.712    0.000   82.372    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/dispatch.py:1068(op_dispatch_handler)
+  3508626    0.384    0.000    0.384    0.000 {method '_datatype_enum' of 'tensorflow.python.framework.ops.EagerTensor' objects}
+  3507754    1.304    0.000    1.688    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1129(dtype)
+  3243435    0.336    0.000    0.336    0.000 {method 'append' of 'list' objects}
+  3046391    0.241    0.000    0.241    0.000 {built-in method builtins.id}
+  3017115    0.533    0.000    0.533    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1575(<genexpr>)
+  2892299    2.155    0.000    2.155    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:175(__eq__)
+  2762610    0.337    0.000    0.338    0.000 {built-in method builtins.issubclass}
+2531693/2531691    1.390    0.000   36.406    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/profiler/trace.py:178(wrapped)
+2531693/2531691    4.956    0.000   35.016    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1572(convert_to_tensor)
+  2344803    0.918    0.000    2.956    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:355(flatten)
+  2344795    2.035    0.000    2.039    0.000 {built-in method tensorflow.python.util._pywrap_utils.Flatten}
+2126838/101278    1.677    0.000    3.757    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:128(deepcopy)
+  1820199    0.269    0.000    0.271    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:580(ensure_initialized)
+  1820199    0.384    0.000    0.384    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:931(_handle)
+  1820196    0.670    0.000    0.670    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:995(device_name)
+  1819324   15.359    0.000   16.866    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:74(convert_to_eager_tensor)
+  1819324    0.685    0.000   21.091    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:170(constant)
+  1819324    1.524    0.000   20.406    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:271(_constant_impl)
+  1819324    0.788    0.000   17.654    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:302(_constant_eager_impl)
+  1817580    0.858    0.000    1.302    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_conversion_registry.py:112(get)
+  1763583    0.810    0.000    1.831    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:2161(executing_eagerly)
+  1717219    0.700    0.000    1.502    0.000 {built-in method builtins.all}
+  1634080    0.358    0.000    0.358    0.000 {built-in method numpy.asanyarray}
+1623446/1620830    0.135    0.000    0.136    0.000 {built-in method builtins.len}
+  1620448    0.108    0.000    0.108    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:182(_deepcopy_atomic)
+  1508557    1.000    0.000    4.106    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1569(_should_not_autopack)
+  1508557    0.463    0.000    4.569    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1579(_autopacking_conversion_function)
+  1508557    0.518    0.000   18.145    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:340(_constant_tensor_conversion_function)
+  1508556    0.823    0.000   29.734    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1419(stack)
+  1479832   18.909    0.000   18.909    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_FastPathExecute}
+  1429113    1.438    0.000    3.726    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6670(name_scope)
+  1273029    0.267    0.000    1.150    0.000 {built-in method builtins.hasattr}
+  1216972    0.710    0.000    0.710    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:990(scope_name)
+  1149195    0.128    0.000    0.128    0.000 {method 'items' of 'dict' objects}
+  1128871    0.605    0.000    1.033    0.000 {built-in method _abc._abc_instancecheck}
+  1128871    0.247    0.000    1.280    0.000 /home/marie/anaconda3/lib/python3.9/abc.py:117(__instancecheck__)
+   928869    0.103    0.000    0.103    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:172(__init__)
+   928869    0.083    0.000    0.083    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:175(__enter__)
+   928869    0.106    0.000    0.106    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:178(__exit__)
+   923805    0.657    0.000    1.251    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:66(copy)
+   817040    0.085    0.000    0.085    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/lib/function_base.py:4758(_append_dispatcher)
+   817040    0.783    0.000    4.057    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/lib/function_base.py:4762(append)
+   817040    0.333    0.000    4.830    0.000 <__array_function__ internals>:2(append)
+   817040    0.183    0.000    0.183    0.000 {method 'ravel' of 'numpy.ndarray' objects}
+   817040    0.080    0.000    0.080    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:1714(_ravel_dispatcher)
+   817040    0.440    0.000    0.953    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:1718(ravel)
+   817040    0.299    0.000    1.568    0.000 <__array_function__ internals>:2(ravel)
+   817040    0.427    0.000    1.570    0.000 <__array_function__ internals>:2(concatenate)
+   817040    0.083    0.000    0.083    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/multiarray.py:148(concatenate)
+   742306    0.315    0.000    0.315    0.000 {method '__copy__' of 'numpy.ndarray' objects}
+   727235    0.334    0.000    0.334    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:50(_is_ref_dtype)
+   727235    0.227    0.000    0.561    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:63(base_dtype)
+   628560    0.287    0.000    0.578    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:723(as_dimension)
+   625941    0.189    0.000    0.228    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:199(__init__)
+   620703    0.077    0.000    0.077    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:265(value)
+   614633    0.276    0.000    0.746    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:775(<genexpr>)
+   610118    0.151    0.000    0.151    0.000 {method 'pop' of 'list' objects}
+   608488    0.228    0.000    0.228    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:985(scope_name)
+   608487    0.324    0.000    0.378    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6905(__init__)
+   608487    1.296    0.000    2.187    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6923(__enter__)
+   608487    0.540    0.000    1.394    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6957(__exit__)
+   608486    0.286    0.000    0.703    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6947(_restore_name_scope)
+   525675    0.305    0.000    0.346    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:678(as_dtype)
+520696/515306    0.188    0.000    0.431    0.000 {built-in method builtins.next}
+   509810    0.548    0.000    3.892    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1343(maybe_promote_tensors)
+506558/502961    0.319    0.000    0.319    0.000 {built-in method _abc._abc_subclasscheck}
+506558/502961    0.109    0.000    0.428    0.000 /home/marie/anaconda3/lib/python3.9/abc.py:121(__subclasscheck__)
+   506390    0.310    0.000    0.407    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:242(_keep_alive)
+   502875    0.216    0.000    0.216    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6706(<genexpr>)
+   502852    0.576    0.000    6.472    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:10522(strided_slice)
+   502852    0.222    0.000    1.293    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:894(_check_index)
+   502852    4.717    0.000   56.783    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:914(_slice_helper)
+   502852    0.441    0.000    6.914    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:1168(strided_slice)
+   424210    0.196    0.000    0.196    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsNested}
+   417274    0.039    0.000    0.039    0.000 {method 'pop' of 'dict' objects}
+   417230    0.106    0.000    0.268    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:912(<genexpr>)
+   415510    0.119    0.000    0.162    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:839(rank)
+   414621    0.136    0.000    0.465    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:188(__ne__)
+   413781    0.337    0.000    1.583    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1256(shape)
+   394092    0.028    0.000    0.028    0.000 {method 'copy' of 'list' objects}
+   316856    0.156    0.000    0.817    0.000 {built-in method builtins.any}
+   309044    0.208    0.000    0.208    0.000 {method '_shape_tuple' of 'tensorflow.python.framework.ops.EagerTensor' objects}
+   308185    0.388    0.000    1.239    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:765(__init__)
+   308149    0.176    0.000    3.600    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_conversion_registry.py:46(_default_conversion_function)
+   304668    0.656    0.000    5.104    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1398(binary_op_wrapper)
+303834/101278    0.657    0.000    3.473    0.000 /home/marie/anaconda3/lib/python3.9/copy.py:226(_deepcopy_dict)
+213465/872    0.591    0.000    0.713    0.001 /home/marie/backgammon/code/agent.py:66(build_actions)
+   211220    0.030    0.000    0.030    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1053(name)
+   211218    0.092    0.000    0.108    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:951(<genexpr>)
+   211218    0.080    0.000    0.093    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3384(<genexpr>)
+   210360    0.203    0.000    0.450    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:651(_pack_sequence_as)
+   210360    0.091    0.000    0.541    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:691(pack_sequence_as)
+   209533    0.029    0.000    0.029    0.000 {built-in method builtins.callable}
+   208644    0.080    0.000    0.080    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:436(__getitem__)
+   208615    0.165    0.000    8.651    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:916(<listcomp>)
+   208615    0.684    0.000   10.183    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:808(map_structure)
+   208611    0.295    0.000    0.807    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2477(_should_cast_single_input)
+   207777    0.265    0.000    0.514    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/dtypes.py:155(is_compatible_with)
+   207774    0.213    0.000    0.213    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:436(__getattr__)
+   206896    0.037    0.000    0.037    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:545(shape)
+   206028    0.241    0.000    0.321    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:980(__iter__)
+   206006    0.053    0.000    0.256    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2584(<genexpr>)
+   206006    0.030    0.000    0.030    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2622(<genexpr>)
+   205143    0.130    0.000    2.085    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:480(multiply)
+   205143    0.171    0.000    3.083    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1759(_mul_dispatch)
+   205143    0.201    0.000    1.955    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:6558(mul)
+   205142    0.498    0.000    7.810    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1435(r_binary_op_wrapper)
+   204260    0.218    0.000    0.218    0.000 {method 'flatten' of 'numpy.ndarray' objects}
+   202556    0.284    0.000    0.284    0.000 {method '__deepcopy__' of 'numpy.ndarray' objects}
+   181633    0.018    0.000    0.025    0.000 /home/marie/backgammon/code/agent.py:132(<genexpr>)
+   155296    0.093    0.000    1.299    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:544(subtract)
+   155296    0.141    0.000    1.206    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:11071(sub)
+   149372    0.137    0.000    1.197    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:444(add_v2)
+   149371    0.222    0.000    1.640    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:1728(_add_dispatch)
+   110000    0.077    0.000    0.077    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:525(dtype)
+   109988    0.066    0.000    0.230    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:858(<listcomp>)
+   109988    0.070    0.000    0.300    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:846(dims)
+108216/103004    0.403    0.000   35.341    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/traceback_utils.py:58(error_handler)
+   105653    0.026    0.000    0.026    0.000 {built-in method builtins.setattr}
+   105616    0.348    0.000    0.775    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/tf_decorator.py:61(make_decorator)
+   105616    0.153    0.000    0.225    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/tf_decorator.py:229(__init__)
+   105610    0.020    0.000    0.020    0.000 {method 'append' of 'collections.deque' objects}
+   105610    0.744    0.000    2.244    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/input_spec.py:155(assert_input_compatibility)
+   105610    0.025    0.000    0.025    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1110(input_spec)
+   105609    0.019    0.000    0.019    0.000 {method 'pop' of 'collections.deque' objects}
+   105609    0.067    0.000    0.067    0.000 {built-in method sys.exc_info}
+   105609    0.035    0.000    0.035    0.000 {built-in method sys._getframe}
+   105609    0.133    0.000    0.908    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/traceback_utils.py:74(inject_argument_info_in_traceback)
+   105609    0.065    0.000    0.065    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/autocast_variable.py:538(__init__)
+   105609    0.069    0.000    0.102    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/autocast_variable.py:543(__enter__)
+   105609    0.055    0.000    0.055    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/autocast_variable.py:547(__exit__)
+105609/103003    0.084    0.000   13.678    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/traceback_utils.py:88(error_handler)
+   105609    0.039    0.000    0.071    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:434(call_context)
+   105609    0.111    0.000    0.162    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:478(enter)
+   105609    0.037    0.000    0.037    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:512(training)
+   105609    0.050    0.000    0.050    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:540(__init__)
+   105609    0.057    0.000    0.057    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:545(__enter__)
+   105609    0.064    0.000    0.064    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:561(__exit__)
+105609/103003    2.165    0.000   34.831    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:893(__call__)
+   105609    0.086    0.000    0.123    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2332(_set_training_mode)
+   105609    0.356    0.000    6.722    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2449(_maybe_cast_inputs)
+   105609    0.183    0.000    0.559    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2611(_get_input_masks)
+   105609    0.066    0.000    0.066    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3089(_split_out_first_arg)
+   105609    0.134    0.000    0.528    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3380(_in_functional_construction_mode)
+   105609    0.095    0.000    3.446    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3389(_convert_numpy_or_python_types)
+   105609    0.052    0.000    2.962    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1430(convert_to_tensor_v2_with_dispatch)
+   105609    0.084    0.000    2.910    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1498(convert_to_tensor_v2)
+   105609    0.059    0.000    0.118    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:1548(currentframe)
+   105609    0.034    0.000    0.034    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:398(_create_exit_wrapper)
+   105609    0.064    0.000    0.064    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:408(__init__)
+   105609    0.114    0.000    0.766    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:438(enter_context)
+   105609    0.083    0.000    0.183    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:465(_push_cm_exit)
+   105609    0.046    0.000    0.066    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:470(_push_exit_callback)
+   105609    0.012    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:486(__enter__)
+   105609    0.235    0.000    0.607    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:489(__exit__)
+   103878    0.042    0.000    0.042    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1337(as_list)
+   103875    0.121    0.000    3.827    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:5986(mat_mul)
+   103005    0.030    0.000    0.071    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:860(ndims)
+   103003    0.753    0.000   13.315    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/layers/core/dense.py:166(call)
+   103003    0.020    0.000    0.020    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:871(compute_mask)
+   103003    0.101    0.000    0.168    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2162(_clear_losses)
+   103003    0.263    0.000    0.743    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2573(_set_mask_metadata)
+   103003    0.040    0.000    0.265    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2621(<listcomp>)
+   103003    0.026    0.000    0.026    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2631(_call_arg_was_passed)
+   103003    0.288    0.000    2.808    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/nn_ops.py:3479(bias_add)
+   103003    0.643    0.000    5.831    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:3488(matmul)
+   103003    0.261    0.000    1.600    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:4142(sigmoid)
+   103003    0.096    0.000    2.142    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_nn_ops.py:646(bias_add)
+   103003    0.093    0.000    0.871    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:9441(sigmoid)
+   103003    0.248    0.000   35.346    0.000 /home/marie/backgammon/code/network.py:21(call)
+   103002    0.101    0.000    5.039    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2483(_cast_single_input)
+   103002    0.067    0.000    0.087    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:556(<listcomp>)
+   103002    0.195    0.000    0.678    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:553(_shape_as_list)
+   103002    0.068    0.000    0.746    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:558(_shape_tuple)
+   103002    0.673    0.000    4.198    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:936(cast)
+   103002    0.118    0.000    2.293    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:1981(cast)
+   103002    0.077    0.000    0.077    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+   102130    0.425    0.000    5.472    0.000 /home/marie/backgammon/code/env/backgammon.py:143(_flatten_obs)
+   101268    0.017    0.000    0.023    0.000 /home/marie/backgammon/code/agent.py:133(<genexpr>)
+   101268    4.873    0.000   45.560    0.000 /home/marie/backgammon/code/env/backgammon.py:171(take_step)
+   100396    1.145    0.000  108.821    0.001 /home/marie/backgammon/code/agent.py:158(score)
+   100396    0.149    0.000   49.216    0.000 /home/marie/backgammon/code/env/backgammon.py:276(simulate_step)
+   100396    0.102    0.000    0.560    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1063(__float__)
+   100396    0.055    0.000    0.458    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1123(_numpy)
+   100396    0.403    0.000    0.403    0.000 {method '_numpy_internal' of 'tensorflow.python.framework.ops.EagerTensor' objects}
+    46369    0.047    0.000    0.366    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:6730(neg)
+    14830    0.003    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:572(handle)
+    11490    0.005    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5792(get_default)
+    11490    0.007    0.000    0.013    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:6263(get_default_graph)
+     8909    0.005    0.000    0.017    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:261(helper)
+8909/6215    0.006    0.000    0.013    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:123(__exit__)
+8909/6214    0.005    0.000    0.027    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:114(__enter__)
+     8909    0.010    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/contextlib.py:86(__init__)
+     7870    0.024    0.000    0.046    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2949(_flatten_modules)
+     7850    0.007    0.000    0.053    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2943(_flatten_layers)
+     7848    0.001    0.000    0.001    0.000 {method 'popleft' of 'collections.deque' objects}
+     6978    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1326(<genexpr>)
+     5682    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:330(<genexpr>)
+     5646    0.000    0.000    0.000    0.000 {built-in method unicodedata.east_asian_width}
+     5338    0.004    0.000    0.007    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:150(stop_recording)
+     5338    0.006    0.000    0.022    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5874(init_scope)
+     5331    0.003    0.000    0.003    0.000 {built-in method _codecs.lookup}
+     5321    0.001    0.000    0.001    0.000 {method 'add' of 'set' objects}
+     5280    0.004    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/compat.py:89(as_text)
+     5280    0.002    0.000    0.010    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/compat.py:115(as_str)
+     5235    0.002    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:255(_yield_value)
+     5235    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:260(_yield_sorted_items)
+     5232    0.003    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:442(__len__)
+     5232    0.002    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:241(_handle_graph)
+     5232    0.006    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:996(__reversed__)
+     4414    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1425(as_shape)
+     4383    0.002    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5396(_distribution_strategy_stack)
+     4364    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:616(trainable)
+     4363    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribute_lib.py:843(extended)
+     4363    0.009    0.000    0.017    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:76(_get_per_thread_mode)
+     4363    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:397(_get_default_replica_mode)
+     4362    0.002    0.000    0.002    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeVariableAccessed}
+     4362    0.002    0.000    0.002    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_VariableWatcherVariableAccessed}
+     4362    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribute_lib.py:3721(value_container)
+     4362    0.003    0.000    0.020    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:269(get_strategy_and_replica_context)
+     4362    0.008    0.000    0.058    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:324(variable_accessed)
+     4362    0.013    0.000    0.040    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:104(variable_accessed)
+     4362    0.002    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5979(executing_eagerly_outside_functions)
+     4360    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:104(__init__)
+     4360    0.016    0.000    0.149    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:127(_gradient_function)
+     4360    0.006    0.000    0.013    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/registry.py:81(lookup)
+     2669    0.002    0.000    0.002    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetIsStopped}
+     2666    0.005    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:154(validate_synchronization_aggregation_trainable)
+2666/2641    0.008    0.000    0.086    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:261(__call__)
+     2641    0.016    0.000    0.059    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:336(__init__)
+     2640    0.001    0.000    0.001    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetRestartOnThread}
+     2640    0.001    0.000    0.001    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetStopOnThread}
+     2637    0.002    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_util.py:1030(is_tf_type)
+     2626    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:392(_values)
+     2619    0.002    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:271(is_compatible_with)
+     2617    0.002    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1323(is_fully_defined)
+     2616    0.002    0.000    0.010    0.000 {method 'extendleft' of 'collections.deque' objects}
+     2616    0.007    0.000    0.007    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:81(make_attr)
+     2616    0.005    0.000    0.014    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:111(get_attr)
+     2616    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:70(op_attr_type)
+     2616    0.008    0.000    0.125    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:867(_lazy_read)
+     2616    0.006    0.000    0.068    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:2092(__init__)
+     2616    0.001    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:2298(is_resource_variable)
+     2616    0.003    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop_util.py:24(_DTypeFromTensor)
+     2616    0.006    0.000    0.022    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop_util.py:48(IsTrainable)
+     2606    0.006    0.000    1.166    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:459(__call__)
+     2342    0.001    0.000    0.001    0.000 {method 'getrandbits' of '_random.Random' objects}
+     1784    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1312(graph)
+     1778    0.014    0.000    0.039    0.000 {built-in method builtins.max}
+     1769    0.002    0.000    0.027    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_resource_variable_ops.py:122(assign_variable_op)
+     1752    0.000    0.000    0.000    0.000 {method 'bit_length' of 'int' objects}
+     1752    0.002    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/random.py:237(_randbelow_with_getrandbits)
+     1746    0.001    0.000    0.001    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsCompositeTensor}
+     1746    0.001    0.000    0.001    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsTypeSpec}
+     1746    0.001    0.000    0.001    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsNamedtuple}
+     1746    0.001    0.000    0.001    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsMapping}
+     1746    0.001    0.000    0.001    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsMutableMapping}
+     1746    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsMappingView}
+     1746    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.util._pywrap_utils.IsAttrs}
+     1746    0.001    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:313(_maybe_set_handle_data)
+     1746    0.005    0.000    0.075    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:577(value)
+     1746    0.004    0.000    0.034    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:680(read_and_set_handle)
+     1746    0.003    0.000    0.065    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:677(_read_variable_op)
+     1746    0.002    0.000    0.027    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_resource_variable_ops.py:456(read_variable_op)
+     1746    0.001    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_util.py:1086(maybe_set_static_shape)
+     1746    0.006    0.000    0.023    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1231(is_compatible_with)
+     1746    0.002    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5527(_colocate_with_for_gradient)
+     1746    0.001    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5550(colocate_with)
+     1746    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:147(is_namedtuple)
+     1746    0.006    0.000    0.013    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:185(_sequence_like)
+1746/1745    0.004    0.000    0.010    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:611(_packed_nest_with_indices)
+     1744    0.001    0.000    0.001    0.000 /home/marie/backgammon/code/agent.py:137(whose_turn)
+     1744    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:731(_handle_or_self)
+     1744    0.003    0.000    0.158    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:1072(_run_op)
+     1744    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:468(_assign_dependencies)
+     1744    0.015    0.000    0.185    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:877(assign)
+     1744    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:2219(_ReadGrad)
+     1744    0.001    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:110(_get_tensors_for_gradient)
+     1744    0.002    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:159(get_flat_tensors_for_gradients)
+     1744    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:131(_replace_tensors_for_gradient)
+     1744    0.003    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_ops.py:4422(conj)
+     1744    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/compat/compat.py:65(forward_compatible)
+     1744    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/compat/compat.py:37(_date_to_date_number)
+     1744    0.002    0.000    0.122    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:7273(__next__)
+     1744    0.005    0.000    0.033    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/execute.py:227(args_to_matching_eager)
+     1744    0.002    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/random.py:290(randrange)
+     1744    0.001    0.000    0.007    0.000 /home/marie/anaconda3/lib/python3.9/random.py:334(randint)
      1008    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:262(__subclasshook__)
+      938    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/enum.py:358(__call__)
+      938    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/enum.py:670(__new__)
       920    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:409(__subclasshook__)
-  418/416    0.001    0.000    0.001    0.000 {method 'format' of 'str' objects}
-      400    0.001    0.000    0.001    0.000 {built-in method numpy.core._multiarray_umath.dragon4_scientific}
+      878    0.001    0.000    0.001    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetIsEmpty}
+      878    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:165(_must_record_gradient)
+      875    0.002    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5561(control_dependencies)
+      873    0.001    0.000    0.013    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:3456(fill)
+      873    0.002    0.000    0.016    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:207(fill)
+      873    0.002    0.000    0.018    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/constant_op.py:352(_tensor_shape_tensor_conversion_function)
+      872    0.000    0.000    0.000    0.000 {method 'index' of 'list' objects}
+      872    0.002    0.000    0.002    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetNew}
+      872    0.001    0.000    0.001    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeSetRemove}
+      872    0.010    0.000    0.010    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_Execute}
+      872    0.023    0.000    0.228    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeGradient}
+      872    0.001    0.000    0.001    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_TapeWatchedVariables}
+      872    0.035    0.000    0.818    0.001 /home/marie/backgammon/code/agent.py:38(find_actions)
+      872    0.333    0.000  164.576    0.189 /home/marie/backgammon/code/agent.py:233(choose_action)
+      872    0.002    0.000    0.009    0.000 /home/marie/backgammon/code/dice.py:3(roll)
+      872    0.003    0.000    0.253    0.000 /home/marie/backgammon/code/env/backgammon.py:241(step)
+      872    0.004    0.000    0.021    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_grad.py:1164(_SigmoidGrad)
+      872    0.002    0.000    0.021    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/nn_grad.py:319(_BiasAddGrad)
+      872    0.003    0.000    0.049    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:668(_fast_fill)
+      872    0.003    0.000    0.055    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:702(_ones)
+      872    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:835(__init__)
+      872    0.001    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:855(__enter__)
+      872    0.001    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:860(__exit__)
+      872    0.002    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:865(_push_tape)
+      872    0.001    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:878(_pop_tape)
+      872    0.001    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:1090(<listcomp>)
+      872    0.013    0.000    0.327    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/backprop.py:995(gradient)
+      872    0.004    0.000    0.239    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/imperative_grad.py:29(imperative_grad)
+      872    0.007    0.000    0.083    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:842(assign_add)
+      872    0.001    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_resource_variable_ops.py:24(assign_add_variable_op)
+      872    0.001    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:200(<listcomp>)
+      872    0.003    0.000    0.028    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:188(replace_flat_tensors_for_gradients)
+      872    0.001    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/composite_tensor_gradient.py:198(<listcomp>)
+      872    0.001    0.000    0.011    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_nn_ops.py:722(bias_add_grad)
+      872    0.001    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_math_ops.py:9497(sigmoid_grad)
+      872    0.004    0.000    0.077    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:8457(reshape)
+      872    0.005    0.000    0.053    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:8561(reshape_eager_fallback)
+      872    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:145(pop_tape)
+      872    0.001    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:7120(_is_keras_symbolic_tensor)
+      872    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:7265(__init__)
+      872    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:36(__init__)
+      872    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:39(watched_variables)
+      872    0.002    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/tape.py:43(push_new_tape)
+      872    0.002    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:577(__iter__)
+      872    0.002    0.000    0.081    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:66(reshape)
+      872    0.002    0.000    0.012    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/execute.py:29(quick_execute)
+      872    0.001    0.000    0.005    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/execute.py:275(<listcomp>)
+      872    0.002    0.000    0.061    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_grad.py:1705(_MatMulGradAgainstSecondOnly)
+      872    0.001    0.000    0.062    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/math_grad.py:1721(_MatMulGrad)
+      872    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/enum.py:792(value)
+      872    0.001    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/types.py:171(__get__)
+      792    0.001    0.000    0.002    0.000 {built-in method builtins.sum}
   291/190    0.000    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2858(__setattr__)
-      282    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:233(__call__)
       270    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
-      258    0.000    0.000    0.000    0.000 {built-in method builtins.divmod}
-      250    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:922(<genexpr>)
-      250    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:925(<genexpr>)
-      250    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:926(<genexpr>)
-      250    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:927(<genexpr>)
-      250    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:930(<genexpr>)
-      250    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/arrayprint.py:939(<genexpr>)
-      210    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5059(_attr_scope)
-      203    0.000    0.000    0.000    0.000 {built-in method time.time}
-      200    0.000    0.000    0.000    0.000 {method 'partition' of 'str' objects}
-      160    0.000    0.000    0.000    0.000 {method 'sub' of 're.Pattern' objects}
+      252    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
       160    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:315(__subclasshook__)
-      156    0.000    0.000    0.007    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:329(_text_width)
-      156    0.000    0.000    0.007    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:333(disp_len)
-      154    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:888(__getitem__)
-      150    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1070(<genexpr>)
-      150    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3078(_dedup_weights)
-      131    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/compat.py:61(as_bytes)
-  128/107    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:303(__setattr__)
-      124    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
-      119    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3288(_variable_creator_stack)
-      115    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_UID}
-      115    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:2988(name_from_scope_name)
-      115    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:222(uid)
-      108    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1355(<listcomp>)
-      108    0.001    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1350(as_proto)
-      106    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:143(inner)
-      105    0.000    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_resource_variable_ops.py:1157(var_handle_op)
-      105    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:80(_set_handle_shapes_and_types)
-      105    0.002    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:142(_variable_handle_from_shape_and_dtype)
-      105    0.000    0.000    0.010    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:193(eager_safe_variable_handle)
-      105    0.000    0.000    0.033    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:1536(__init__)
-      105    0.005    0.000    0.033    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:1645(_init_from_args)
-      105    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:865(__len__)
-      105    0.000    0.000    0.000    0.000 {method 'append' of 'google.protobuf.pyext._message.RepeatedCompositeContainer' objects}
-      105    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:2290(anonymous_name)
-      104    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:222(_is_ascii)
-      103    0.000    0.000    0.032    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variable_scope.py:2738(default_variable_creator_v2)
-      103    0.000    0.000    0.033    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:240(<lambda>)
-      103    0.000    0.000    0.033    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:226(_variable_v2_call)
-      103    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:288(format_interval)
-      101    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1081(trainable)
-      101    0.000    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:2971(wrapped)
-      100    0.000    0.000    0.000    0.000 {built-in method from_iterable}
-      100    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1156(trainable_weights)
-      100    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2068(trainable_variables)
-      100    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2939(<genexpr>)
-      100    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2932(_gather_children_attribute)
-      100    0.000    0.000    0.006    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:12721(zeros_like)
-      100    0.000    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:3078(zeros_like_v2)
-      100    0.001    0.000    0.007    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:3124(zeros_like_impl)
-    76/63    0.000    0.000    0.008    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/base.py:583(_method_wrapper)
+  128/107    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:303(__setattr__)
+    98/96    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+    76/63    0.000    0.000    0.070    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/base.py:583(_method_wrapper)
        68    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_def_library.py:56(<genexpr>)
-       56    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.RLock' objects}
-       56    0.000    0.000    0.000    0.000 {method 'release' of '_thread.RLock' objects}
-       55    0.000    0.000    0.000    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+       58    0.000    0.000    0.000    0.000 {built-in method builtins.divmod}
        55    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
-       55    0.000    0.000    0.000    0.000 {method 'acquire' of '_multiprocessing.SemLock' objects}
-       55    0.000    0.000    0.000    0.000 {method 'release' of '_multiprocessing.SemLock' objects}
-       55    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:104(acquire)
-       55    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:108(release)
-       54    0.000    0.000    0.000    0.000 {built-in method builtins.abs}
-       54    0.000    0.000    0.000    0.000 {method 'flush' of '_io.TextIOWrapper' objects}
        53    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/object_identity.py:32(__init__)
        53    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/object_identity.py:62(__hash__)
        53    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/object_identity.py:133(_wrap_key)
-       52    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:155(__init__)
-       52    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:165(colour)
-       52    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:169(colour)
-       52    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:188(__format__)
-       52    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:342(fp_write)
-       52    0.000    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:348(print_status)
-       52    0.002    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:355(format_meter)
-       52    0.000    0.000    0.010    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1164(__str__)
-       52    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1460(format_dict)
-       52    0.000    0.000    0.014    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1478(display)
-       52    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:57(__init__)
-       52    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:61(__format__)
-       52    0.000    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:341(disp_trim)
-       51    0.000    0.000    0.015    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1174(__iter__)
-       51    0.000    0.000    0.014    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1339(refresh)
-       51    0.000    0.000    0.000    0.000 {built-in method now}
-       50    0.215    0.004  440.686    8.814 /home/marie/backgammon/code/agent.py:254(learn)
-       50    0.000    0.000    0.003    0.000 /home/marie/backgammon/code/env/backgammon.py:115(reset)
-       50    0.000    0.000    0.004    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:2341(trainable_weights)
-       50    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:3004(_assert_weights_created)
-       50    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1067(dynamic)
-       50    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:251(<listcomp>)
-       50    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:243(trainable_weights)
-       50    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:289(trainable_variables)
-       50    0.000    0.000    0.015    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1212(update)
-       50    0.000    0.000    0.000    0.000 {method 'random' of '_random.Random' objects}
+       53    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:233(__call__)
+       51    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/compat.py:61(as_bytes)
+       50    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5059(_attr_scope)
+       47    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
        45    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+       44    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
        44    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2797(_maybe_create_attribute)
+       43    0.000    0.000    0.000    0.000 {built-in method time.time}
        42    0.000    0.000    0.000    0.000 {built-in method _imp.acquire_lock}
        42    0.000    0.000    0.000    0.000 {built-in method _imp.release_lock}
        41    0.000    0.000    0.000    0.000 {method 'HasField' of 'google.protobuf.pyext._message.CMessage' objects}
+       40    0.000    0.000    0.000    0.000 {method 'sub' of 're.Pattern' objects}
        40    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5300(_device_function_stack)
        40    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/numerictypes.py:284(issubclass_)
+       39    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3288(_variable_creator_stack)
        37    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:4361(_name_stack)
+       36    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:329(_text_width)
+       36    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:333(disp_len)
        36    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:283(__subclasshook__)
+       35    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_Py_UID}
+       35    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:2988(name_from_scope_name)
+       35    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:222(uid)
        34    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/object_identity.py:136(__getitem__)
+       34    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:810(_v2_behavior)
+       34    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:888(__getitem__)
+       31    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+       30    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1070(<genexpr>)
        30    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2790(_obj_reference_counts)
+       30    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3078(_dedup_weights)
        30    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/object_identity.py:130(__init__)
        29    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:308(<genexpr>)
        28    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.lock' objects}
+       28    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1355(<listcomp>)
+       28    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:1350(as_proto)
        28    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:459(dtype)
        27    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer_utils.py:891(has_weights)
        27    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:94(wrap_or_unwrap)
        27    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:132(sticky_attribute_assignment)
+       26    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:143(inner)
+       25    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_resource_variable_ops.py:1157(var_handle_op)
+       25    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:80(_set_handle_shapes_and_types)
+       25    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:142(_variable_handle_from_shape_and_dtype)
+       25    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:193(eager_safe_variable_handle)
+       25    0.000    0.000    0.010    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:1536(__init__)
+       25    0.001    0.000    0.010    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/resource_variable_ops.py:1645(_init_from_args)
+       25    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:865(__len__)
+       25    0.000    0.000    0.000    0.000 {method 'append' of 'google.protobuf.pyext._message.RepeatedCompositeContainer' objects}
+       25    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:2290(anonymous_name)
        24    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_OperationOpType}
        24    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/lock_util.py:109(_validate_group_id)
        24    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:2538(type)
        24    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5377(_control_dependencies_stack)
+       24    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:222(_is_ascii)
        24    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/numeric.py:1858(isscalar)
+       23    0.000    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variable_scope.py:2738(default_variable_creator_v2)
+       23    0.000    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:240(<lambda>)
+       23    0.000    0.000    0.009    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variables.py:226(_variable_v2_call)
+       23    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:288(format_interval)
        23    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/weakref.py:452(get)
        22    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_conversion_registry.py:133(<genexpr>)
        22    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:849(__iter__)
        21    0.000    0.000    0.000    0.000 {method 'keys' of 'dict' objects}
        21    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+       21    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1081(trainable)
     21/13    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/layer_utils.py:485(wrapped)
+       21    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:2971(wrapped)
        21    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3344(_c_graph)
        20    0.000    0.000    0.000    0.000 {method 'keys' of 'mappingproxy' objects}
+       20    0.000    0.000    0.000    0.000 {built-in method from_iterable}
        20    0.000    0.000    0.000    0.000 {method 'match' of 're.Pattern' objects}
+       20    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1156(trainable_weights)
+       20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2068(trainable_variables)
+       20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2939(<genexpr>)
+       20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2932(_gather_children_attribute)
        20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/base.py:708(_maybe_initialize_trackable)
+       20    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/gen_array_ops.py:12721(zeros_like)
+       20    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:3078(zeros_like_v2)
+       20    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/array_ops.py:3124(zeros_like_impl)
        20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:4368(_name_stack)
        20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:4373(name_scope)
        20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:2011(context_switches)
-       20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:2548(name)
        20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/numerictypes.py:358(issubdtype)
+       20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:2548(name)
        20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/typing.py:1065(_get_protocol_attrs)
        20    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/typing.py:1084(<genexpr>)
        19    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3630(building_function)
@@ -572,9 +476,12 @@ Mon Sep 19 13:25:32 2022    output.dat
        18    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:955(_mode)
        18    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/getlimits.py:382(__new__)
        17    0.000    0.000    0.000    0.000 {method 'release' of '_thread.lock' objects}
-       17    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x56059e118740}
+       17    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x55d6aa874740}
        17    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:2543(graph)
        17    0.000    0.000    0.000    0.000 {method 'SerializeToString' of 'google.protobuf.pyext._message.CMessage' objects}
+       16    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.RLock' objects}
+       16    0.000    0.000    0.000    0.000 {method 'release' of '_thread.RLock' objects}
+       16    0.000    0.000    0.000    0.000 {method 'rstrip' of 'str' objects}
        16    0.000    0.000    0.000    0.000 {method 'isidentifier' of 'str' objects}
        16    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/object_identity.py:39(_assert_type)
        16    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/object_identity.py:53(__eq__)
@@ -585,6 +492,7 @@ Mon Sep 19 13:25:32 2022    output.dat
        16    0.000    0.000    0.000    0.000 {method 'ByteSize' of 'google.protobuf.pyext._message.CMessage' objects}
        16    0.000    0.000    0.000    0.000 {built-in method numpy.array}
        16    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:2498(__init__)
+       15    0.000    0.000    0.000    0.000 {method 'write' of '_io.TextIOWrapper' objects}
        15    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.RLock' objects}
        15    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2814(__delattr__)
        15    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/object_identity.py:139(__setitem__)
@@ -592,8 +500,14 @@ Mon Sep 19 13:25:32 2022    output.dat
        15    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:2079(<genexpr>)
        15    0.000    0.000    0.000    0.000 {method 'CopyFrom' of 'google.protobuf.pyext._message.CMessage' objects}
        15    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:1124(rewriter_toggle)
+       15    0.000    0.000    0.000    0.000 {method 'acquire' of '_multiprocessing.SemLock' objects}
+       15    0.000    0.000    0.000    0.000 {method 'release' of '_multiprocessing.SemLock' objects}
+       15    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:104(acquire)
+       15    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:108(release)
        15    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:760(get)
        15    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:767(__contains__)
+       14    0.000    0.000    0.000    0.000 {built-in method builtins.abs}
+       14    0.000    0.000    0.000    0.000 {method 'flush' of '_io.TextIOWrapper' objects}
        14    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_SetAttrValueProto}
        14    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:469(inner_cm)
        14    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_def_library.py:101(_IsListValue)
@@ -611,18 +525,45 @@ Mon Sep 19 13:25:32 2022    output.dat
        12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_def_library.py:251(_MaybeColocateWith)
        12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/traceable_stack.py:117(__len__)
        12    0.000    0.000    0.000    0.000 {method 'ParseFromString' of 'google.protobuf.pyext._message.CMessage' objects}
+       12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:155(__init__)
+       12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:165(colour)
+       12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:169(colour)
+       12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:188(__format__)
+       12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:342(fp_write)
+       12    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:348(print_status)
+       12    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:355(format_meter)
+       12    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1164(__str__)
+       12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1460(format_dict)
+       12    0.000    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1478(display)
+       12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:57(__init__)
+       12    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:61(__format__)
+       12    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/utils.py:341(disp_trim)
        12    0.000    0.000    0.000    0.000 {method 'astype' of 'numpy.ndarray' objects}
        11    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/gym/spaces/space.py:19(__init__)
        11    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/autotrackable.py:58(__setattr__)
        11    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5337(_device_function_stack)
        11    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:876(_as_tf_output)
+       11    0.000    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1174(__iter__)
+       11    0.000    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1339(refresh)
+       11    0.000    0.000    0.000    0.000 {built-in method now}
+       10    0.000    0.000    0.000    0.000 {built-in method builtins.print}
        10    0.000    0.000    0.000    0.000 {method 'lower' of 'str' objects}
        10    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+       10    0.043    0.004  167.322   16.732 /home/marie/backgammon/code/agent.py:258(learn)
+       10    0.000    0.000    0.001    0.000 /home/marie/backgammon/code/env/backgammon.py:115(reset)
+       10    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:2341(trainable_weights)
+       10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:3004(_assert_weights_created)
+       10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1067(dynamic)
+       10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:251(<listcomp>)
+       10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:243(trainable_weights)
+       10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:289(trainable_variables)
        10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_def_library.py:817(value_to_attr_value)
        10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/traceable_stack.py:73(__init__)
        10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3419(_get_control_flow_context)
+       10    0.000    0.000    0.003    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:1212(update)
        10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/tf_decorator.py:107(_has_tf_decorator_attr)
        10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/tf_decorator.py:193(unwrap)
+       10    0.000    0.000    0.000    0.000 {method 'random' of '_random.Random' objects}
        10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/weakref.py:428(__setitem__)
        10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/typing.py:1082(_is_callable_members_only)
        10    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/typing.py:1149(<genexpr>)
@@ -643,8 +584,8 @@ Mon Sep 19 13:25:32 2022    output.dat
         9    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:279(push)
         9    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/context.py:299(pop)
         9    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/weakref.py:370(remove)
-        9    0.000    0.000    0.000    0.000 {built-in method numpy.empty}
         9    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/threading.py:271(_is_owned)
+        9    0.000    0.000    0.000    0.000 {built-in method numpy.empty}
         9    0.000    0.000    0.000    0.000 <__array_function__ internals>:2(copyto)
         9    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/multiarray.py:1071(copyto)
         9    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/importlib/__init__.py:109(import_module)
@@ -669,7 +610,7 @@ Mon Sep 19 13:25:32 2022    output.dat
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/lock_util.py:125(__enter__)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/lock_util.py:128(__exit__)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3325(_add_op)
-        8    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3695(_create_op_internal)
+        8    0.000    0.000    0.002    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3695(_create_op_internal)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3798(_create_op_helper)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:4495(unique_name)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:4738(_apply_device_functions)
@@ -684,7 +625,7 @@ Mon Sep 19 13:25:32 2022    output.dat
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:448(_create_with_tf_output)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_callbacks.py:114(should_invoke_op_callbacks)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1883(_NodeDef)
-        8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1910(_create_c_op)
+        8    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1910(_create_c_op)
         8    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:1987(__init__)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:2153(_control_flow_post_processing)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:2469(outputs)
@@ -698,6 +639,7 @@ Mon Sep 19 13:25:32 2022    output.dat
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:779(items)
         8    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_collections_abc.py:802(__init__)
         7    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+        7    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
         7    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_AddInput}
         7    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_NewBuffer}
         7    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_GetBuffer}
@@ -723,14 +665,14 @@ Mon Sep 19 13:25:32 2022    output.dat
         6    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_MonitoringBoolGaugeCellSet}
         6    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_MonitoringGetCellBoolGauge1}
         6    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_GraphVersions}
-        6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/gym/spaces/space.py:38(shape)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/gym/spaces/box.py:25(__init__)
+        6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/gym/spaces/space.py:38(shape)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/regularizers.py:421(get)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/tf_inspect.py:360(isclass)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:1212(<genexpr>)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:1210(device_stack_has_callable)
-        6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/core/config/flags.py:25(config)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_def_registry.py:32(get)
+        6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/core/config/flags.py:25(config)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_def_library.py:46(_AttrValue)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_def_library.py:108(<listcomp>)
         6    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/op_def_library.py:110(<listcomp>)
@@ -792,9 +734,9 @@ Mon Sep 19 13:25:32 2022    output.dat
         4    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:5389(_control_dependencies_stack)
         4    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:112(__enter__)
         4    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:115(__exit__)
-        4    0.000    0.000    0.000    0.000 {built-in method numpy.zeros}
         4    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/_weakrefset.py:63(__iter__)
         4    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/threading.py:228(__init__)
+        4    0.000    0.000    0.000    0.000 {built-in method numpy.zeros}
         4    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:2552(default)
         4    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:2556(annotation)
         4    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:2560(kind)
@@ -817,7 +759,7 @@ Mon Sep 19 13:25:32 2022    output.dat
         3    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/version_utils.py:96(swap_class)
         3    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1043(dtype)
         3    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2899(<genexpr>)
-        3    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/tf_utils.py:541(get_tensor_spec)
+        3    0.000    0.000    0.063    0.021 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/tf_utils.py:541(get_tensor_spec)
         3    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/backend_config.py:64(floatx)
         3    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/generic_utils.py:1168(validate_kwargs)
         3    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:366(_get_default_strategy)
@@ -839,7 +781,7 @@ Mon Sep 19 13:25:32 2022    output.dat
         3    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/codecs.py:319(decode)
         3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:79(_unpack_uint32)
         3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:135(_path_stat)
-      2/1    0.000    0.000  440.723  440.723 {built-in method builtins.exec}
+      2/1    0.000    0.000  167.347  167.347 {built-in method builtins.exec}
         2    0.000    0.000    0.000    0.000 {method 'values' of 'mappingproxy' objects}
         2    0.000    0.000    0.000    0.000 {method 'setter' of 'property' objects}
         2    0.000    0.000    0.000    0.000 {method '__exit__' of '_io._IOBase' objects}
@@ -847,14 +789,15 @@ Mon Sep 19 13:25:32 2022    output.dat
         2    0.000    0.000    0.000    0.000 {built-in method _warnings.warn}
         2    0.000    0.000    0.000    0.000 {method 'find' of 'str' objects}
         2    0.000    0.000    0.000    0.000 {method 'rfind' of 'str' objects}
+        2    0.000    0.000    0.000    0.000 {method 'copy' of 'dict' objects}
         2    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TF_ListPluggablePhysicalDevices}
         2    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.SetRequireShapeInferenceFns}
         2    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_GraphGetTensorShapeHelper}
         2    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.SetHandleShapeAndType}
-        2    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_NewGraph}
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/gym/utils/colorize.py:18(colorize)
+        2    0.001    0.000    0.001    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_NewGraph}
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/gym/logger.py:33(warn)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/gym/spaces/discrete.py:14(__init__)
+        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/gym/utils/colorize.py:18(colorize)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:3537(is_functional_model_init_params)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/version_utils.py:59(__new__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/policy.py:316(global_policy)
@@ -868,40 +811,40 @@ Mon Sep 19 13:25:32 2022    output.dat
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/input_spec.py:70(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/policy.py:184(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/mixed_precision/policy.py:195(_parse_name)
-        2    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:308(__init__)
+        2    0.000    0.000    0.001    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:308(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:462(build)
         2    0.000    0.000    0.002    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:530(add_weight)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:1145(input_spec)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2113(_get_cell_name)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2120(_instrument_layer_creation)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2407(_set_dtype_policy)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2519(_init_set_name)
+        2    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2519(_init_set_name)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2745(<genexpr>)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:2997(_init_call_fn_args)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3020(_call_full_argspec)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3027(_call_fn_args)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3036(_call_fn_arg_defaults)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3057(_call_accepts_kwargs)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3106(_set_save_spec)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/tf_utils.py:354(is_extension_type)
+        2    0.000    0.000    0.001    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/base_layer.py:3106(_set_save_spec)
+        2    0.000    0.000    0.001    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/tf_utils.py:354(is_extension_type)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/tf_utils.py:501(maybe_init_scope)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/tf_inspect.py:233(getfullargspec)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/generic_utils.py:1141(to_snake_case)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/generic_utils.py:1188(is_default)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/backend.py:844(get_default_graph_uid_map)
+        2    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/backend.py:844(get_default_graph_uid_map)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/backend.py:1123(track_variable)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/backend.py:1137(unique_object_name)
+        2    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/backend.py:1137(unique_object_name)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/util.py:1543(_assert_trackable)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:39(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:66(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:490(_non_append_mutation)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:506(_external_modification)
+        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:277(watch_variable)
+        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:426(control_dependencies)
         2    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:762(_capture_helper)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:788(add_capture)
         2    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:1307(_create_substitute_placeholder)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/graph_only_ops.py:25(graph_placeholder)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:277(watch_variable)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/func_graph.py:426(control_dependencies)
         2    0.000    0.000    0.002    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/ops/variable_scope.py:2679(default_variable_creator)
         2    0.000    0.000    0.002    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/base.py:820(_add_variable_with_custom_getter)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/base.py:891(_preload_simple_restoration)
@@ -921,7 +864,7 @@ Mon Sep 19 13:25:32 2022    output.dat
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/object_identity.py:74(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/tensor_shape.py:871(__bool__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/traceable_stack.py:121(copy)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3056(__init__)
+        2    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:3056(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:4150(_get_op_def)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:4547(get_name_scope)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/ops.py:4821(__init__)
@@ -945,7 +888,7 @@ Mon Sep 19 13:25:32 2022    output.dat
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:1001(_yield_flat_up_to)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/util/nest.py:1605(yield_flat_paths)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/eager/execute.py:175(make_bool)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/c_api_util.py:46(__init__)
+        2    0.000    0.000    0.001    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/c_api_util.py:46(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/device_spec.py:145(from_string)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/device_spec.py:266(job)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/device_spec.py:278(device_type)
@@ -968,10 +911,10 @@ Mon Sep 19 13:25:32 2022    output.dat
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/threading.py:82(RLock)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/threading.py:521(__init__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/threading.py:529(is_set)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_dtype.py:24(_kind_name)
-        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_dtype.py:34(__str__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_dtype.py:307(_name_includes_bit_suffix)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_dtype.py:321(_name_get)
+        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_dtype.py:24(_kind_name)
+        2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/numpy/core/_dtype.py:34(__str__)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:1129(getfullargspec)
         2    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/inspect.py:2869(return_annotation)
         2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:385(cached)
@@ -996,8 +939,8 @@ Mon Sep 19 13:25:32 2022    output.dat
         1    0.000    0.000    0.000    0.000 {method 'difference' of 'set' objects}
         1    0.000    0.000    0.000    0.000 {method 'startswith' of 'bytes' objects}
         1    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TF_IsMlirBridgeEnabled}
-        1    0.002    0.002    0.002    0.002 {built-in method tensorflow.python._pywrap_tfe.TFE_NewContext}
         1    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_ContextListDevices}
+        1    0.001    0.001    0.001    0.001 {built-in method tensorflow.python._pywrap_tfe.TFE_NewContext}
         1    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_NewContextOptions}
         1    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_ContextOptionsSetConfig}
         1    0.000    0.000    0.000    0.000 {built-in method tensorflow.python._pywrap_tfe.TFE_ContextOptionsSetDevicePlacementPolicy}
@@ -1014,8 +957,6 @@ Mon Sep 19 13:25:32 2022    output.dat
         1    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_DeleteGraph}
         1    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.client._pywrap_tf_session.TF_GraphGetOpDef}
         1    0.000    0.000    0.000    0.000 {built-in method tensorflow.python.util._pywrap_determinism.is_enabled}
-        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:142(BoundedSemaphore)
-        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:159(Lock)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:186(__init__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:184(RLock)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:210(Condition)
@@ -1027,12 +968,13 @@ Mon Sep 19 13:25:32 2022    output.dat
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:114(_make_name)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:46(SemLock)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:123(Semaphore)
-        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
-        1    0.000    0.000  440.723  440.723 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:142(BoundedSemaphore)
+        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/multiprocessing/synchronize.py:159(Lock)
+        1    0.000    0.000  167.347  167.347 <string>:1(<module>)
         1    0.000    0.000    0.000    0.000 /home/marie/backgammon/code/agent.py:34(__init__)
-        1    0.000    0.000    0.000    0.000 /home/marie/backgammon/code/agent.py:223(__init__)
+        1    0.000    0.000    0.000    0.000 /home/marie/backgammon/code/agent.py:227(__init__)
         1    0.000    0.000    0.001    0.001 /home/marie/backgammon/code/env/backgammon.py:31(__init__)
-        1    0.000    0.000    0.003    0.003 /home/marie/anaconda3/lib/python3.9/site-packages/keras/layers/core/dense.py:100(__init__)
+        1    0.000    0.000    0.002    0.002 /home/marie/anaconda3/lib/python3.9/site-packages/keras/layers/core/dense.py:100(__init__)
         1    0.000    0.000    0.003    0.003 /home/marie/anaconda3/lib/python3.9/site-packages/keras/layers/core/dense.py:132(build)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/activations.py:562(get)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/compile_utils.py:606(create_pseudo_input_names)
@@ -1040,9 +982,9 @@ Mon Sep 19 13:25:32 2022    output.dat
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:177(__new__)
         1    0.000    0.000    0.006    0.006 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:186(__init__)
         1    0.000    0.000    0.005    0.005 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:293(_init_batch_counters)
-        1    0.000    0.000    0.008    0.008 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:353(build)
+        1    0.000    0.000    0.009    0.009 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:353(build)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:674(_reset_compile_cache)
-        1    0.000    0.000    0.001    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:2927(_set_save_spec)
+        1    0.000    0.000    0.062    0.062 /home/marie/anaconda3/lib/python3.9/site-packages/keras/engine/training.py:2927(_set_save_spec)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/utils/version_utils.py:50(__new__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/initializers/initializers_v2.py:132(__call__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/keras/initializers/initializers_v2.py:277(__init__)
@@ -1088,6 +1030,7 @@ Mon Sep 19 13:25:32 2022    output.dat
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:233(get_strategy)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:253(has_strategy)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/distribute/distribution_strategy_context.py:385(_get_default_replica_context)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:183(__init__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:192(_attribute_sentinel)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/training/tracking/data_structures.py:204(_track_value)
@@ -1173,21 +1116,21 @@ Mon Sep 19 13:25:32 2022    output.dat
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:100(<listcomp>)
         1    0.000    0.000    0.001    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:92(__init__)
         1    0.000    0.000    0.001    0.001 /home/marie/anaconda3/lib/python3.9/site-packages/tqdm/std.py:118(create_mp_lock)
+        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/device.py:40(is_device_spec)
+        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/device.py:45(canonical_name)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/linecache.py:36(getlines)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/linecache.py:80(updatecache)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/tokenize.py:319(read_or_stop)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/tokenize.py:325(find_cookie)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/tokenize.py:295(detect_encoding)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/tokenize.py:388(open)
-        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/device.py:40(is_device_spec)
-        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/site-packages/tensorflow/python/framework/device.py:45(canonical_name)
+        1    0.000    0.000    0.000    0.000 {function Random.seed at 0x7fc9c37cf040}
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/random.py:117(__init__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/random.py:126(seed)
-        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/weakref.py:165(__setitem__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/weakref.py:348(__new__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/weakref.py:353(__init__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/weakref.py:368(__init__)
-        1    0.000    0.000    0.000    0.000 {function Random.seed at 0x7ff3d764e040}
+        1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/weakref.py:165(__setitem__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/threading.py:750(_newname)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/threading.py:795(__init__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/threading.py:873(start)
@@ -1216,8 +1159,8 @@ Mon Sep 19 13:25:32 2022    output.dat
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/warnings.py:117(_formatwarnmsg)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/warnings.py:35(_formatwarnmsg_impl)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/warnings.py:403(__init__)
+        1    0.000    0.000  167.347  167.347 /home/marie/backgammon/code/profiler.py:9(main)
         1    0.000    0.000    0.000    0.000 {built-in method utcfromtimestamp}
-        1    0.001    0.001  440.723  440.723 /home/marie/backgammon/code/profiler.py:9(main)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/codecs.py:260(__init__)
         1    0.000    0.000    0.000    0.000 /home/marie/anaconda3/lib/python3.9/codecs.py:309(__init__)
         1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:841(create_module)
