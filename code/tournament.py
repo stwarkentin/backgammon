@@ -44,7 +44,6 @@ white_score = 0
 black_score = 0
 x = [0, 0, 0, 0]
 
-
 for i in range(episodes):
     # reset board
     obs = env.reset()
@@ -53,7 +52,7 @@ for i in range(episodes):
     # play the game
     while not done:
         if obs['W']['turn'] == 1:
-            action = td_agent.choose_action(obs)
+            action = td_2000_agent.choose_action(obs)
         else:
             action = random_agent.choose_action(obs)
 
@@ -78,8 +77,8 @@ for i in range(episodes):
             
         score.append(score[-1] + reward)
         obs = obs_
+
         
-print(x)
 plt.style.use('_mpl-gallery-nogrid')
 
 def func(pct, allvals):
