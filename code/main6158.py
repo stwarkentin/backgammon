@@ -18,7 +18,7 @@ from WallTime import WallTimeWatcher
 # 20 , int(1e5)
 # 40 . int(4e5)
 
-hidden_units, max_episodes = 0, 6158
+hidden_units, max_episodes = 0, 2000
 
 ###############################################################################################################################################################
 # AGENT STUFF  
@@ -50,7 +50,7 @@ episodes2go = max_episodes-completed_episodes
 
 # if the wall time has previously run out, load the most recent checkpoint
 if completed_episodes > 0:
-    filepath = 'TDAgent'+str(hidden_units)+'episode'+str(completed_episodes)+'of'+str(max_episodes)+'.hdf5'
+    filepath = 'TDAgent'+str(hidden_units)+'episode'+str(completed_episodes)+'.hdf5'
     print('filepath: '+filepath)
     network.load_weights(filepath)
 
